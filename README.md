@@ -41,6 +41,7 @@
 # 更改记录：
  1. /security/selinux/selinuxfs.c 165行到167行。  
  2. /driver/kernel/selinux/sepolicy.c 注释有Modify For Huawei的部分。  
+ > 根据对比代码发现，华为4.9内核里的SELinux代码是移植自5.x版本的内核。所以修改了KernelSU关于版本检查的部分。
  3. 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。所以按照之后的添加代码方式移植。  
 ***
 # 创建者/贡献者： 
