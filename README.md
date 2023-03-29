@@ -41,7 +41,7 @@
 # 更改记录：
  1. /security/selinux/selinuxfs.c 165行到167行。  
  2. /driver/kernel/selinux/sepolicy.c 注释有Modify For Huawei的部分。  
- 3. 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。  
+ 3. 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。所以按照之后的添加代码方式移植。  
 ***
 # 创建者/贡献者： 
 [麦麦观饭](https://github.com/maimaiguanfan) / [麒麟盘古内核](https://github.com/maimaiguanfan/android_kernel_huawei_hi3660/)：提供了内核参考以及基础的内核。  
