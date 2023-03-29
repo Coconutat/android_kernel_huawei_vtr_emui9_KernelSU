@@ -1,0 +1,21 @@
+#define CFC_GENRULES
+#include "cfc.h"
+
+// define marker
+a := CFC_FUNC_ENTRY_SYM(TEEK_OpenSession)
+b := CFC_FUNC_ENTRY_SYM(tc_client_ioctl)
+c := CFC_FUNC_ENTRY_SYM(tc_client_session_ioctl)
+d := CFC_FUNC_ENTRY_SYM(TC_NS_OpenSession)
+e1 := CFC_SEND_DATA_START_SYM(tee_calc_task_hash_fix_val), SEND_DATA_START
+e2 := CFC_SEND_DATA_STOP_SYM(tee_calc_task_hash_fix_val), SEND_DATA_STOP
+f1 := CFC_SEND_DATA_START_SYM(tee_calc_task_hash_rand_val), SEND_DATA_START
+f2 := CFC_SEND_DATA_STOP_SYM(tee_calc_task_hash_rand_val), SEND_DATA_STOP
+g := CFC_FUNC_ENTRY_SYM(tc_client_call)
+h := CFC_RETURN_SUCC_SYM(TEEK_OpenSession, 0), RESET
+i := CFC_RETURN_FAIL_SYM(TEEK_OpenSession, 0), RESET
+j := CFC_RETURN_SUCC_SYM(tc_client_ioctl, 0), RESET
+k := CFC_RETURN_FAIL_SYM(tc_client_ioctl, 0), RESET
+
+// define pattern
+#define OPEN_SESSION_CMD 2
+OPEN_SESSION_CMD = (a+|(b+c+))d+((e1+e2)+|(f1+f2)+)g

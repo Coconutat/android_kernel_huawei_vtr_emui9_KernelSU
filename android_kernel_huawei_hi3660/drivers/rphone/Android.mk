@@ -1,0 +1,7 @@
+LOCAL_PATH := $(call my-dir)
+include $(CLEAR_VARS)
+LOCAL_MODULE := rphone
+LOCAL_SOURCE_FOLDER := $(shell pwd)/$(LOCAL_PATH)
+LOCAL_TARGET_FOLDER:=$(PRODUCT_OUT)/$(LOCAL_MODULE)/modules
+include $(BUILD_KERNEL_MODULES)
+
