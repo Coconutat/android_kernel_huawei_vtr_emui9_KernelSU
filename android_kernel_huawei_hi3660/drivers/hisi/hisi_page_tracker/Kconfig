@@ -1,0 +1,7 @@
+config HISI_PAGE_TRACKER
+	bool "Page tracker on HISI Plat."
+	depends on FLATMEM
+	---help---
+	  This function record the owner of a page, the module which allocs page and
+	  the order of page on alloction. It will help to find bare alloc_page(s) leaks.
+	  Even if you include this feature on your build, it is disabled in default.

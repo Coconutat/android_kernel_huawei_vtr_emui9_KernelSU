@@ -1,0 +1,22 @@
+config HISI_HHEE
+	bool "HISI HHEE support"
+	select DEBUG_RODATA
+	default n
+	help
+	  Say yes here to support the HISI HHEE
+
+config HISI_HHEE_TOKEN
+	bool "HISI TOKEN for hhee"
+	depends on HISI_HHEE
+	default n
+	help
+	  Say yes when token needed
+
+config HISI_HHEE_DEBUG
+	bool "HISI HHEE test support"
+	depends on !UBSAN && !KCOV && !KASAN
+	depends on HISI_HHEE
+	depends on HISI_DEBUG_FS
+	default n
+	help
+	  Say yes here to support the HISI HHEE debug

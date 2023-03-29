@@ -1,0 +1,5 @@
+menuconfig MADAPT
+	bool "huawei madapt driver support"
+	default n
+	help
+		Say yes here to support the madapt function

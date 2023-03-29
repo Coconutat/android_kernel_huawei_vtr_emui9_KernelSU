@@ -1,0 +1,118 @@
+
+
+/{
+	hisi_pmu_dump {
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		compatible = "hisi_pmu_dump";
+
+		/* PMU registers */
+		pmu_reg: pmu_reg{
+			/* the event types */
+			PMEVTYPER0 = <0x400 0x4>,
+				     <0x404 0x4>,
+				     <0x408 0x4>,
+				     <0x40c 0x4>,
+				     <0x410 0x4>,
+				     <0x414 0x4>;
+
+
+			/* Performance Monitors Count Enable Set Register */
+			PMCNTENSET = <0xC00 0x4>;
+
+			/* Performance Monitors Cycle Count Register */
+			PMCCNTR_L_OFFSET = <0x0F8 0x4>;
+			PMCCNTR_H_OFFSET = <0x0FC 0x4>;
+
+			/* the event counters */
+			PMEVCNTR0 = <0x0 0x4>,
+				    <0x8 0x4>,
+				    <0x10 0x4>,
+				    <0x18 0x4>,
+				    <0x20 0x4>,
+				    <0x28 0x4>;
+
+			/* Performance Monitors Control Register */
+			PMCR = <0xE04 0x4>;
+
+			/* Performance Monitors Lock Access Register */
+			PMLAR = <0xFB0 0X4>;
+		};
+
+		/* DEBUG registers */
+		debug_reg: debug_reg {
+			/* External Debug Lock Access Register */
+			EDLAR = <0xFB0 0x4>;
+
+			/* OS Lock Access Register */
+			OSLAR = <0x300 0x4>;
+		};
+
+	cpu0 {
+		id = [00];
+		debug_base = <0xECC10000 0x1000>;
+		debug = <&debug_reg>;
+		pmu_base = <0xECC30000 0x10000>;
+		pmu = <&pmu_reg>;
+	};
+
+	cpu1 {
+		id = [01];
+		debug_base = <0xECD10000 0x1000>;
+		debug = <&debug_reg>;
+		pmu_base = <0xECD30000 0x10000>;
+		pmu = <&pmu_reg>;
+	};
+
+	cpu2 {
+		id = [02];
+		debug_base = <0xECE10000 0x1000>;
+		debug = <&debug_reg>;
+		pmu_base = <0xECE30000 0x10000>;
+		pmu = <&pmu_reg>;
+	};
+
+	cpu3 {
+		id = [03];
+		debug_base = <0xECF10000 0x1000>;
+		debug = <&debug_reg>;
+		pmu_base = <0xECF30000 0x10000>;
+		pmu = <&pmu_reg>;
+	};
+
+	cpu4 {
+		id = [04];
+		debug_base = <0xED410000 0x1000>;
+		debug = <&debug_reg>;
+		pmu_base = <0xED430000 0x1000>;
+		pmu = <&pmu_reg>;
+	};
+
+	cpu5 {
+		id = [05];
+		debug_base = <0xED510000 0x1000>;
+		debug = <&debug_reg>;
+		pmu_base = <0xED530000 0x1000>;
+		pmu = <&pmu_reg>;
+	};
+
+	cpu6 {
+		id = [06];
+		debug_base = <0xED610000 0x1000>;
+		debug = <&debug_reg>;
+		pmu_base = <0xED630000 0x1000>;
+		pmu = <&pmu_reg>;
+	};
+
+	cpu7 {
+		id = [07];
+		debug_base = <0xED710000 0x1000>;
+		debug = <&debug_reg>;
+		pmu_base = <0xED730000 0x1000>;
+		pmu = <&pmu_reg>;
+	};
+
+	};
+};
+

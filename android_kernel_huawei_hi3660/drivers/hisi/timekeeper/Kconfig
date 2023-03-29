@@ -1,0 +1,7 @@
+config HISI_TIMEKEEPER
+	bool"Hisilicon high solution time-keeper driver"
+	default n
+	help
+	  hisilicon high solution time-keeper,
+	  we take a sp804 timer as persistent timer in suspend/resume,
+	  because sp804 runs in 32k frequence, much more accurate than RTC.

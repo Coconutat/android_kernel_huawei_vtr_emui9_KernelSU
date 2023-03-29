@@ -1,0 +1,8 @@
+config HUAWEI_USB_SHORT_CIRCUIT_PROTECT
+	bool "huawei usb short circuit protect"
+	default n
+
+config HUAWEI_USB_SHORT_CIRCUIT_PROTECT_SENSORHUB
+	bool "huawei sensorhub usb short circuit protect"
+	depends on INPUTHUB
+	default n

@@ -1,0 +1,272 @@
+/*
+ * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+/ {
+	huawei,hisi_isp150 {
+		compatible = "huawei,hisi_isp150";
+		hisi,product_name = "hi3660";
+                hisi,is_fpga = <1>;
+
+                clocks = <&aclk_gate_isp>, <&aclk_gate_dss>, <&pclk_gate_dss>;
+                clock-names = "aclk_isp", "aclk_dss", "pclk_dss";
+
+		status = "ok";
+	};
+	
+    histarisp: isp@e8400000 {
+        compatible = "hisilicon,isp";
+        status              = "okay";       /* ("okay"/"disabled") When Disable Enumerating Device, Repace by "disabled". */
+
+        /* Resource Items */
+        reg-num             = <9>;          /* Resource Number of reg */
+        reg = <0 0xFFF35000 0 0x1000>,      /* Resource Register 01 PERI_CRG */
+              <0 0xE8400000 0 0x200000>,    /* Resource Register 02 ISP_Core_CFG */
+              <0 0xFFF31000 0 0x1000>,      /* Resource Register 03 PMC */
+              <0 0xE8A09000 0 0x1000>,      /* Resource Register 04 PCTRL */
+              <0 0xFFF0A000 0 0x1000>,      /* Resource Register 05 SCTRL */
+              <0 0xE86D0000 0 0x1000>,      /* Resource Register 06 NOC_ISP_Service_Target */
+              <0 0xEC050000 0 0x2000>,      /* Resource Register 07 CSSYS */
+              <0 0xE8583000 0 0x1000>,      /* Resource Register 08 ISP_SUB_CTRL */
+              <0 0xE8580000 0 0x1000>;      /* Resource Register 09 ISP_WDT */
+        interrupts          = <0 272 4>;    /* Resource IRQ */
+
+        /* Switch Items */
+        hisi,use_secisp     = <1>;          /* Switch 01 for Whether Support Trusted-Nontrus ISP or Not */
+        useclockdep         = <0>;          /* Switch 02 for Whether Clock Enable Depend on Powerup or Not */
+        useisptop           = <0>;          /* Switch 03 for Whether Use Top-powerup or Not */
+        usedvfs             = <0>;          /* Switch 04 for Whether Use DVFS or Not */
+        usepowerdn_clockdn  = <0>;          /* Switch 05 for Whether Need Clock Down When Power Down */
+        sec-verify          = <0>;          /* Switch 06 for Whether Need Trusted Verify or Not */
+        isp-reset-flag      = <0>;          /* Switch 07 for Whether Use ispCPU Reset or Not */
+        isppd-adb-flag      = <0>;          /* Switch 08 for Whether Use ADB or Not */
+        isp-wdt-flag        = <0>;          /* Switch 09 for Whether Use Watch Dog or Not */
+        ispsmmu-init-byap   = <1>;          /* Switch 10 for Whether Smmu Init by AP or Not */
+        isp-mdc-flag        = <0>;          /* Switch 11 for Whether Use MDC or Not */
+        isp-efuse-flag      = <0>;          /* Switch 12 for Whether Use efuse_deskew or Not */
+        useloadbin          = <0>;          /* Switch 13 for Whether Use load binary image or Not */
+
+        /* Misc Items */
+        isp-names           = "isp_a7";     /* Name of MPU */
+        firmware-names      = "isp_fw.elf"; /* Name of Firmware */
+        bootware-names      = "isp_bw.elf"; /* Name of Bootware */
+        mailbox-names       = "isp_mailbox";/* Name of IPC */
+        isp-remap-addr      = <0x00000000>; /* Base Address for MPU Remap */
+        isp-ipc-addr        = <0xC2020000>; /* Base Address for IPC Buffers(VA) */
+        isp-seckthread-nice = <10>;         /* ISP sec kthread nice value*/
+
+        /* Isp Cpu Cfg */
+        isp_local_timer     = <19200000>;   /* Isp Cpu Local Timer */
+
+        /* Regulator Items */
+        isp-clockdep-supply = <&ispsubsys>;      /* Regulator for Clock Dependent */
+        isp-core-supply     = <&isp_srt>;        /* Regulator for Core */
+
+        /* Clock Items */
+        clock-num           = <2>;                                                              	/* Clock Number */
+        clocks              = <&clk_gate_ispa7>,                                                  	/* Clock Gate 01 for ispcpu */
+                              <&clk_gate_ispfunc>;                                              	/* Clock Gate 02 for ispfunc */
+        clock-names         = "clk_ispa7", "clk_ispfunc";                                       	/* Clock Names */
+        clock-value         = <800000000 480000000>;                                            	/* Clock Values for CLKLVL_TURBO */
+        ispa7-default-clk   = <800000000>;                                                          /* Default isp Clock */
+
+        /* Trusted ISP Items */
+        share-smem-size     = <0x00140000>;                                                         /* ISP Share Mem Size */
+        rsctable-mem-offet  = <0x00003000>;                                                         /* ISP Rsctable Offset */
+        rsctable-mem-size   = <0x00001000>;                                                         /* ISP Rsctable Size */
+        trusted-smem-size   = <0x00C00000>;                                                         /* Trusted ISP Mem Size */
+        trusted-smem-num    = <4>;                                                                  /* Trusted ISP Space Offset Num */
+        trusted-smem-offset = <0x00000000 0x00000800 0x00001000 0x00003000>;                        /* Trusted ISP Space Offset Info  */
+        isp-iova-start      = <0xC5900000>;                                              			/* Trusted ISP Space Base Address */
+        isp-iova-size       = <0xB700000>;                                               			/* Trusted ISP Space Size */
+        mapping-num         = <25>;                                                      			/* Trusted ISP Number of mapping */
+        mapping-items       = <5>;                                                       			/* Trusted ISP Max Items of mapping */
+        a7-vaddr-boot       = <0xFFFF0000 0x00010000 0x00000305 0x00010000 0x00000000>;  			/* Trusted ISP Page Table Mapping 01 for Boot Space */
+        a7-vaddr-text       = <0xC0000000 0x00400000 0x00000305 0x00010000 0x00000001>;  			/* Trusted ISP Page Table Mapping 02 for Text Segment */
+        a7-vaddr-data       = <0xC0400000 0x00800000 0x00000107 0x00410000 0x00000001>;  			/* Trusted ISP Page Table Mapping 03 for Data Segment */
+        a7-vaddr-pgd        = <0xC1000000 0x00002000 0x00000101 0x00000000 0x00000001>;  			/* Trusted ISP Page Table Mapping 04 for PGD Space */
+        a7-vaddr-pmd        = <0xC1002000 0x00002000 0x00000101 0x00002000 0x00000001>;  			/* Trusted ISP Page Table Mapping 05 for PMD Space */
+        a7-vaddr-pte        = <0xC1100000 0x00200000 0x00000101 0x00C10000 0x00000001>;  			/* Trusted ISP Page Table Mapping 06 for PTE Space */
+        a7-vaddr-rdr        = <0xC1800000 0x00040000 0x00000007 0x00000000 0x00000001>;  			/* Trusted ISP Page Table Mapping 07 for RDR Space */
+        a7-vaddr-shrd       = <0xC2000000 0x00001000 0x00000003 0x0000C000 0x00000001>;  			/* Trusted ISP Page Table Mapping 08 for Shared Memory */
+        a7-vaddr-vq         = <0xC2020000 0x00040000 0x00000003 0x00000000 0x00000001>;  			/* Trusted ISP Page Table Mapping 09 for Virt Quene */
+        a7-vaddr-vr0        = <0xC2060000 0x00003000 0x00000003 0x00000000 0x00000001>;  			/* Trusted ISP Page Table Mapping 10 for Virt Ring Buffer0 */
+        a7-vaddr-vr1        = <0xC2063000 0x00003000 0x00000003 0x00000000 0x00000001>;  			/* Trusted ISP Page Table Mapping 11 for Virt Ring Buffer1 */
+        a7-vaddr-heap       = <0xC4000000 0x01800000 0x00000107 0x00000000 0x00000001>;  			/* Trusted ISP Page Table Mapping 12 for OS Heap Memory Space */
+        a7-vaddr-a7dyna     = <0xD1000000 0x0F000000 0x00000007 0x00000000 0x00000000>;  			/* Trusted ISP Page Table Mapping 13 for Dynamic Memory Space */
+        a7-vaddr-regisp     = <0xE8400000 0x00200000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 14 for REG ISP Space */
+        a7-vaddr-regipcs    = <0xE896A000 0x00001000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 15 for REG IPC S Space */
+        a7-vaddr-regipcns   = <0xE896B000 0x00001000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 16 for REG IPC NS Space */
+        a7-vaddr-regpctrl   = <0xE8A09000 0x00001000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 17 for REG PCTRL Space */
+        a7-vaddr-regsctrl   = <0xFFF0A000 0x00001000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 18 for REG SCTRL Space */
+        a7-vaddr-regpcfg    = <0xFFF35000 0x00001000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 19 for REG PCFG Space */
+        a7-vaddr-reggic     = <0xE82B0000 0x00008000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 20 for REG GIC Space */
+        a7-vaddr-regsysc    = <0xFFF09000 0x00001000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 21 for REG SYSC Space */
+        a7-vaddr-reguart    = <0xFFF32000 0x00001000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 22 for REG UART Space */
+        a7-vaddr-reggpio    = <0xE8A0B000 0x00016000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 23 for REG GPIO Space */
+        a7-vaddr-reggpio25  = <0xFFF0E000 0x00001000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 24 for REG GPIO25 Space */
+        a7-vaddr-regioc     = <0xE896C000 0x00001000 0x00000183 0x00000000 0x00000001>;     		/* Trusted ISP Page Table Mapping 25 for REG IOC Space */
+        /*                    <ispva      size       prot       offset     reserve   >*/
+
+        /* Definition for Smmu/Iommu Driver */
+        iommu_info {
+            start-addr      = <0xc0000000>;
+            size            = <0x3ffffc00>;
+        };
+    };
+
+    ispcma {
+        compatible = "hisilicon,isp-cma";
+        memory-region = <&isp_cma>;
+        status = "ok";
+    };
+
+    isp_fastboot_cma {
+        compatible = "hisilicon,isp-fastboot-cma";
+        memory-region = <&fastboot_cma>;
+        status = "ok";
+    };
+
+    histarispsmmu: ispsmmu@e8406000 {
+        compatible = "hisilicon,smmu-irq";
+        reg = <0xe8406000 0x1000>;
+            isp-smmu-addr = <0xe8406000>;
+            isp-dss-addr = <0xe8608000>;
+        interrupts = <0 267 4>,<0 268 4>;
+        status = "ok";
+    };
+
+/* begin for hwcam arch  */
+
+	huawei,camcfgdev {
+			compatible = "huawei,camcfgdev";		
+            huawei,binderized = <1>;
+			status = "ok";
+		};
+
+	huawei,imx179 {
+		compatible = "huawei,imx179";
+		huawei,sensor_name = "IMX179_VENDOR";
+		huawei,sensor_index = <1>; 
+		huawei,pd_valid = <1>;
+		huawei,reset_valid = <1>;
+		huawei,vcmpd_valid = <0>;
+
+        hisi,is_fpga = <1>;
+		status = "ok";
+	};
+
+	huawei,imx230 {
+		compatible = "huawei,imx230";
+		huawei,sensor_name = "IMX230_A";
+		huawei,sensor_index = <0>;
+		huawei,pd_valid = <1>;
+		huawei,reset_valid = <1>;
+		huawei,vcmpd_valid = <0>;
+
+        hisi,is_fpga = <1>;
+		status = "disabled";
+    };
+
+    huawei,imx298 {
+        compatible = "huawei,imx298";
+        huawei,sensor_name = "IMX298_VENDOR";
+        huawei,sensor_index = <0>;
+        huawei,pd_valid = <1>;
+        huawei,reset_valid = <1>;
+        huawei,vcmpd_valid = <0>;
+
+        hisi,is_fpga = <1>;
+        status = "disabled";
+    };
+
+    huawei,ov2281 {
+        compatible = "huawei,ov2281";
+        huawei,sensor_name = "OV2281";
+        huawei,sensor_index = <8>;
+        huawei,pd_valid = <1>;
+        huawei,reset_valid = <1>;
+        huawei,vcmpd_valid = <0>;
+
+        hisi,is_fpga = <1>;
+        status = "disabled";
+    };
+
+
+    amba{
+
+        i2c3: i2c@FDF0C000 {
+
+            huawei,lm3642@63{
+                compatible = "huawei,lm3642";
+                reg = <0x63>;
+                huawei,flash-name = "lm3642";
+                huawei,flash-index = <2>;
+                huawei,flash-type = <0>;
+                huawei,slave-address = <0x63>;
+                huawei,flash-ctrltype = <1>;
+                huawei,need-wakelock = <0>;
+                huawei,flash-chipid = <0x00>;
+                status = "ok";
+            };
+        };
+
+        i2c4: i2c@FDF0D000 {
+            huawei,lm3646@67{
+                compatible = "huawei,lm3646";
+                reg = <0x67>;
+                huawei,flash-name = "lm3646";
+                huawei,flash-index = <0>;
+                huawei,flash-type = <0>;
+                huawei,slave-address = <0x67>;
+                huawei,flash-ctrltype = <1>;
+                huawei,need-wakelock = <0>;
+                huawei,flash-chipid = <0x11>;
+                huawei,flash_led_num = <336>;
+                huawei,flash_led = <0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9 0xa>;
+                huawei,torch_led_num = <336>;
+                huawei,torch_led = <0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7>;
+                huawei,led-type = <1>; /* 1, dual tempature; 0, dual white */
+                huawei,flash-current = <0x7c 0x7f 0x0>;
+                status = "ok";
+            };
+            huawei,mp3336@27{
+                compatible = "huawei,mp3336";
+                reg = <0x27>;
+                huawei,flash-name = "mp3336";
+                huawei,flash-index = <0>;
+                huawei,flash-type = <0>;
+                huawei,slave-address = <0x27>;
+                huawei,flash-ctrltype = <1>;
+                huawei,need-wakelock = <0>;
+                huawei,flash-chipid = <0x38>;
+                huawei,flash_led_num = <336>;
+                huawei,flash_led = <0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9 0xa>;
+                huawei,torch_led_num = <336>;
+                huawei,torch_led = <0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7>;
+                huawei,led-type = <1>; /* 1, dual tempature; 0, dual white */
+                huawei,flash-current = <0xbe 0xbe 0x0>;
+                status = "disabled";
+            };
+        };
+    };
+	huawei,hjpeg150 {
+		compatible = "huawei,hjpeg150";
+		huawei,hjpeg150-name = "hjpeg150";
+		huawei,hjpeg150-base = <0xE8405000 0x1000>;
+		huawei,hjpeg150-base-flag = <0x00000200>;
+		huawei,hjpeg150-irq = <265>;
+		huawei,hjpeg150-irq-flag = <0x00000400>;
+		reg = <0 0xE8405000 0 0x1000>;
+        interrupts = <0 265 4>;
+		status = "ok";
+	};
+};

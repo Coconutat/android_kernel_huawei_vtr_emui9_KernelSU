@@ -1,0 +1,5 @@
+config HUAWEI_FEATURE_PRINT_PID_NAME
+    boolean "print pid and name of the process who used connect function"
+    default n
+    help
+        Huawei pid_socket, please choose it. 

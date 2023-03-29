@@ -1,0 +1,5 @@
+config HW_DP_SOURCE
+        bool "huawei DP_SOURCE"
+        default n
+        help
+            if you say yes here you get support for huawei DP source switch check.

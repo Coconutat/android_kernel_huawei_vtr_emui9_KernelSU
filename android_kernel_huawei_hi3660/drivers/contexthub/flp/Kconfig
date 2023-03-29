@@ -1,0 +1,21 @@
+#
+# FLP driver configuration
+#
+
+menu "HISI FLP configuration"
+
+config HISI_FLP
+	bool "HISI FLP support"
+	depends on  CONTEXTHUB
+	default n
+	---help---
+	  Enable support for FLP driver
+
+config HISI_GEOFENCE_TRAJECTORY_FEATURE
+	bool "HISI GEOFENCE TRAJECTORY support"
+	depends on  CONTEXTHUB
+	default n
+	---help---
+	  Enable support for GEOFENCE TRAJECTORY driver
+
+endmenu

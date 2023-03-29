@@ -1,0 +1,22 @@
+if PROC_FS=y
+
+menuconfig HISI_PROC
+	bool "hisilicon proc support"
+	depends on PROC_FS
+	help
+	  select hisilicon proc.
+
+config HISI_PROC_HARDWARE
+	bool "/proc/hardware support"
+	depends on HISI_PROC && OF
+	help
+	  read the /proc/hardware to get hardware info.
+
+config HISI_PROC_MEMORYINFO_FAST
+	bool "/proc/meminfo_lite support"
+	depends on HISI_PROC && OF
+	default n
+	help
+	  offer a fast way to get system memory info(free and aviliable)
+
+endif # PROC_FS

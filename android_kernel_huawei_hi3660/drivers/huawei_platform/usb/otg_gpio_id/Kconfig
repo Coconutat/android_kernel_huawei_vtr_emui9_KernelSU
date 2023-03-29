@@ -1,0 +1,6 @@
+config OTG_GPIO_ID
+	tristate "OTG_GPIO_ID support"
+	default n
+	depends on GPIOLIB
+	help
+	  Say Y here to enable GPIO based switch support.

@@ -1,0 +1,9 @@
+menu "Hisilicon video vdec support"
+config HI_VCODEC_VDEC_HI3660
+    tristate "Hisilicon video decoder support"
+    default n
+    help
+      This is the hisilicon decoder driver
+endmenu
+
+

@@ -1,0 +1,14 @@
+#
+# This is the blacklist of Huawei hidden symbols' feature.
+#
+# Notice : Any symbol you want to add into this blacklist
+#          need to be reviewed by Security TMG. Otherwise,
+#          please notice that this feature has a conflict
+#          with Hot-plug-patch feature.
+#
+
+# Start
+hkip_token
+clarify_token
+oases_hkip_token
+# End

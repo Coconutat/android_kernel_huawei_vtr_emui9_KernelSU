@@ -1,0 +1,8 @@
+#
+#led config driver configuration
+#
+menuconfig HW_LED_CONFIG
+	bool "led config driver"
+	default n
+	help
+	Say yes here to support for led config driver.

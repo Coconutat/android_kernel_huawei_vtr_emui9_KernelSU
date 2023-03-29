@@ -1,0 +1,27 @@
+  /{
+	pmu_a53 {
+		compatible = "arm,cortex-a53-pmu";
+		status = "okay";
+		interrupts = <0 24 4>,
+			     <0 25 4>,
+			     <0 26 4>,
+			     <0 27 4>;
+		interrupt-affinity = <&little0>,
+				     <&little1>,
+				     <&little2>,
+				     <&little3>;
+	};
+
+	pmu_a73 {
+		compatible = "arm,cortex-a73-pmu";
+		status = "okay";
+		interrupts = <0 2 4>,
+			     <0 3 4>,
+			     <0 4 4>,
+			     <0 5 4>;
+		interrupt-affinity = <&big0>,
+				     <&big1>,
+				     <&big2>,
+				     <&big3>;
+	};
+};

@@ -1,0 +1,5 @@
+config AK4376_KERNEL_4_1
+	tristate "AK4376 Driver in kernel 4.1 for headset hifi"
+	default n
+	help
+		Say Y to enable AK4376 Driver Support For headset hifi kernel 4.1

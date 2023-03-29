@@ -1,0 +1,5 @@
+config HISI_GETSPINLOCK_TEST
+	bool "Hisilicon spinlock test driver"
+	default n
+	help
+	  hisilicon spinlock test.

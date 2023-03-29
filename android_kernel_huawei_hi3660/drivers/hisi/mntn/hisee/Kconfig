@@ -1,0 +1,23 @@
+config HISI_HISEE_MNTN
+    bool "hisee mntn module support"
+    default n
+    help
+      Say yes here to support the hisee mntn module.
+
+config HISI_HISEE_MNTN_TEST
+    bool "hisee mntn test"
+    default n
+    help
+      Say yes here to support the hisee mntn test.
+
+config HISI_HISEE_NVMFORMAT_TEST
+    bool "hisee nvm format"
+    default n
+    help
+      Say yes here to support the hisee nvm format.
+
+config HISI_MNTN_CHECKMISC
+    bool "chech misc ver"
+    default n
+    help
+      Say yes here to support checking misc version.

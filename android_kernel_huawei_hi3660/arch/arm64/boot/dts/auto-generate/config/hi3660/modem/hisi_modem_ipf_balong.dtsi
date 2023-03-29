@@ -1,0 +1,19 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+
+/{
+	ipf_app:ipf1@E0472000 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,ipf_balong_app";
+		reg = <0x0 0xff031000 0x0 0x1000>;
+		clocks = <&clk_gate_ipf>;
+		clock-names = "ipf_clk";
+		interrupts = <0 222 4>;
+		rst_crg = <0xFFF35000 0x88 0x2000000 0x8c 0x2000000>;
+		status = "ok";
+	};
+};

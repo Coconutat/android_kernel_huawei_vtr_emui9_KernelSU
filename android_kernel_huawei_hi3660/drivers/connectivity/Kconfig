@@ -1,0 +1,71 @@
+#
+# Generic huawei hisi misc drivers configuration
+#
+menuconfig CONNECTIVITY_HI110X
+	bool "Hisilicon Wireless Connectivity Support"
+	---help---
+	  If you want to use Hisilicon  Wireless Connectivity, you should set this,
+	  and choose one product
+
+if CONNECTIVITY_HI110X
+config CONNECTIVITY_HI1102
+	bool "Connectivity Hi1102 support"
+	default y
+config CONNECTIVITY_HI11XX
+	bool "Connectivity Hi11XX support"
+	default n
+config CONNECTIVITY_HI1103
+	depends on CONNECTIVITY_HI11XX
+	bool "Connectivity Hi1103 support"
+	default n
+config HI110X_DRIVER_PATH
+	string "Hi1102 Kernel Driver Path"
+	default "drivers/connectivity/hisi"
+config HI11XX_DRIVER_PATH
+	string "Hi1103 Kernel Driver Path"
+	default "drivers/connectivity/hi11xx"
+config ARCH_KIRIN_PCIE
+    bool "kirin pcie interface support"
+    default n
+    depends on PCI
+
+config HI110X_GPS_REFCLK
+  bool "Hisilicon 110X gps refclk feature"
+  default y
+  ---help---
+    Hisilicon 110X gps refclk feature
+
+config HI110X_GPS_REFCLK_INTERFACE
+  bool "Hisilicon 110X gps refclk interface with hwgps"
+  default n
+  ---help---
+    Hisilicon 110X gps refclk interface with hwgps
+
+choice
+  prompt "GPS RefClk Type"
+  default HI110X_GPS_REFCLK_SRC_3
+  config HI110X_GPS_REFCLK_SRC_1
+    bool "modem provide gps one ref clk source, like plat A"
+  config HI110X_GPS_REFCLK_SRC_2
+    bool "modem provide gps two ref clk source, like plat D"
+  config HI110X_GPS_REFCLK_SRC_3
+    bool "modem provide gps three ref clk source, other plat"
+endchoice
+
+config HI110X_GPS_SYNC
+  bool "Hisilicon 110X gps sync feature"
+  default y
+  ---help---
+    Hisilicon 110X gps sync feature temp default n till sync feature of other module complete
+endif
+
+if CONNECTIVITY_HI1102
+source "drivers/connectivity/hisi/Kconfig"
+source "drivers/connectivity/hisi/platform/Kconfig"
+source "drivers/connectivity/hisi/wifi/Kconfig"
+endif
+
+if CONNECTIVITY_HI1103
+source "drivers/connectivity/hi11xx/Kconfig"
+endif
+

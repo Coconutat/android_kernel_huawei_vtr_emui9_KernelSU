@@ -1,0 +1,30 @@
+#
+# Cambricon IPU Platform Specific Drivers
+#
+
+menuconfig HISI_ICS_IPU_PLATFORM
+	bool "Platform support for Cambricon IPU Device"
+	default y
+	help
+	  Say Y here to get to see options for device drivers of various
+	  Cambricon IPU platforms. This option itself does not add any kernel code.
+
+	  If you say N, all options in this submenu will be skipped and disabled.
+
+if HISI_ICS_IPU_PLATFORM
+
+comment "'Cambricon IPU Driver' and 'HISI NPU V200 Support' are mutually exclusive, only one choice!"
+
+config HISI_ICS_IPU
+	tristate "Cambricon IPU Driver"
+	default y
+	help
+	  Cambricon IPU Platform driver.
+
+config HISI_NPU_V200
+    tristate "HISI NPU V200 Support"
+    default n
+    help
+      NPU V200 Support configuration.
+
+endif # HISI_ICS_IPU_PLATFORM

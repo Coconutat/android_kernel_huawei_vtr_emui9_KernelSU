@@ -1,0 +1,788 @@
+
+
+/{
+	amba{
+		i2c1: i2c@FFD72000 {
+			fusb30x_i2c1@22 {
+				compatible = "fairchild,fusb302";
+				reg = <0x22>;
+				status = "disabled";
+				fairchild,int_n = <&gpio26 6 0>;
+				vconn_swap_to_on_supported;
+				vconn_swap_to_off_supported;
+				dp_enabled;
+				product_type_ama;
+				modal_operation_supported;
+				discover_mode_supported;
+				enter_mode_supported;
+				discover_svid_supported;
+			};
+			superswitch_fusb3601_i2c1@25 {
+				compatible = "fairchild,fusb3601";
+				reg = <0x25>;
+				status = "disabled";
+			};
+			tusb422_i2c1@20 {
+				compatible = "ti,tusb422-usb-pd";
+				reg = <0x20>;
+				status = "disabled";
+				ti,alert-gpio = <&gpio26 6 0>;
+
+				/* Port Config See the tusb422_common.h */
+				ti,usb-comm-capable;
+				ti,no-usb-suspend;
+				ti,dual-role-data;
+				/* Uncomment the below tags to make them true for the driver
+				* otherwise they are false */
+				/* ti,usb-suspend-supported;
+				ti,externally-powered;
+				ti,unchunked-msg-support;
+				ti,higher-capability;
+				ti,giveback-flag; */
+				ti,auto-accept-swap-to-dfp;
+				ti,auto-accept-swap-to-ufp;
+				ti,auto-accept-swap-to-source;
+				ti,auto-accept-swap-to-sink;
+				ti,auto-accept-vconn-swap;
+
+				ti,src-settling-time-ms = <50>;
+				ti,fast-role-swap-support = <0>;
+				ti,pdo-priority = <0>;
+				ti,role = <2>;    /* 0 = SRC, 1 = SNK, 2 = DRP */
+				ti,rp-val = <0>;  /* 0 = default, 1 = 1.5A, 2 = 3.0A */
+				ti,flags = <2>;   /* 0 = none, 1 = Try.SRC, 2 = Try.SNK */
+
+				/* Config for VDM */
+				/*ti,ufp-alt-mode-entry-timeout-enable;*/
+				/*ti,multi-function-preferred;*/
+				ti,id-header-vdo = <0xD50012D1>;  /* Normally 0xD10012D1. Set to 0xD50012D1 for DP Alt-mode host */
+				ti,cert-stat-vdo = <0x0>;
+				ti,product-vdo = <0x107E0000>;
+				ti,num-product-type-vdos = <0>;
+				ti,product-type-vdo-1 = <0>;
+				ti,product-type-vdo-2 = <0>;
+				ti,product-type-vdo-3 = <0>;
+				ti,num-svids = <1>;  /* Normally 0.  Set to 1 for DP Alt-mode support */
+				ti,svid-1 = <0xFF01>; /* 0xFF01 = DisplayPort. Note ENABLE_DP_ALT_MODE_SUPPORT must be defined in policy engine header to support this SVID. */
+				ti,svid-2 = <0>;
+				ti,svid-3 = <0>;
+				ti,mode-1 = <0x1C46>; /* 0x1C46 = DFP_D, DP_v1.3, receptacle, USB 2 signaling may be required, DFP_D pin assignment C, D, E */
+				ti,mode-2 = <0>;
+				ti,mode-3 = <0>;
+				source@1 {
+					ti,current-flow = <0>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <0>;
+					ti,min-voltage = <5000>;
+					ti,max-voltage = <0>;
+					ti,peak-current = <0>;
+					ti,max-current = <1000>;
+					ti,max-power = <0>;
+				};
+
+				sink@1 {
+					ti,current-flow = <1>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <0>;
+					ti,min-voltage = <5000>;
+					ti,max-voltage = <0>;
+					ti,max-operating-curr = <2000>;
+					ti,min-operating-curr = <100>;
+					ti,operational-curr = <2000>;
+					ti,max-operating-pwr = <0>;
+					ti,min-operating-pwr = <0>;
+					ti,operational-pwr = <0>;
+					ti,peak-current = <0>;
+				};
+
+				sink@2 {
+					ti,current-flow = <1>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <1>;
+					ti,min-voltage = <9000>;
+					ti,max-voltage = <0>;
+					ti,max-operating-curr = <2000>;
+					ti,min-operating-curr = <100>;
+					ti,operational-curr = <2000>;
+					ti,max-operating-pwr = <0>;
+					ti,min-operating-pwr = <0>;
+					ti,operational-pwr = <0>;
+					ti,peak-current = <0>;
+				};
+			};
+
+			rt1711_i2c1@4e {
+				compatible = "richtek,rt1711";
+				reg = <0x4e>;
+				status = "disabled";
+				rt1711,irq_pin = <&gpio26 6 0>;
+				rt-dual,supported_modes = <0>; /* 0: dfp/ufp, 1: dfp, 2: ufp */
+				rt-tcpc,name = "type_c_port0"; /* tcpc_device's name */
+				rt-tcpc,role_def = <4>; /* 0: SNK Only, 1: SRC Only, 2: DRP, 3: Try.SRC, 4: Try.SNK */
+				rt-tcpc,rp_level = <0>; /* 0: Default, 1: 1.5, 2: 3.0 */
+				rt-tcpc,notifier_supply_num = <0>; /* the number of notifier supply */
+				pd-data {
+					pd,source-pdo-size = <1>;
+					pd,source-pdo-data = <0x00019064>;  /*<0x019014>;*/
+
+					pd,sink-pdo-size = <2>;
+					pd,sink-pdo-data = <0x000190c8 0x0002d0c8> ;   /* 0x0002d0c8 : 9V, 2A */
+
+					/*
+					No DP
+					pd,id-vdo-size = <3>;
+					pd,id-vdo-data = <0x500029cf 0x0 0x00010000>;
+					With DP
+					pd,id-vdo-size = <4>;
+					pd,id-vdo-data = <0xec0029cf 0x0 0x00010000 0x11000001>;
+					*/
+
+					pd,id-vdo-size = <4>;
+					pd,id-vdo-data = <0xec0012d1 0x0 0x107e0000 0x11000001>;
+				};
+				dpm_caps {
+					local_dr_power;
+					local_dr_data;
+					// local_ext_power;
+					local_usb_comm;
+					// local_usb_suspend;
+					// local_high_cap;
+					// local_give_back;
+					local_no_suspend;
+					local_vconn_supply;
+
+					attemp_enter_dp_mode;
+					attemp_discover_cable;
+					attemp_discover_id;
+
+					/* 0: disable, 1: prefer_snk, 2: prefer_src */
+					pr_check = <0>;
+					// pr_reject_as_source;
+					// pr_reject_as_sink;
+					pr_check_gp_source;
+					// pr_check_gp_sink;
+
+					/* 0: disable, 1: prefer_ufp, 2: prefer_dfp */
+					dr_check = <0>;
+					// dr_reject_as_dfp;
+					// dr_reject_as_ufp;
+
+					snk_prefer_low_voltage;
+					// snk_ignore_mismatch_current;
+				};
+				displayport {
+					/* connection type = "both", "ufp_d", "dfp_d" */
+					1st_connection = "dfp_d";
+					2nd_connection = "dfp_d";
+					signal,dp_v13;
+					//signal,dp_gen2;
+					//usbr20_not_used;
+					typec,receptacle;
+					ufp_d {
+						//pin_assignment,mode_a;
+						//pin_assignment,mode_b;
+						//pin_assignment,mode_c;
+						//pin_assignment,mode_d;
+						//pin_assignment,mode_e;
+					};
+					dfp_d {
+						/* Only support mode C & D */
+						//pin_assignment,mode_a;
+						//pin_assignment,mode_b;
+						pin_assignment,mode_c;
+						pin_assignment,mode_d;
+						pin_assignment,mode_e;
+						pin_assignment,mode_f;
+					};
+				};
+			};
+		};
+		i2c6: i2c@FFD6A000 {
+			fusb30x@22 {
+				compatible = "fairchild,fusb302";
+				reg = <0x22>;
+				status = "disabled";
+				fairchild,int_n = <&gpio26 6 0>;
+				vconn_swap_to_on_supported;
+				vconn_swap_to_off_supported;
+				dp_enabled;
+				product_type_ama;
+				modal_operation_supported;
+				discover_mode_supported;
+				enter_mode_supported;
+				discover_svid_supported;
+			};
+			tusb422_i2c1@20 {
+				compatible = "ti,tusb422-usb-pd";
+				reg = <0x20>;
+				status = "disabled";
+				ti,alert-gpio = <&gpio26 6 0>;
+
+				/* Port Config See the tusb422_common.h */
+				ti,usb-comm-capable;
+				ti,no-usb-suspend;
+				ti,dual-role-data;
+				/* Uncomment the below tags to make them true for the driver
+				* otherwise they are false */
+				/* ti,usb-suspend-supported;
+				ti,externally-powered;
+				ti,unchunked-msg-support;
+				ti,higher-capability;
+				ti,giveback-flag; */
+				ti,auto-accept-swap-to-dfp;
+				ti,auto-accept-swap-to-ufp;
+				ti,auto-accept-swap-to-source;
+				ti,auto-accept-swap-to-sink;
+				ti,auto-accept-vconn-swap;
+
+				ti,src-settling-time-ms = <50>;
+				ti,fast-role-swap-support = <0>;
+				ti,pdo-priority = <0>;
+				ti,role = <2>;    /* 0 = SRC, 1 = SNK, 2 = DRP */
+				ti,rp-val = <0>;  /* 0 = default, 1 = 1.5A, 2 = 3.0A */
+				ti,flags = <2>;   /* 0 = none, 1 = Try.SRC, 2 = Try.SNK */
+
+				/* Config for VDM */
+				/*ti,ufp-alt-mode-entry-timeout-enable;*/
+				/*ti,multi-function-preferred;*/
+				ti,id-header-vdo = <0xD50012D1>;
+				ti,cert-stat-vdo = <0x0>;
+				ti,product-vdo = <0x107E0000>;
+				ti,num-product-type-vdos = <0>;
+				ti,product-type-vdo-1 = <0>;
+				ti,product-type-vdo-2 = <0>;
+				ti,product-type-vdo-3 = <0>;
+				ti,num-svids = <1>;
+				ti,svid-1 = <0xFF01>; /* 0xFF01 = DisplayPort. Note ENABLE_DP_ALT_MODE_SUPPORT must be defined in policy engine header to support this SVID. */
+				ti,svid-2 = <0>;
+				ti,svid-3 = <0>;
+				ti,mode-1 = <0x1C46>; /* 0x1C46 = DFP_D, DP_v1.3, receptacle, USB 2 signaling may be required, DFP_D pin assignment C, D, E */
+				ti,mode-2 = <0>;
+				ti,mode-3 = <0>;
+				source@1 {
+					ti,current-flow = <0>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <0>;
+					ti,min-voltage = <5000>;
+					ti,max-voltage = <0>;
+					ti,peak-current = <0>;
+					ti,max-current = <1000>;
+					ti,max-power = <0>;
+				};
+
+				sink@1 {
+					ti,current-flow = <1>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <0>;
+					ti,min-voltage = <5000>;
+					ti,max-voltage = <0>;
+					ti,max-operating-curr = <2000>;
+					ti,min-operating-curr = <100>;
+					ti,operational-curr = <2000>;
+					ti,max-operating-pwr = <0>;
+					ti,min-operating-pwr = <0>;
+					ti,operational-pwr = <0>;
+					ti,peak-current = <0>;
+				};
+
+				sink@2 {
+					ti,current-flow = <1>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <1>;
+					ti,min-voltage = <9000>;
+					ti,max-voltage = <0>;
+					ti,max-operating-curr = <2000>;
+					ti,min-operating-curr = <100>;
+					ti,operational-curr = <2000>;
+					ti,max-operating-pwr = <0>;
+					ti,min-operating-pwr = <0>;
+					ti,operational-pwr = <0>;
+					ti,peak-current = <0>;
+				};
+			};
+
+			rt1711@4e {
+				compatible = "richtek,rt1711";
+				reg = <0x4e>;
+				status = "disabled";
+				rt1711,irq_pin = <&gpio26 6 0>;
+				rt-dual,supported_modes = <0>; /* 0: dfp/ufp, 1: dfp, 2: ufp */
+				rt-tcpc,name = "type_c_port0"; /* tcpc_device's name */
+				rt-tcpc,role_def = <4>; /* 0: SNK Only, 1: SRC Only, 2: DRP, 3: Try.SRC, 4: Try.SNK */
+				rt-tcpc,rp_level = <0>; /* 0: Default, 1: 1.5, 2: 3.0 */
+				rt-tcpc,notifier_supply_num = <0>; /* the number of notifier supply */
+				pd-data {
+					pd,source-pdo-size = <1>;
+					pd,source-pdo-data = <0x00019064>; /*<0x019014>;*/
+
+					pd,sink-pdo-size = <2>;
+					pd,sink-pdo-data = <0x000190c8 0x0002d0c8> ;   /* 0x0002d0c8 : 9V, 2A */
+
+					/*
+					No DP
+					pd,id-vdo-size = <3>;
+					pd,id-vdo-data = <0x500029cf 0x0 0x00010000>;
+					With DP
+					pd,id-vdo-size = <4>;
+					pd,id-vdo-data = <0xec0029cf 0x0 0x00010000 0x11000001>;
+					*/
+
+					pd,id-vdo-size = <4>;
+					pd,id-vdo-data = <0xec0012d1 0x0 0x107e0000 0x11000001>;
+				};
+				dpm_caps {
+					local_dr_power;
+					local_dr_data;
+					// local_ext_power;
+					local_usb_comm;
+					// local_usb_suspend;
+					// local_high_cap;
+					// local_give_back;
+					local_no_suspend;
+					local_vconn_supply;
+
+					attemp_enter_dp_mode;
+					attemp_discover_cable;
+					attemp_discover_id;
+
+					/* 0: disable, 1: prefer_snk, 2: prefer_src */
+					pr_check = <0>;
+					// pr_reject_as_source;
+					// pr_reject_as_sink;
+					pr_check_gp_source;
+					// pr_check_gp_sink;
+
+					/* 0: disable, 1: prefer_ufp, 2: prefer_dfp */
+					dr_check = <0>;
+					// dr_reject_as_dfp;
+					// dr_reject_as_ufp;
+
+					snk_prefer_low_voltage;
+					//snk_ignore_mismatch_current;
+				};
+				displayport {
+					/* connection type = "both", "ufp_d", "dfp_d" */
+					1st_connection = "dfp_d";
+					2nd_connection = "dfp_d";
+					signal,dp_v13;
+					//signal,dp_gen2;
+					//usbr20_not_used;
+					typec,receptacle;
+					ufp_d {
+						//pin_assignment,mode_a;
+						//pin_assignment,mode_b;
+						//pin_assignment,mode_c;
+						//pin_assignment,mode_d;
+						//pin_assignment,mode_e;
+					};
+					dfp_d {
+						/* Only support mode C & D */
+						//pin_assignment,mode_a;
+						//pin_assignment,mode_b;
+						pin_assignment,mode_c;
+						pin_assignment,mode_d;
+						//pin_assignment,mode_e;
+						//pin_assignment,mode_f;
+					};
+				};
+			};
+		};
+		i2c3: i2c@FDF0C000 {
+			fusb30x_i2c3@22 {
+				compatible = "fairchild,fusb302";
+				reg = <0x22>;
+				status = "disabled";
+				fairchild,int_n = <&gpio26 6 0>;
+				vconn_swap_to_on_supported;
+				vconn_swap_to_off_supported;
+				dp_enabled;
+				product_type_ama;
+				modal_operation_supported;
+				discover_mode_supported;
+				enter_mode_supported;
+				discover_svid_supported;
+			};
+			tusb422_i2c3@20 {
+				compatible = "ti,tusb422-usb-pd";
+				reg = <0x20>;
+				status = "disabled";
+				ti,alert-gpio = <&gpio26 6 0>;
+
+				/* Port Config See the tusb422_common.h */
+				ti,usb-comm-capable;
+				ti,no-usb-suspend;
+				ti,dual-role-data;
+				/* Uncomment the below tags to make them true for the driver
+				* otherwise they are false */
+				/* ti,usb-suspend-supported;
+				ti,externally-powered;
+				ti,unchunked-msg-support;
+				ti,higher-capability;
+				ti,giveback-flag; */
+				ti,auto-accept-swap-to-dfp;
+				ti,auto-accept-swap-to-ufp;
+				ti,auto-accept-swap-to-source;
+				ti,auto-accept-swap-to-sink;
+				ti,auto-accept-vconn-swap;
+
+				ti,src-settling-time-ms = <50>;
+				ti,fast-role-swap-support = <0>;
+				ti,pdo-priority = <0>;
+				ti,role = <2>;    /* 0 = SRC, 1 = SNK, 2 = DRP */
+				ti,rp-val = <0>;  /* 0 = default, 1 = 1.5A, 2 = 3.0A */
+				ti,flags = <2>;   /* 0 = none, 1 = Try.SRC, 2 = Try.SNK */
+
+				/* Config for VDM */
+				/*ti,ufp-alt-mode-entry-timeout-enable;*/
+				/*ti,multi-function-preferred;*/
+				ti,id-header-vdo = <0xD50012D1>;
+				ti,cert-stat-vdo = <0x0>;
+				ti,product-vdo = <0x107E0000>;
+				ti,num-product-type-vdos = <0>;
+				ti,product-type-vdo-1 = <0>;
+				ti,product-type-vdo-2 = <0>;
+				ti,product-type-vdo-3 = <0>;
+				ti,num-svids = <1>;
+				ti,svid-1 = <0xFF01>; /* 0xFF01 = DisplayPort. Note ENABLE_DP_ALT_MODE_SUPPORT must be defined in policy engine header to support this SVID. */
+				ti,svid-2 = <0>;
+				ti,svid-3 = <0>;
+				ti,mode-1 = <0x1C46>; /* 0x1C46 = DFP_D, DP_v1.3, receptacle, USB 2 signaling may be required, DFP_D pin assignment C, D, E */
+				ti,mode-2 = <0>;
+				ti,mode-3 = <0>;
+				source@1 {
+					ti,current-flow = <0>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <0>;
+					ti,min-voltage = <5000>;
+					ti,max-voltage = <0>;
+					ti,peak-current = <0>;
+					ti,max-current = <1000>;
+					ti,max-power = <0>;
+				};
+
+				sink@1 {
+					ti,current-flow = <1>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <0>;
+					ti,min-voltage = <5000>;
+					ti,max-voltage = <0>;
+					ti,max-operating-curr = <2000>;
+					ti,min-operating-curr = <100>;
+					ti,operational-curr = <2000>;
+					ti,max-operating-pwr = <0>;
+					ti,min-operating-pwr = <0>;
+					ti,operational-pwr = <0>;
+					ti,peak-current = <0>;
+				};
+
+				sink@2 {
+					ti,current-flow = <1>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <1>;
+					ti,min-voltage = <9000>;
+					ti,max-voltage = <0>;
+					ti,max-operating-curr = <2000>;
+					ti,min-operating-curr = <100>;
+					ti,operational-curr = <2000>;
+					ti,max-operating-pwr = <0>;
+					ti,min-operating-pwr = <0>;
+					ti,operational-pwr = <0>;
+					ti,peak-current = <0>;
+				};
+			};
+
+			rt1711_i2c3@4e {
+				compatible = "richtek,rt1711";
+				reg = <0x4e>;
+				status = "disabled";
+				rt1711,irq_pin = <&gpio26 6 0>;
+				rt-dual,supported_modes = <0>; /* 0: dfp/ufp, 1: dfp, 2: ufp */
+				rt-tcpc,name = "type_c_port0"; /* tcpc_device's name */
+				rt-tcpc,role_def = <4>; /* 0: SNK Only, 1: SRC Only, 2: DRP, 3: Try.SRC, 4: Try.SNK */
+				rt-tcpc,rp_level = <0>; /* 0: Default, 1: 1.5, 2: 3.0 */
+				rt-tcpc,notifier_supply_num = <0>; /* the number of notifier supply */
+				pd-data {
+					pd,source-pdo-size = <1>;
+					pd,source-pdo-data = <0x00019064>;  /*<0x019014>;*/
+
+					pd,sink-pdo-size = <2>;
+					pd,sink-pdo-data = <0x000190c8 0x0002d0c8> ;   /* 0x0002d0c8 : 9V, 2A */
+
+					/*
+					No DP
+					pd,id-vdo-size = <3>;
+					pd,id-vdo-data = <0x500029cf 0x0 0x00010000>;
+					With DP
+					pd,id-vdo-size = <4>;
+					pd,id-vdo-data = <0xec0029cf 0x0 0x00010000 0x11000001>;
+					*/
+
+					pd,id-vdo-size = <4>;
+					pd,id-vdo-data = <0xec0012d1 0x0 0x107e0000 0x11000001>;
+				};
+				dpm_caps {
+					local_dr_power;
+					local_dr_data;
+					// local_ext_power;
+					local_usb_comm;
+					// local_usb_suspend;
+					// local_high_cap;
+					// local_give_back;
+					local_no_suspend;
+					local_vconn_supply;
+
+					attemp_enter_dp_mode;
+					attemp_discover_cable;
+					attemp_discover_id;
+
+					/* 0: disable, 1: prefer_snk, 2: prefer_src */
+					pr_check = <0>;
+					// pr_reject_as_source;
+					// pr_reject_as_sink;
+					pr_check_gp_source;
+					// pr_check_gp_sink;
+
+					/* 0: disable, 1: prefer_ufp, 2: prefer_dfp */
+					dr_check = <0>;
+					// dr_reject_as_dfp;
+					// dr_reject_as_ufp;
+
+					snk_prefer_low_voltage;
+					//snk_ignore_mismatch_current;
+				};
+				displayport {
+					/* connection type = "both", "ufp_d", "dfp_d" */
+					1st_connection = "dfp_d";
+					2nd_connection = "dfp_d";
+					signal,dp_v13;
+					//signal,dp_gen2;
+					//usbr20_not_used;
+					typec,receptacle;
+					ufp_d {
+						//pin_assignment,mode_a;
+						//pin_assignment,mode_b;
+						//pin_assignment,mode_c;
+						//pin_assignment,mode_d;
+						//pin_assignment,mode_e;
+					};
+					dfp_d {
+						/* Only support mode C & D */
+						//pin_assignment,mode_a;
+						//pin_assignment,mode_b;
+						pin_assignment,mode_c;
+						pin_assignment,mode_d;
+						//pin_assignment,mode_e;
+						//pin_assignment,mode_f;
+					};
+				};
+			};
+		};
+		i2c4: i2c@FDF0D000 {
+			fusb30x_i2c4@22 {
+				compatible = "fairchild,fusb302";
+				reg = <0x22>;
+				status = "disabled";
+				fairchild,int_n = <&gpio26 6 0>;
+				vconn_swap_to_on_supported;
+				vconn_swap_to_off_supported;
+				dp_enabled;
+				product_type_ama;
+				modal_operation_supported;
+				discover_mode_supported;
+				enter_mode_supported;
+				discover_svid_supported;
+			};
+			tusb422_i2c4@20 {
+				compatible = "ti,tusb422-usb-pd";
+				reg = <0x20>;
+				status = "disabled";
+				ti,alert-gpio = <&gpio26 6 0>;
+
+				/* Port Config See the tusb422_common.h */
+				ti,usb-comm-capable;
+				ti,no-usb-suspend;
+				ti,dual-role-data;
+				/* Uncomment the below tags to make them true for the driver
+				* otherwise they are false */
+				/* ti,usb-suspend-supported;
+				ti,externally-powered;
+				ti,unchunked-msg-support;
+				ti,higher-capability;
+				ti,giveback-flag; */
+				ti,auto-accept-swap-to-dfp;
+				ti,auto-accept-swap-to-ufp;
+				ti,auto-accept-swap-to-source;
+				ti,auto-accept-swap-to-sink;
+				ti,auto-accept-vconn-swap;
+
+				ti,src-settling-time-ms = <50>;
+				ti,fast-role-swap-support = <0>;
+				ti,pdo-priority = <0>;
+				ti,role = <2>;    /* 0 = SRC, 1 = SNK, 2 = DRP */
+				ti,rp-val = <0>;  /* 0 = default, 1 = 1.5A, 2 = 3.0A */
+				ti,flags = <2>;   /* 0 = none, 1 = Try.SRC, 2 = Try.SNK */
+
+				/* Config for VDM */
+				/*ti,ufp-alt-mode-entry-timeout-enable;*/
+				/*ti,multi-function-preferred;*/
+				ti,id-header-vdo = <0xD50012D1>;
+				ti,cert-stat-vdo = <0x0>;
+				ti,product-vdo = <0x107E0000>;
+				ti,num-product-type-vdos = <0>;
+				ti,product-type-vdo-1 = <0>;
+				ti,product-type-vdo-2 = <0>;
+				ti,product-type-vdo-3 = <0>;
+				ti,num-svids = <1>;
+				ti,svid-1 = <0xFF01>; /* 0xFF01 = DisplayPort. Note ENABLE_DP_ALT_MODE_SUPPORT must be defined in policy engine header to support this SVID. */
+				ti,svid-2 = <0>;
+				ti,svid-3 = <0>;
+				ti,mode-1 = <0x1C46>; /* 0x1C46 = DFP_D, DP_v1.3, receptacle, USB 2 signaling may be required, DFP_D pin assignment C, D, E */
+				ti,mode-2 = <0>;
+				ti,mode-3 = <0>;
+				source@1 {
+					ti,current-flow = <0>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <0>;
+					ti,min-voltage = <5000>;
+					ti,max-voltage = <0>;
+					ti,peak-current = <0>;
+					ti,max-current = <1000>;
+					ti,max-power = <0>;
+				};
+
+				sink@1 {
+					ti,current-flow = <1>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <0>;
+					ti,min-voltage = <5000>;
+					ti,max-voltage = <0>;
+					ti,max-operating-curr = <2000>;
+					ti,min-operating-curr = <100>;
+					ti,operational-curr = <2000>;
+					ti,max-operating-pwr = <0>;
+					ti,min-operating-pwr = <0>;
+					ti,operational-pwr = <0>;
+					ti,peak-current = <0>;
+				};
+
+				sink@2 {
+					ti,current-flow = <1>; /* 0 for source 1 for sink */
+					ti,supply-type = <0>;
+					ti,pdo-number = <1>;
+					ti,min-voltage = <9000>;
+					ti,max-voltage = <0>;
+					ti,max-operating-curr = <2000>;
+					ti,min-operating-curr = <100>;
+					ti,operational-curr = <2000>;
+					ti,max-operating-pwr = <0>;
+					ti,min-operating-pwr = <0>;
+					ti,operational-pwr = <0>;
+					ti,peak-current = <0>;
+				};
+			};
+
+			rt1711_i2c4@4e {
+				compatible = "richtek,rt1711";
+				reg = <0x4e>;
+				status = "disabled";
+				rt1711,irq_pin = <&gpio26 6 0>;
+				rt-dual,supported_modes = <0>; /* 0: dfp/ufp, 1: dfp, 2: ufp */
+				rt-tcpc,name = "type_c_port0"; /* tcpc_device's name */
+				rt-tcpc,role_def = <4>; /* 0: SNK Only, 1: SRC Only, 2: DRP, 3: Try.SRC, 4: Try.SNK */
+				rt-tcpc,rp_level = <0>; /* 0: Default, 1: 1.5, 2: 3.0 */
+				rt-tcpc,notifier_supply_num = <0>; /* the number of notifier supply */
+				pd-data {
+					pd,source-pdo-size = <1>;
+					pd,source-pdo-data = <0x00019064>;  /*<0x019014>;*/
+
+					pd,sink-pdo-size = <2>;
+					pd,sink-pdo-data = <0x000190c8 0x0002d0c8> ;   /* 0x0002d0c8 : 9V, 2A */
+
+					/*
+					No DP
+					pd,id-vdo-size = <3>;
+					pd,id-vdo-data = <0x500029cf 0x0 0x00010000>;
+					With DP
+					pd,id-vdo-size = <4>;
+					pd,id-vdo-data = <0xec0029cf 0x0 0x00010000 0x11000001>;
+					*/
+
+					pd,id-vdo-size = <4>;
+					pd,id-vdo-data = <0xec0012d1 0x0 0x107e0000 0x11000001>;
+				};
+				dpm_caps {
+					local_dr_power;
+					local_dr_data;
+					// local_ext_power;
+					local_usb_comm;
+					// local_usb_suspend;
+					// local_high_cap;
+					// local_give_back;
+					local_no_suspend;
+					local_vconn_supply;
+
+					attemp_enter_dp_mode;
+					attemp_discover_cable;
+					attemp_discover_id;
+
+					/* 0: disable, 1: prefer_snk, 2: prefer_src */
+					pr_check = <0>;
+					// pr_reject_as_source;
+					// pr_reject_as_sink;
+					pr_check_gp_source;
+					// pr_check_gp_sink;
+
+					/* 0: disable, 1: prefer_ufp, 2: prefer_dfp */
+					dr_check = <0>;
+					// dr_reject_as_dfp;
+					// dr_reject_as_ufp;
+
+					snk_prefer_low_voltage;
+					//snk_ignore_mismatch_current;
+				};
+				displayport {
+					/* connection type = "both", "ufp_d", "dfp_d" */
+					1st_connection = "dfp_d";
+					2nd_connection = "dfp_d";
+					signal,dp_v13;
+					//signal,dp_gen2;
+					//usbr20_not_used;
+					typec,receptacle;
+					ufp_d {
+						//pin_assignment,mode_a;
+						//pin_assignment,mode_b;
+						//pin_assignment,mode_c;
+						//pin_assignment,mode_d;
+						//pin_assignment,mode_e;
+					};
+					dfp_d {
+						/* Only support mode C & D */
+						//pin_assignment,mode_a;
+						//pin_assignment,mode_b;
+						pin_assignment,mode_c;
+						pin_assignment,mode_d;
+						//pin_assignment,mode_e;
+						//pin_assignment,mode_f;
+					};
+				};
+			};
+		};
+	};
+
+	pd_dpm {
+		compatible = "huawei,pd_dpm";
+		tcp_name = "type_c_port0";
+		switch_manual_enable = <1>;
+		otg_channel = <0>;
+		support_dp = <1>;
+		support_analog_audio = <1>;
+		abnormal_cc_detection = <0>;
+		status = "disabled";
+	};
+
+	huawei_usb {
+		compatible = "huawei,huawei_usb";
+		maximum-speed = "unknown-speed";
+		status = "disabled";
+	};
+};

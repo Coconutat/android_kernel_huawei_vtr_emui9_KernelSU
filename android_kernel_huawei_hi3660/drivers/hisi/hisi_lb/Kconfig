@@ -1,0 +1,23 @@
+config HISI_LB
+	bool "HISI last buffer"
+	help
+	  Enable last buffer.
+
+	  If unsure, say N here.
+
+config HISI_LB_DEBUG
+	bool "HISI lb debug"
+	depends on HISI_LB
+	help
+	  Enable last buffer debug.
+
+	  If unsure, say N here.
+
+config HISI_LB_TST
+	bool "HISI lb ip test"
+	depends on HISI_LB
+	help
+	  Enable last buffer ip test
+	  and need disable hisi lb debug
+
+	  if unsure, say N here

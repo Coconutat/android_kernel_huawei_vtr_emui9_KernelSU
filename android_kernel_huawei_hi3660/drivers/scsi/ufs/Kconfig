@@ -1,0 +1,299 @@
+#
+# Kernel configuration file for the UFS Host Controller
+#
+# This code is based on drivers/scsi/ufs/Kconfig
+# Copyright (C) 2011-2013 Samsung India Software Operations
+#
+# Authors:
+#	Santosh Yaraganavi <santosh.sy@samsung.com>
+#	Vinayak Holikatti <h.vinayak@samsung.com>
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+# See the COPYING file in the top-level directory or visit
+# <http://www.gnu.org/licenses/gpl-2.0.html>
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# This program is provided "AS IS" and "WITH ALL FAULTS" and
+# without warranty of any kind. You are solely responsible for
+# determining the appropriateness of using and distributing
+# the program and assume all risks associated with your exercise
+# of rights with respect to the program, including but not limited
+# to infringement of third party rights, the risks and costs of
+# program errors, damage to or loss of data, programs or equipment,
+# and unavailability or interruption of operations. Under no
+# circumstances will the contributor of this Program be liable for
+# any damages of any kind arising from your use or distribution of
+# this program.
+
+config SCSI_UFSHCD
+	tristate "Universal Flash Storage Controller Driver Core"
+	depends on SCSI && SCSI_DMA
+	select NLS
+	---help---
+	This selects the support for UFS devices in Linux, say Y and make
+	  sure that you know the name of your UFS host adapter (the card
+	  inside your computer that "speaks" the UFS protocol, also
+	  called UFS Host Controller), because you will be asked for it.
+	  The module will be called ufshcd.
+
+	  To compile this driver as a module, choose M here and read
+	  <file:Documentation/scsi/ufs.txt>.
+	  However, do not compile this as a module if your root file system
+	  (the one containing the directory /) is located on a UFS device.
+
+config SCSI_UFSHCD_PCI
+	tristate "PCI bus based UFS Controller support"
+	depends on SCSI_UFSHCD && PCI
+	---help---
+	This selects the PCI UFS Host Controller Interface. Select this if
+	you have UFS Host Controller with PCI Interface.
+
+	  If you have a controller with this interface, say Y or M here.
+
+	  If unsure, say N.
+
+config SCSI_UFS_DWC_TC_PCI
+	tristate "DesignWare pci support using a G210 Test Chip"
+	depends on SCSI_UFSHCD_PCI
+	---help---
+	  Synopsys Test Chip is a PHY for prototyping purposes.
+
+	  If unsure, say N.
+
+config SCSI_UFSHCD_PLATFORM
+	tristate "Platform bus based UFS Controller support"
+	depends on SCSI_UFSHCD
+	---help---
+	This selects the UFS host controller support. Select this if
+	you have an UFS controller on Platform bus.
+
+	If you have a controller with this interface, say Y or M here.
+
+	  If unsure, say N.
+
+config SCSI_UFS_DWC_TC_PLATFORM
+	tristate "DesignWare platform support using a G210 Test Chip"
+	depends on SCSI_UFSHCD_PLATFORM
+	---help---
+	  Synopsys Test Chip is a PHY for prototyping purposes.
+
+	  If unsure, say N.
+
+config SCSI_UFS_QCOM
+	bool "QCOM specific hooks to UFS controller platform driver"
+	depends on SCSI_UFSHCD_PLATFORM && ARCH_MSM
+	select PHY_QCOM_UFS
+	help
+	  This selects the QCOM specific additions to UFSHCD platform driver.
+	  UFS host on QCOM needs some vendor specific configuration before
+	  accessing the hardware which includes PHY configuration and vendor
+	  specific registers.
+
+	  Select this if you have UFS controller on QCOM chipset.
+	  If unsure, say N.
+
+config SCSI_UFS_KIRIN
+	  tristate "UFS Host Controller Driver"
+	  depends on SCSI_UFSHCD && SCSI_UFSHCD_PLATFORM
+	  ---help---
+	  This selects the UFS host controller driver.
+
+	  If you have a controller with this interface, say Y or M here.
+
+	  If unsure, say N.
+
+config SCSI_UFS_GEMINI
+	  tristate "UFS Host GEMINI Controller Driver"
+	  depends on SCSI_UFSHCD && SCSI_UFSHCD_PLATFORM && SCSI_UFS_KIRIN
+	  ---help---
+	  This selects the UFS GEMINI host controller driver.
+
+	  If you have a controller with this interface, say Y or M here.
+
+	  If unsure, say N.
+
+config SCSI_UFS_ARIES
+	  tristate "UFS Host ARIES Controller Driver"
+	  depends on SCSI_UFSHCD && SCSI_UFSHCD_PLATFORM && SCSI_UFS_KIRIN
+	  ---help---
+	  This selects the UFS ARIES host controller driver.
+
+	  If you have a controller with this interface, say Y or M here.
+
+	  If unsure, say N.
+
+config SCSI_UFS_CANCER
+	  tristate "UFS Host CANCER Controller Driver"
+	  depends on SCSI_UFSHCD && SCSI_UFSHCD_PLATFORM && SCSI_UFS_KIRIN
+	  ---help---
+	  This selects the UFS CANCER host controller driver.
+
+	  If you have a controller with this interface, say Y or M here.
+
+	  If unsure, say N.
+
+config SCSI_UFS_TAURUS
+	  tristate "UFS Host TAURUS Controller Driver"
+	  depends on SCSI_UFSHCD && SCSI_UFSHCD_PLATFORM && SCSI_UFS_KIRIN
+	  ---help---
+	  This selects the UFS TAURUS host controller driver.
+
+	  If you have a controller with this interface, say Y or M here.
+
+	  If unsure, say N.
+
+config SCSI_UFS_LIBRA
+	  tristate "UFS Host LIBRA Controller Driver"
+	  depends on SCSI_UFSHCD && SCSI_UFSHCD_PLATFORM && SCSI_UFS_KIRIN
+	  ---help---
+	  This selects the UFS LIBRA host controller driver.
+
+	  If you have a controller with this interface, say Y or M here.
+
+	  If unsure, say N.
+
+
+config SCSI_UFS_CAPRICORN
+	  tristate "UFS Host CAPRICORN Controller Driver"
+	  depends on SCSI_UFSHCD && SCSI_UFSHCD_PLATFORM && SCSI_UFS_KIRIN
+	   ---help---
+	  This selects the UFS CAPRICORN host controller driver.
+
+	  If you have a controller with this interface, say Y or M here.
+
+	  If unsure, say N.
+
+config SCSI_UFS_KIRIN_LINERESET_CHECK
+	  bool "UFS background thread to check line-reset"
+	  depends on SCSI_UFSHCD && SCSI_UFS_KIRIN
+	  ---help---
+	  This create a thread to check line-reset bug, and recovery it.
+
+	  If using GEMINI, say Y here.
+
+	  If unsure, say N.
+
+config SCSI_UFS_FAULT_INJECT
+	  tristate "UFS Fault Inject"
+	  depends on SCSI_UFSHCD && FAULT_INJECTION && FAULT_INJECTION_DEBUG_FS
+	  ---help---
+	  This adds the UFS Fault Inject Interface to the ufshcd.
+	  The infrastructure can be used for debugging the driver from user space
+	  by injecting fault to the driver.
+
+	  Select this if you want to enable fault injection.
+	  If unsure, say N.
+
+config SCSI_UFS_TEST
+	tristate "Universal Flash Storage host controller driver unit-tests"
+	depends on SCSI_UFSHCD
+	---help---
+	This adds UFS Host controller unit-test framework.
+	The UFS unit-tests register as a block device test utility to
+	the test-iosched and will be initiated when the test-iosched will
+	be chosen to be the active I/O scheduler.
+
+config SCSI_UFS_INLINE_CRYPTO
+	tristate "UFS inline crytpo driver based on Kirin UFS Host Controller"
+	depends on SCSI_UFSHCD && SCSI_UFS_KIRIN
+
+	---help---
+	This selects the Kirin UFS inline crypto driver.
+
+	Select this if you want to use Hardware Crypto Engine
+	and using its interface for some special cryto func.
+	Otherwise, if you love my driver code, say Y or M here.
+
+	If unsure, say N.
+
+config SCSI_UFS_ENHANCED_INLINE_CRYPTO
+	tristate "UFS inline crytpo driver based on Kirin UFS Host Controller (enhanced)"
+	depends on SCSI_UFS_INLINE_CRYPTO
+
+	---help---
+	This selects the Kirin UFS inline enhanced crypto driver.
+
+	Select this if you want to use Hardware Crypto Engine
+	and using its interface for some special cryto func.
+	Otherwise, if you love my driver code, say Y or M here.
+
+	If unsure, say N.
+
+config SCSI_UFS_ENHANCED_INLINE_CRYPTO_V2
+	tristate "UFS inline crytpo driver based on Kirin UFS Host Controller (enhanced v2)"
+	depends on SCSI_UFS_ENHANCED_INLINE_CRYPTO
+
+	---help---
+	This selects the Kirin UFS inline enhanced crypto driver V2.
+
+	Select this if you want to use Hardware Crypto Engine
+	and using its interface for some special cryto func.
+	Otherwise, if you love my driver code, say Y or M here.
+
+	If unsure, say N.
+
+config SCSI_UFS_HS_ERROR_RECOVER
+	tristate "UFS use this config to recover ufs hs error"
+	depends on SCSI_UFSHCD && SCSI_UFS_KIRIN
+
+	---help---
+	This selects the recovery of error in HS_MODE.
+
+	Select this if needed to recover error in HS_MODE.
+
+	If unsure, say N.
+
+config SCSI_UFS_BLOCK_TEST
+	tristate "Universal Flash Storage host controller driver unit-tests"
+	depends on SCSI_UFSHCD && IOSCHED_TEST
+	---help---
+	This adds UFS Host controller unit-test framework.
+	The UFS unit-tests register as a block device test utility to
+	the test-iosched and will be initiated when the test-iosched will
+	be chosen to be the active I/O scheduler.
+
+config HUAWEI_UFS_DSM
+       bool "Listen UFS Kernel Error"
+       depends on SCSI_UFSHCD
+
+config SCSI_UFS_HI1861_VCMD
+	bool "UFS Hi1861 Device Vendor Command"
+	depends on SCSI_UFSHCD
+	---help---
+	This adds UFS Hisilicon Device defined vendor command.
+	contained that query fsr and so on.
+
+config HISI_UFS_MANUAL_BKOPS
+       bool "hisi manual BKOPS support for UFS"
+       depends on HISI_BK_OPS && SCSI_UFSHCD
+       default n
+
+config HUAWEI_UFS_VENDOR_MODE
+       bool "Enter UFS vendor mode"
+       depends on SCSI_UFSHCD
+
+config SCSI_UFS_HISI_UFS_MQ_DEFAULT
+        bool "Active HISI UFS MQ as default IO Scheduler"
+        depends on SCSI_UFS_KIRIN
+        default n
+        help
+                Active HISI UFS MQ as default IO Scheduler
+
+config SCSI_UFS_CUST_MAX_SECTORS
+        bool "enable custom max sectors in UFS"
+        depends on SCSI_UFSHCD
+        default n
+        help
+                enable custom max sectors in UFS
+
+config HISI_SCSI_UFS_DUMP
+	bool "hisi ufs_dump support"
+	depends on  SCSI_UFSHCD
+	default n

@@ -1,0 +1,3 @@
+source "drivers/huawei_platform/usb/switch/switch_ap/Kconfig" 
+source "drivers/huawei_platform/usb/switch/switch_sensorhub/Kconfig" 
+

@@ -1,0 +1,44 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2012-2013 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+  /{
+		pm_clk_monitor: pm_clk {
+			compatible = "hisilicon,pm-clk-monitor";
+			hisi-pmclk-num = <3>;
+			clocks = <&aclk_gate_dss
+				  &aclk_gate_isp
+				  &clk_gate_ldi0
+				  &clk_gate_dss_axi_mm
+				  &clk_gate_ispfunc
+				  &clk_gate_vdec
+				  &clk_gate_venc
+				  &clk_gate_vivobus
+				  &clk_gate_edc0
+				  &clk_gate_ldi1
+				  &clk_gate_ispa7
+				  &clk_gate_ivp32dsp_core
+				  &aclk_gate_usb3otg
+				  &clk_gate_abb_usb
+				  &clk_gate_ufsphy_ref
+				  &clk_gate_pciephy_ref
+				  &clk_gate_perf_stat
+				  &aclk_gate_perf_stat
+				  &pclk_gate_perf_stat
+				  &clk_gate_secs
+				  &clk_gate_secp
+				  &clk_gate_cssys_atclk
+				  &clk_gate_time_stamp
+				  &clk_gate_emmc0
+				  &clk_gate_sd
+				  &clk_gate_sdio0
+				  &autodiv_socp>;
+			status = "ok";
+		};
+  };

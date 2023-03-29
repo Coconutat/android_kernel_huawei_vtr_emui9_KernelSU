@@ -1,0 +1,9 @@
+#
+# huawei touchscreen driver configuration
+#
+
+menuconfig ATMEL_TS_KIT
+	tristate "huawei  ts kit atmel drivers"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.

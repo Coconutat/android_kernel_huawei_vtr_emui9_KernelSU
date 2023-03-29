@@ -1,0 +1,240 @@
+/ {
+	chg_watchdog {
+		compatible = "hisilicon,chgwdg";
+		reg = <0x0 0xe8a07000 0x0 0x1000>;
+		interrupts = <0 45 4>;
+		status = "ok";
+	};
+	direct_charge_ps: direct_charge_ps {
+		compatible = "huawei,direct_charge_ps";
+		boost_5v_support_scp_power = <0>;
+		huawei_charger_support_scp_power = <0>;
+		status = "disabled";
+	};
+	huawei_charger: huawei_charger{
+		compatible = "huawei,charger";
+		pd_support = <0>;
+		support_usb_nonstandard_ico = <0>;
+		support_standard_ico = <0>;
+		ico_all_the_way = <0>;
+		water_check_enabled = <0>;
+		fcp_vindpm = <4600>;
+		pd_cur_trans_ratio = <88>;
+		status = "disabled";
+	};
+	power_thermalzone: power_thermalzone {
+		compatible = "huawei,power_thermalzone";
+		status = "disabled";
+		sensors{
+			sensor0{
+				sensor_name = "usb_port";
+				ops_name = "hisi_adc";
+				adc_channel = <5>;
+				ntc_index = <2>;
+			};
+		};
+	};
+               boost_5v: boost_5v{
+                              compatible = "huawei,boost_5v";
+                              status = "disabled";
+               };
+	vbat_ovp: vbat_ovp{
+		compatible = "vbat,ovp";
+		status = "disabled";
+	};
+	direct_charger: direct_charger{
+		compensate_r = <0>;
+		use_5A = <0>;
+		scp_cable_detect_enable = <0>;
+		max_adaptor_vset = <5500>;
+		max_tadapt = <115>;
+		max_tls = <115>;
+		ibat_abnormal_th = <200>;
+		first_cc_stage_timer_in_min = <0>;
+		max_dc_bat_vol = <4350>;
+		min_dc_bat_vol = <3550>;
+		charge_control_interval = <5>;
+		scp_work_on_charger = <0>;
+		threshold_caculation_interval = <5>;
+		safety_monitor_interval = <5>;
+		vstep = <10>;
+		delta_err = <200>;
+		vol_err_th = <150>;
+		full_path_res_max = <120>;
+		standard_cable_full_path_res_max = <160>;
+		max_current_for_none_standard_cable = <3000>;
+		adaptor_leakage_current_th = <300>;
+		stage_need_to_jump = "-1";
+		temp_para =
+			"-32767", "10", "0",
+			"10", "45", "4750",
+			"45", "32767", "0";
+		compatible = "direct_charger";
+		status = "disabled";
+	};
+	wired_channel_switch: wired_channel_switch {
+		compatible = "huawei,wired_channel_switch";
+		use_ovp_cutoff_wired_channel = <1>;
+		use_super_switch_cutoff_wired_channel = <0>;
+		use_wireless_switch_cutoff_wired_channel = <0>;
+		status = "disabled";
+	};
+	ovp_channel_switch: ovp_channel_switch {
+		compatible = "huawei,ovp_channel_switch";
+		status = "disabled";
+	};
+	dual_loadswitch: dual_loadswitch{
+		compatible = "dual_loadswitch";
+		status = "disabled";
+	};
+	huawei_dual_charger: huawei_dual_charger{
+		compatible = "huawei,dual_charger";
+		is_dual_charger = <0>;
+		ichg_need_aux_charger = <2100>;
+		iin_max_each_charger = <1000>;
+		status = "disabled";
+	};
+	charging_core:charging_core{
+		compatible = "huawei,charging_core";
+		iin_ac = <2000>;
+		ichg_ac = <1900>;
+		otg_curr = <1200>;
+		iin_usb = <500>;
+		ichg_usb = <500>;
+		iin_nonstd = <1200>;
+		ichg_nonstd = <1000>;
+		iin_bc_usb = <1500>;
+		ichg_bc_usb = <1400>;
+		iin_vr = <1000>;
+		ichg_vr = <1000>;
+		iin_typech = <2000>;
+		ichg_typech = <2100>;
+		typec_support = <0>;
+		high_temp_limit = <1>;
+		iterm = <100>;
+		ichrg_pre_limit = <128>;
+		segment_type = <0>;
+		vdpm_control_type = <1>;
+		vdpm_buf_limit = <100>;
+		vdpm_para =
+			"-32767", "4100", "4500", "50",
+			"4150", "32767", "4625", "50";
+		inductance_para =
+			"-32767", "15", "1600", "0",
+			"15", "32767", "1700", "0";
+		status = "disabled";
+	};
+	amba {
+		i2c1: i2c@FFD72000 {
+			rt9748: rt9748@67 {
+				compatible = "rt9748";
+				loadswitch_int = <&gpio24 6 0>;
+				loadswitch_en = <&gpio26 2 0>;
+				reg = <0x67>;
+				status = "disabled";
+			};
+		};
+		i2c3: i2c@FDF0C000{
+			bq25892_charger_aux: bq25892_charger_aux@6B{
+				compatible = "huawei,bq25892_charger_aux";
+				reg = <0x6B>;
+				gpio_cd = <&gpio0 7 0>;
+				gpio_int = <&gpio22 6 0>;
+				bat_comp = <60>;
+				vclamp = <192>;
+				rilim = <220>;
+				fcp_support = <0>;
+				status = "disabled";
+			};
+		};
+		i2c4: i2c@FDF0D000 {
+			bq2419x_charger: charger@6B{
+				compatible = "huawei,bq2419x_charger";
+				reg = <0x6B>;
+				gpio_cd = <&gpio22 1 0>;
+				gpio_int = <&gpio22 4 0>;
+				rilim = <220>;
+				adc_channel_iin = <5>;
+				status = "disabled";
+			};
+
+			bq2429x_charger: bq2429x_charger@6B{
+				compatible = "huawei,bq2429x_charger";
+				reg = <0x6B>;
+				gpio_cd = <&gpio22 1 0>;
+				gpio_int = <&gpio22 4 0>;
+				status = "disabled";
+			};
+			bq25892_charger: bq25892_charger@6B{
+				compatible = "huawei,bq25892_charger";
+				reg = <0x6B>;
+				gpio_cd = <&gpio22 1 0>;
+				gpio_int = <&gpio22 4 0>;
+				bat_comp = <60>;
+				vclamp = <192>;
+				rilim = <124>;
+				adc_channel_iin = <5>;
+				adc_channel_vbat_sys = <14>;
+				fcp_support = <0>;
+				ico_current_mode = <0>;
+				/*0:final current is the max of original and ico current
+				 *1:final current is ico current
+				 */
+				status = "disabled";
+			};
+			bq25892_charger_main: bq25892_charger_main@6B{
+				compatible = "huawei,bq25892_charger_main";
+				reg = <0x6B>;
+				gpio_cd = <&gpio22 1 0>;
+				gpio_int = <&gpio22 4 0>;
+				bat_comp = <60>;
+				vclamp = <192>;
+				rilim = <150>;
+				adc_channel_iin = <5>;
+				adc_channel_vbat_sys = <14>;
+				fcp_support = <0>;
+				status = "disabled";
+			};
+			hi6523_charger: hi6523_charger@6B{
+				compatible = "huawei,hi6523_charger";
+				reg = <0x6B>;
+				gpio_int = <&gpio22 4 0>;
+				bat_comp = <60>;
+				vclamp = <192>;
+				adc_channel_vbat_sys = <14>;
+				fcp_support = <0>;
+				status = "disabled";
+            };
+
+		};
+		i2c6: i2c@FFD6A000 {
+			bq25892_charger_i2c6: bq25892_charger_i2c6@6B{
+				compatible = "huawei,bq25892_charger";
+				reg = <0x6B>;
+				gpio_cd = <&gpio5 4 0>;
+				gpio_int = <&gpio22 4 0>;
+				bat_comp = <60>;
+				vclamp = <192>;
+				rilim = <124>;
+				adc_channel_iin = <5>;
+				adc_channel_vbat_sys = <14>;
+				fcp_support = <0>;
+				ico_current_mode = <0>;
+				/*0:final current is the max of original and ico current
+				*1:final current is ico current
+				*/
+				status = "disabled";
+			};
+			hi6523_charger_i2c6: hi6523_charger_i2c6@6B{
+				compatible = "huawei,hi6523_charger";
+				reg = <0x6B>;
+				gpio_int = <&gpio22 4 0>;
+				bat_comp = <60>;
+				vclamp = <192>;
+				adc_channel_vbat_sys = <14>;
+				fcp_support = <0>;
+				status = "disabled";
+            };
+		};
+	};
+};

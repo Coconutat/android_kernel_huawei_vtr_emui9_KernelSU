@@ -1,0 +1,12 @@
+menuconfig IMAGINATION_D5500_DRM_VCODEC
+    tristate "Hi3xxx Support DRM IMG Video Codec Drivers"
+    default n
+    ---help---
+      This is the codec driver based on hi3xxx.
+
+if IMAGINATION_D5500_DRM_VCODEC      
+source "drivers/vcodec/imagination/D5500_DRM/imgvideo/Kconfig"
+source "drivers/vcodec/imagination/D5500_DRM/decoder/vdec/Kconfig"
+source "drivers/vcodec/imagination/D5500_DRM/encoder/DDK4/Kconfig"
+endif
+

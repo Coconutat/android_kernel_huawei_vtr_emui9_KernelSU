@@ -1,0 +1,6 @@
+config RIL_SIM_NETLINK_MODULE
+	tristate "kernel space communicate with user space rild use netlink socket for pin security."
+    default n
+    help
+	  This module adds support for PIN auto verify funtion based on
+	  Balong V3R3 chipset.

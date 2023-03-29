@@ -1,0 +1,5 @@
+#
+# lcdkit driver configuration
+#
+
+source "drivers/devkit/lcdkit/lcdkit1.0/core/common/Kconfig"

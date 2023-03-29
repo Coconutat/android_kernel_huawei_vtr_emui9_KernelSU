@@ -1,0 +1,12 @@
+
+menuconfig SND_SOC_TAS2560
+	tristate "Texas Instruments TAS2560 SmartAmp(R)"
+
+if SND_SOC_TAS2560
+config TAS2560_I2C
+    bool "Use of I2C RegMap API"
+
+config TAS2560_MISC
+    bool "Misc Driver support"
+
+endif # SND_SOC_TAS2560

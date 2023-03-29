@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# output will be overwritten on each run.
+# definition should have the following format:
+# #define XXX_MAGIC 0xaabbccdd
+# ...
+# <files> should be named as inlinehook_YYY.bin.
+#
+# Generated output is like:
+# #define YYY_XXX_OFFSET <value>
+
+if [ $# -lt 3 ]; then
+    echo "$0: output definition <files>"
+    exit 1
+fi
+
+out=$1
+shift
+def=$1
+shift
+
+# test for working path
+touch ${out}
+if [ -z ${out} -o ! -f ${out} ]; then echo "$0: no output"; exit 1; fi
+if [ -z ${def} -o ! -f ${def} ]; then echo "$0: no definition"; exit 1; fi
+
+get_off() {
+    _out=$1
+    _src=$2
+    _key=$3
+    _mem=$4
+    hex="\\x${_mem:8:2}\\x${_mem:6:2}\\x${_mem:4:2}\\x${_mem:2:2}"
+    hex=`echo -e ${hex}`
+    off=`LANG=C LC_ALL=C grep -obUaP "${hex}" ${_src} | cut -d':' -f1`
+    echo "#define ${_key} ${off}" >> ${_out}
+}
+
+gen_off() {
+    _def=$1
+    _bin=$2
+    _out=$3
+    what=`basename ${_bin} .bin | sed 's/inlinehook_//g' | tr a-z A-Z`
+    cat ${_def} | grep MAGIC | while read d; do
+        key=`echo $d | awk '{print $2}' | sed s/MAGIC/OFFSET/g`
+        val=`echo $d | awk '{print $3}'`
+        get_off ${_out} ${_bin} "${what}_${key}" ${val}
+    done
+}
+
+echo "/* autogen */" > $out
+while [ $# -ne 0 ]; do
+    bin=$1
+    gen_off ${def} ${bin} ${out}
+    shift
+done

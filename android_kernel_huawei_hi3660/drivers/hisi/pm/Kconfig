@@ -1,0 +1,56 @@
+menu "Hisi S/R options"
+
+config HISI_SR
+	bool "support hi3xxx suspend and resume"
+	depends on SUSPEND
+	default n
+	help
+	   support hi3xxx suspend and resume
+
+config HISI_SR_DEBUG
+	bool "hisi suspend-resume debug interface"
+	depends on PM
+	default n
+	help
+	suspend-resume debug for hisi platform
+
+config HISI_SR_DEBUG_SLEEP
+	bool "hisi suspend-resume debug sleep"
+	depends on PM
+	default n
+	help
+	suspend-resume debug sleep for hisi platform
+
+config HISI_SR_SYNC
+	bool "Hisilicon suspend optimization"
+	depends on SUSPEND
+	default n
+	help
+	  Driver for suspend optimization
+
+config PM_SEC_GPIO
+	bool "Hisilicon have SEC GPIO"
+	default n
+	help
+	  tell us if this platform have SEC GPIO
+
+config PM_SEC_IO
+	bool "Hisilicon have SEC IO"
+	default n
+	help
+	  tell us if this platform have SEC IO
+
+config HISI_SR_TICK
+	bool "Hisilicon sr tick"
+	depends on SUSPEND
+	default n
+	help
+	  mark kernel sr position
+
+config PM_FCM
+	bool "Hisilicon FCM architecture"
+	default n
+	help
+	  FCM architecture
+
+endmenu

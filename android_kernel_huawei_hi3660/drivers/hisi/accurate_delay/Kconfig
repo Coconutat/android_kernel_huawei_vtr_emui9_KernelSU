@@ -1,0 +1,5 @@
+config HISI_ACCURATE_DELAY
+	bool "Hisilicon Accurate Delay Lib"
+	default n
+	help
+	Say yes here if you want to use Accurate Delay lib

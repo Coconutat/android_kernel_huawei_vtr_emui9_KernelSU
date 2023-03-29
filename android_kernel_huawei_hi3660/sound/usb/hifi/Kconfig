@@ -1,0 +1,6 @@
+menuconfig USB_AUDIO_DTSI_PROPERTY
+	bool "USB audio dtsi property drivers support"
+	depends on SND_USB_AUDIO
+	default n
+	help
+	Say yes here to support the USB audio dtsi property module

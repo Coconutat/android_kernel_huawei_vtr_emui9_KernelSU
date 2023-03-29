@@ -1,0 +1,84 @@
+config HISILICON_PLATFORM_MAINTAIN
+	bool "Hisilicon platform maintain module support"
+	default n
+	help
+	  Say yes here to support the hisilicon platform maintain module
+
+config HISILICON_PLATFORM_HISI_EASYSHELL
+	bool "Support HiSilicon Hi6XXX Easy Shell"
+	default n
+	help
+	  This driver supports HiSilicon HiXXX SOC,
+	  including easy shell, etc.
+source "drivers/hisi/mntn/blackbox/Kconfig"
+source "drivers/hisi/mntn/hisee/Kconfig"
+source "drivers/hisi/mntn/bl31/Kconfig"
+source "drivers/hisi/mntn/subpmu/Kconfig"
+
+
+config HISI_VIRT_TO_PHYS
+	bool "support converting virtual address to physical address"
+	default n
+	help
+	  Say 'Y' here if you want to support virtual address to physical address enable.
+
+config HISI_BOOT_TIME
+	bool "support print all boot slice"
+	default n
+	help
+	  Say 'Y' here if you want to print all boot slice.
+
+config HISI_BB_SYSCALL
+	bool "support print system call trace "
+	default n
+	help
+	  Say 'Y' here if you want to print system call trace.
+
+config HISI_POWER_OFF
+	bool "Hisilicon platform power off and reset driver"
+	default n
+	help
+	  Power off and reset support for the Hisilicon boards.
+
+config HISI_FIQ
+	bool "Hisilicon platform fiq dump driver"
+	default n
+	help
+	   Say 'Y' here if you want to support fiq dump.
+
+config HISI_MNTNDUMP
+        bool "Hisilicon platform mntn dump driver"
+        default n
+        help
+           Say 'Y' here if you want to support mntn dump.
+
+config HISI_DEBUG_FS
+	bool "Hisilicon platform debugfs"
+	depends on DEBUG_FS
+	help
+		hisi debugfs disable by self
+
+config HISI_RECORD_SP
+        bool "Hisilicon platform mntn record sp"
+		depends on FUNCTION_TRACER
+		default n
+        help
+           Say 'Y' here if you want to support record sp.
+
+config HISI_L3CACHE_ECC
+        bool "Hisilicon platform l3cache ecc driver"
+        default n
+        help
+           Say 'Y' here if you want to support l3cache ecc.
+
+config HISI_L3CACHE_ECC_DEBUG
+        bool "Hisilicon platform l3cache ecc debug"
+        default n
+        help
+           Say 'Y' here if you want to support l3cache ecc debug.
+
+config HISI_CLANG
+        bool "clang compiler auxiliary for kernel"
+        default n
+        help
+           Say 'Y' here if you want to support clang.

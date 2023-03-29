@@ -1,0 +1,23 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/include/ "fastboot.dtsi"
+/include/ "hi3660_udp_v110_config.dtsi"
+/include/ "hi3660_udp_v120_sec_pin.dtsi"
+/include/ "hi3660_udp_v120_pin.dtsi"
+/ {
+	hisi,boardid = <5 0 8 0>;
+	hisi,boardname = "hi3660_udp_v120";
+	hisi,camera_arch_v120 = "platform_v120";
+
+	/* UFS */
+	ufs: ufs@FF3b0000 {
+		ufs-kirin-linereset-check-disable;
+	};
+};

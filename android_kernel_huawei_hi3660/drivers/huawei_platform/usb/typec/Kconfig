@@ -1,0 +1,11 @@
+config HUAWEI_TYPEC
+	tristate "typec connector"
+	depends on GPIOLIB && I2C
+	default n
+	help
+	  Say Y here to enable Type C Connector support.
+
+source "drivers/huawei_platform/usb/typec/pericom30216/Kconfig"
+source "drivers/huawei_platform/usb/typec/tusb320/Kconfig"
+source "drivers/huawei_platform/usb/typec/fusb301/Kconfig"
+source "drivers/huawei_platform/usb/typec/ptn5150h/Kconfig"

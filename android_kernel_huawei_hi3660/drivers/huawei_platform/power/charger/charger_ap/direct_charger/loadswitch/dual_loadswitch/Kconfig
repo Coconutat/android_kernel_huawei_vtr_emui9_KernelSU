@@ -1,0 +1,9 @@
+config DUAL_LOADSWITCH_FAN54151
+	bool "dual_loadswitch_fan54151"
+	default n
+config DUAL_LOADSWITCH_RT9748
+	bool "dual_loadswitch_rt9748"
+	default n
+config DUAL_LOADSWITCH_FPF2283
+	bool "dual_loadwitch_fpf2283"
+	default n

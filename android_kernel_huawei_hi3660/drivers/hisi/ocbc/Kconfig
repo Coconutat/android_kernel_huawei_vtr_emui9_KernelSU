@@ -1,0 +1,9 @@
+menu "Hisi OCBC options"
+
+config HISI_OCBC
+	bool "support hi3660 send msg to ocbc"
+	default n
+	help
+	   support hi3xxx send msg to ocbc
+
+endmenu

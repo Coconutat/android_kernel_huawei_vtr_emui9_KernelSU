@@ -1,0 +1,11 @@
+config TFA9872
+	tristate "TFA9872 i2c driver"
+	default n
+	help
+		Say Y to enable tfa9872 i2c driver support
+
+config TFA98XX
+	tristate "tfa98xx ioctl driver"
+	default n
+	help
+		Say Y to enable maxim driver support

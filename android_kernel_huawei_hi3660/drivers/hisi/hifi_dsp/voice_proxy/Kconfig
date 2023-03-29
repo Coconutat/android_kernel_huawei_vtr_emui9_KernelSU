@@ -1,0 +1,15 @@
+menu "voice proxy driver"
+
+config VOICE_PROXY
+     bool "pass through voice data between AP and hifi"
+
+config VOICE_PROXY_VOLTE
+     bool "volte voice encrypt device support"
+
+config VOICE_PROXY_VOWIFI
+     bool "vowifi voice device support"
+
+config VOICE_PROXY_RTT
+     bool "rtt voice device support"
+endmenu
+

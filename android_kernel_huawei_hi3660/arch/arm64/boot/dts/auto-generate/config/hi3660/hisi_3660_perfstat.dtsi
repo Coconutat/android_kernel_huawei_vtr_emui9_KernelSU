@@ -1,0 +1,26 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2012-2013 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+  /{
+        perfstat:a1@0xFF012000 {
+            compatible = "hisilicon,hisi-perfstat-driver";
+            reg = <0x0 0xFDF10000 0x0 0x1000>;
+            interrupts = <0 127 4>;
+            clock-names = "clk_perf_stat", "aclk_perf_stat", "pclk_perf_stat";
+            clocks = <&clk_gate_perf_stat &aclk_gate_perf_stat &pclk_gate_perf_stat>;
+            suggest_clk = <120000000>;
+            suggest_aclk = <228000000>;
+            hisilicon,perf-event-id = <0x80000000>;
+            hisilicon,per-data-size = <32>;
+            hisilicon,vldmsk-of-sprt = <0x1fffffff>;
+            hisilicon,rs_enable_support = <0>;
+            status = "disabled";
+        };
+  };

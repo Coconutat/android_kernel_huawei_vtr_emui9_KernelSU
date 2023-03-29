@@ -1,0 +1,30 @@
+config HW_CROSSLAYER_OPT
+	bool "Huawei network crosslayer optimization"
+	default n
+
+config HW_CROSSLAYER_OPT_DBG
+	tristate "Huawei network crosslayer information collection"
+	depends on HW_CROSSLAYER_OPT && m
+	default n
+
+
+config HW_WIFI
+	bool "Huawei wifi tcp monitor support"
+	default n
+
+config HW_WIFI_MSS
+    bool "Huawei WLAN MIMO SISO switch support"
+    default n
+
+config HW_WIFI_RSSI
+    bool "Huawei TAS RSSI report support"
+    default n
+
+config HUAWEI_MSS_AUTO_CHANGE
+        bool "Huawei MSS auto change function support"
+        default n
+
+config HW_SYN_LINEAR_RETRY
+        bool "Huawei tcp syn sent linear retry support"
+        default n
+

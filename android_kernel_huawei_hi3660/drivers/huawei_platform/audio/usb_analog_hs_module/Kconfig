@@ -1,0 +1,23 @@
+menuconfig USB_ANALOG_HS_MODULE
+	bool "USB ANALOG headset drivers support"
+	default n
+	help
+	Say yes here to support the USB ANALOG headset module
+
+if USB_ANALOG_HS_MODULE
+config USB_ANALOG_HS_INTERFACE
+	tristate "Support for USB_ANALOG_HS_INTERFACE"
+	default n
+	---help---
+	 Say Y here if you want to support USB_ANALOG_HS_INTERFACE
+config USB_ANALOG_HS_ISL54405
+	tristate "Support for USB ANALOG headset with ISL54405 switch"
+	default n
+	---help---
+	 Say Y here if you want to support  USB ANALOG headset with ISL54405 switch
+config USB_ANALOG_HS_FSA4476
+	tristate "Support for USB ANALOG headset with FSA4476 switch"
+	default n
+	---help---
+	 Say Y here if you want to support USB ANALOG headset with FSA4476 switch
+endif #USB_ANALOG_HS_MODULE

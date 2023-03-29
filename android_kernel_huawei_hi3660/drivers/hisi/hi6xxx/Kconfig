@@ -1,0 +1,2 @@
+config SND_SOC_CODEC_HI6555V2
+	tristate "HI Soc Smartstar Codec 6555v2 support"

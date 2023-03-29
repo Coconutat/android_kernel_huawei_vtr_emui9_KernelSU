@@ -1,0 +1,82 @@
+config SCHED_HISI_WALT_WINDOW_SIZE_TUNABLE
+	bool "Make WALT window size tunable"
+	depends on SCHED_WALT
+	default n
+	help
+	  Make walt_ravg_window tunable in early param.
+
+config SCHED_HISI_DOWNMIGRATE_LOWER_LOAD
+	bool "Schedutil governor use lower load when task downmigrate"
+	depends on SCHED_WALT
+	depends on CPU_FREQ_GOV_SCHEDUTIL
+	default n
+	help
+	  Schedutil governor migrate cpu busy time when task migrate. This
+	  option will recaculate a lower load for task downmigrate to
+	  prevent little core's frequency increase too much.
+
+config SCHED_HISI_CALC_CUM_WINDOW_DEMAND
+	bool "WALT calculate cum window demand"
+	depends on SCHED_HISI_USE_WALT
+	default n
+	help
+	  This option caculates WALT's cum_window_demand, which is not used
+	  currently.
+
+config SCHED_HISI_CHECK_IRQLOAD
+	bool "Scheduler check irqload when select task's cpu"
+	depends on SCHED_WALT
+	default n
+	help
+	  WALT caculates an irqload for each cpu and scheduler will avoid
+	  placing task on a high irqload cpu (if WALT enabled).
+	  Default disabled because we haven't tested to find out which
+	  threshold is the best.
+
+config SCHED_HISI_TOP_TASK
+	bool "Maintain the top task load of each cpu"
+	depends on SCHED_WALT
+	default n
+	help
+	  Hisi schedutil governor may use the top task load as a guide to
+	  frequency evaluation.
+
+config SCHED_HISI_USE_WALT
+	bool "Scheduler use WALT for cpu util and task util"
+	depends on SCHED_WALT
+	default n
+	help
+	  This option enables calculation of WALT's task_util/cpu_util
+	  signal, and sets sysctl_sched_use_walt_[cpu/task]_util to 1.
+
+	  When enabled, you can still change the sysctl node to
+	  enable or disable walt signal for debug purpose.
+
+config SCHED_HISI_MIGRATE_SPREAD_LOAD
+	bool "Spread task's load when inter-cluster migration"
+	depends on SCHED_WALT
+	default n
+	help
+	  In inter-cluster migration, this option will spread task's
+	  prev_window/curr_window to all cpus that the task has been
+	  running on before in a window. If disabled, task's whole load
+	  will move to dest cpu and that will make dest cpu's cpu load
+	  very high in same cases.
+
+config SCHED_HISI_TOP_TASK_SKIP_HISPEED_LOGIC
+	bool "Let top task ignore above_hipeed_delay"
+	depends on SCHED_HISI_TOP_TASK
+	default n
+	help
+	  For schedutil governor, this option skips hispeed logic when
+	  ADD_TOP_TASK event triggers freq update.
+
+config SCHED_HISI_FORCE_CMP_BACKUP
+	bool "Always consider backup cpu in non-preferidle case"
+	depends on HISI_EAS_SCHED
+	default n
+	help
+	  This option compares backup_cpu if target_cpu == prev_cpu.
+	  In other words, for non-prefer idle tasks it may chose an idle
+	  cpu even if prev_cpu is the best active cpu.
+	  Not recommended because it will make all tasks spread.

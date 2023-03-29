@@ -1,0 +1,65 @@
+/*
+ *  Copyright (C) 2012-2013 Linaro Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+
+	ip_freq_autodown: ip_freq_autodown@0xFFF35000 {
+			compatible = "hisilicon,hisi-freq-autodown";
+			reg = <0x00 0xFFF35000 0x00 0x1000>;
+			hisilicon,freq-autodown-baseaddress-num = <1>;
+			hisilicon,freq-autodown-num = <9>;
+			hisilicon,freq-autodown-names = "vcodecbus","vdecbus","vencbus","emmc1bus","emmc0bus","sysbus","vivobus","ispa7bus","ivpbus";
+			hisilicon,freq-autodown-state = <0>;
+
+			vcodecbus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-vcodecbus";
+				freq_autodown_disable_bypass 	= <0x374 0 0>;/*diable auto frequency modulation bypass*/
+				freq_autodown_enable_clock 	= <0x410 5 0>;/*auto frequency modulation monitor clk enable*/
+			};
+			vdecbus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-vdecbus";
+				freq_autodown_disable_bypass 	= <0x36C 0 0>;
+				freq_autodown_enable_clock 	= <0x410 3 0>;
+			};
+			vencbus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-vencbus";
+				freq_autodown_disable_bypass 	= <0x368 0 0>;
+				freq_autodown_enable_clock 	= <0x410 2 0>;
+			};
+			emmc1bus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-emmc1bus";
+				freq_autodown_disable_bypass 	= <0x404 0 0>;
+				freq_autodown_enable_clock 	= <0xDEAD 0 0>;
+			};
+			emmc0bus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-emmc0bus";
+				freq_autodown_disable_bypass 	= <0x404 1 0>;
+				freq_autodown_enable_clock 	= <0xDEAD 0 0>;
+			};
+			sysbus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-sysbus";
+				freq_autodown_disable_bypass 	= <0x404 5 0>;
+				freq_autodown_enable_clock 	= <0xDEAD 0 0>;
+			};
+			vivobus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-vivobus";
+				freq_autodown_disable_bypass 	= <0x370 0 0>;
+				freq_autodown_enable_clock 	= <0x410 4 0>;
+			};
+			ispa7bus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-ispa7bus";
+				freq_autodown_disable_bypass 	= <0x364 0 0>;
+				freq_autodown_enable_clock 	= <0x410 1 0>;
+			};
+			ivpbus_freq_autodown {
+				compatible = "hisilicon,hisi-freq-autodown-ivpbus";
+				freq_autodown_disable_bypass 	= <0x360 0 0>;
+				freq_autodown_enable_clock 	= <0x410 0 0>;
+			};
+	};
+};

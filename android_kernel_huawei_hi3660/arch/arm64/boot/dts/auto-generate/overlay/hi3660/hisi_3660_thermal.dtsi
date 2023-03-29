@@ -1,0 +1,225 @@
+
+
+  /{
+		hisi_powerhal: powerhal@0 {
+			compatible = "hisi,powerhal";
+			/*CPU_L, CPU_B, GPU*/
+			hisi,powerhal-spm-cfg = <1402000 903000 533000000>;
+			hisi,powerhal-vr-cfg = <1402000 1421000 533000000>;
+			hisi,powerhal-min-cfg = <533000 903000 400000000>;
+		};
+
+		hisi_weights: weights@0 {
+			compatible = "hisi,weights";
+			/*IPA_CLUSTER0, IPA_CLUSTER1, GPU*/
+			hisi,weights-default-cfg = <768 256 768>;
+			hisi,weights-boost-cfg = <768 256 768>;
+		};
+
+		tsens: tsens@0{
+			compatible = "hisi,tsens";
+			hisi,sensors = <5>;
+			hisi,detect_cluster0_regno = <0>;
+			hisi,detect_cluster1_regno = <1>;
+			hisi,detect_gpu_regno = <2>;
+			hisi,detect_modem_regno = <3>;
+			hisi,detect_ddr_regno = <0xff>;
+
+			hisi,tsensor_adc_start_value = <116>;
+			hisi,tsensor_adc_end_value = <922>;
+			hisi_tsens_cluster0 {
+				temp_throttling = <0>;
+				temp_shutdown = <105>;
+				temp_below_vr_min = <0>;
+			};
+
+			hisi_tsens_cluster1 {
+				temp_throttling = <0>;
+				temp_shutdown = <105>;
+				temp_below_vr_min = <0>;
+			};
+
+			hisi_tsens_gpu {
+				temp_throttling = <0>;
+				temp_shutdown = <105>;
+				temp_below_vr_min = <0>;
+			};
+		};
+
+		hisi_peripheral_tm: hisi_tm@1 {
+			compatible = "hisi,hisi-peripheral-tm";
+			hisi,peripheral_sensors = <8>;
+
+			hisi,detect_system_h_tm_chanel = <12>;
+			hisi,detect_system_h_tm_ntc = "austin_hkadc_soc_temp_table";
+			hisi,detect_system_h_tm_state = "enable";
+			hisi,detect_system_h_throttling = <53>;
+			hisi,detect_system_h_shutdown = <55>;
+			hisi,detect_system_h_below_vr_min = <53>;
+			hisi,detect_system_h_over_skin = <12>;
+
+			hisi,detect_flash_led_tm_chanel = <11>;
+			hisi,detect_flash_led_tm_ntc = "austin_hkadc_soc_temp_table";
+			hisi,detect_flash_led_tm_state = "enable";
+
+			hisi,detect_charger_tm_chanel = <5>;
+			hisi,detect_charger_tm_ntc = "austin_hkadc_soc_temp_table";
+			hisi,detect_charger_tm_state = "enable";
+
+			hisi,detect_pa_0_tm_chanel = <9>;
+			hisi,detect_pa_0_tm_ntc = "austin_hkadc_pa_temp_table";
+			hisi,detect_pa_0_tm_state = "enable";
+
+			hisi,detect_pa_1_tm_chanel = <13>;
+			hisi,detect_pa_1_tm_ntc = "austin_hkadc_pa_temp_table";
+			hisi,detect_pa_1_tm_state = "enable";
+
+			hisi,detect_dcxo0_tm_chanel = <3>;
+			hisi,detect_dcxo0_tm_ntc = "austin_hkadc_adc_temp_table";
+			hisi,detect_dcxo0_tm_state = "enable";
+
+			hisi,detect_shell_tm_chanel = <7>;
+			hisi,detect_shell_tm_ntc = "austin_hkadc_soc_temp_table";
+			hisi,detect_shell_tm_state = "disable";
+
+			hisi,detect_charger1_tm_chanel = <4>;
+			hisi,detect_charger1_tm_ntc = "austin_hkadc_soc_temp_table";
+			hisi,detect_charger1_tm_state = "disable";
+		};
+
+		hisi_shell: shell_frame@0 {
+			compatible = "hisi,shell-temp";
+			interval = <5000>;
+			bias = <0>;
+			count = <6>;
+			status = "ok";
+			sensors {
+				sensor0 {
+					type = "system_h";
+					coef = "0","0","0","0","0","0";
+				};
+				sensor1 {
+					type = "charger";
+					coef = "0","0","0","0","0","0";
+				};
+				sensor2 {
+					type = "pa_0";
+					coef = "0","0","0","0","0","0";
+				};
+				sensor3 {
+					type = "dcxo0";
+					coef = "0","0","0","0","0","0";
+				};
+			};
+		};
+
+		hisi_ambient: hisi_ambient@0 {
+			compatible = "hisi,ambient-temp";
+			interval = <900>;
+			bias = <1>;
+			status = "ok";
+			sensors {
+				sensor0 {
+					type = "system_h";
+				};
+				sensor1 {
+					type = "charger";
+				};
+				sensor2 {
+					type = "pa_0";
+				};
+				sensor3 {
+					type = "dcxo0";
+				};
+			};
+		};
+
+		cpu_temp_threshold {
+			hisilicon,down_threshold =  <95000>;
+			hisilicon,up_threshold = <85000>;
+		};
+
+		capacitances {
+			hisilicon,cluster_dyn_capacitance  = <110 550>;/*little big*/
+			hisilicon,cluster_static_capacitance = <27 150>;/*little big*/
+			hisilicon,cache_capacitance  = <33 150>;/*little big*/
+			hisilicon,temperature_scale_capacitance = "48020","2120","-50","1","563"; /*temperature_scale_capacitance*/
+			hisilicon,gpu_dyn_capacitance  = <5000>;
+			hisilicon,gpu_temp_scale_capacitance = "48020","2120","-50","1","350";
+		};
+
+		ipa_sensor0: ipa-sensor@0 {
+			type = "tsens_max";
+			compatible = "arm,ipa-thermal0";
+			#thermal-sensor-cells = <1>;
+			status = "ok";
+		};
+
+		ipa_sensor1: ipa-sensor@1 {
+			type = "system_h";
+			compatible = "arm,ipa-thermal1";
+			#thermal-sensor-cells = <1>;
+			status = "disabled";
+		};
+
+		board-map {
+			camera: camera {
+				power = <1500 1000 500>;
+				#cooling-cells = <3>;
+			};
+			backlight: backlight {
+				power = <1500 1000>;
+				#cooling-cells = <3>;
+			};
+			charger: charger {
+				power = <500>;
+				#cooling-cells = <3>;
+			};
+		};
+
+		thermal-zones {
+			soc_thermal {
+				governor_name = "power_allocator";
+				polling-delay = <200>;
+				polling-delay-passive = <50>;
+				sustainable-power = <4500>;
+				k_po = <0>;
+				k_pu = <0>;
+				k_i = <10>;
+				integral_cutoff = <8>;
+				thermal-sensors = <&ipa_sensor0 255>;
+
+				trips {
+				         threshold: trip-point@0 {
+				                    temperature = <55000>;
+				                    hysteresis = <1000>;
+				                    type = "passive";
+				        };
+				        target: trip-point@1 {
+				                   temperature = <80000>;
+				                   hysteresis = <1000>;
+				                   type = "passive";
+				        };
+				};
+
+				cooling-maps {
+				           map0 {
+				                   trip = <&target>;
+				                   cooling-device = <&cluster0 0xffffffff 0xffffffff 0x1>;
+				                   contribution = <768>;
+				           };
+				           map1 {
+				                   trip = <&target>;
+				                   cooling-device = <&cluster1 0xffffffff 0xffffffff 0x1>;
+				                   contribution = <256>;
+				           };
+				           map2 {
+				                   trip = <&target>;
+				                   cooling-device = <&gpu 0xffffffff 0xffffffff 0x1>;
+				                   contribution = <768>;
+				           };
+				};
+			};
+		};
+
+	};

@@ -1,0 +1,14 @@
+/ {
+	huawei_cpu_buck: huawei_cpu_buck {
+		compatible = "huawei,cpu_buck";
+		status = "disabled";
+	};
+	huawei_hi6422v200_pmu1: huawei_hi6422v200_pmu1 {
+		compatible = "huawei,hi6422v200_pmu1";
+		status = "disabled";
+	};
+	huawei_hi6422v200_pmu2: huawei_hi6422v200_pmu2 {
+		compatible = "huawei,hi6422v200_pmu2";
+		status = "disabled";
+	};
+};

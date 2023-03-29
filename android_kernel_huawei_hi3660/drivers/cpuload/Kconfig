@@ -1,0 +1,5 @@
+config HW_CPULOAD_NOTI
+    bool "notify cpu load"
+    default n
+    help
+      if set, the cpu load will be reported to the cpufeature

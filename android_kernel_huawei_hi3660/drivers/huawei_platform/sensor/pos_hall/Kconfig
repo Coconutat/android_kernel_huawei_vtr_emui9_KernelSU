@@ -1,0 +1,8 @@
+#
+# pos_hall driver configuration
+#
+config POS_HALL
+	bool "huawei pos_hall driver"
+	default n
+	help
+	Say yes here to support for pos hall.

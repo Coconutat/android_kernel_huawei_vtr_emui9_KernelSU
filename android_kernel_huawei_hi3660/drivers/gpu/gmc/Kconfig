@@ -1,0 +1,17 @@
+config GPU_GMC_GENERIC
+	bool "A generic framework for GPU graphical memory compression"
+	default y
+	select ZSMALLOC
+	select ZPOOL
+	select CRYPTO
+	select CRYPTO_LZ4
+	help
+	  Enabling the option forces the build system to compile the generic
+	  layer made for implementation of GPU memory reclaim facilities for
+	  a set of GPUs using ordinary system memory (non-discrete ones). There
+	  are at least two possible targets to reclaim: GEM/ION allocations and
+	  internal GPU allocations (let's call them 'graphic memory'). This
+	  layer is developed for the second type of allocations. The framework
+	  provides a set of interfaces that must be implemented by GPU kernel
+	  drivers and generic functions including compressed objects in-memory
+	  storage and user space interface.

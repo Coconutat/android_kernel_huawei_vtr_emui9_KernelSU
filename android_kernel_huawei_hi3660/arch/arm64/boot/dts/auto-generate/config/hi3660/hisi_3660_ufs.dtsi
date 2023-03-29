@@ -1,0 +1,17 @@
+/{
+	ufs: ufs@FF3b0000 {
+		compatible = "hisilicon,kirin-ufs";
+		reg = <0x0 0xff3b0000 0x0 0x1000>,	/* 0: HCI standard */
+			<0x0 0xff3b1000 0x0 0x1000>;	/* 1: UFS SYS CTRL */
+		interrupt-parent = <&gic>;
+		interrupts = <0 278 4>;
+		clock-names = "clk_ufsio_ref";
+		clocks = <&clk_gate_ufsio_ref>;
+		vcc-supply = <&ldo15>;
+		reset-gpio = <177>;
+		ufs-kirin-ssu-by-self;
+		reset_retry_max = <7>;
+		status = "ok";
+	};
+
+};

@@ -1,0 +1,70 @@
+/*
+ *  Copyright (C) 2013 Huawei co Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+    /*power*/
+    hi110x {
+        compatible = "hisilicon,hi110x";
+        hi110x,subchip_type="hi1103";
+        hi110x,gpio_power_on = <&gpio32 2 0>;                /*GPIO_258*/
+        hi110x,gpio_bfgx_power_on = <&gpio25 2 0>;           /*GPIO_202*/
+        hi110x,gpio_wlan_power_on = <&gpio25 0 0>;           /*GPIO_200*/
+        huawei,pmu_clk32b = "clk_pmu32kb";
+    };
+
+    /*wifi*/
+    hisi_wifi {
+        compatible = "hisilicon,hisi_wifi";
+        hi110x,gpio_wlan_wakeup_host =  <&gpio29 5 0>;       /*GPIO_237*/
+        hi110x,gpio_host_wakeup_wlan =  <&gpio32 7 0>;       /*GPIO_263*/
+
+        hisi_wifi_firmware {
+            compatible = "hisi,wifi_firmware";
+            firmware_type_num="1";
+        };
+
+        hisi_wifi_supp {
+            compatible = "hisi,wifi_supp";
+            supp_config_template="/vendor/etc/wifi/wpa_supplicant_hisi.conf";
+        };
+
+        hisi_wifi_p2p {
+            compatible = "hisi,wifi_p2p";
+            p2p_config_template="/vendor/etc/wifi/p2p_supplicant_hisi.conf";
+        };
+
+        hisi_wifi_apd {
+            compatible = "hisi,wifi_hostapd";
+            hostapd_bin_file="/vendor/bin/hostapd_hisi";
+        };
+    };
+
+    /*bfgx*/
+    hisi_bfgx {
+        compatible = "hisilicon,hisi_bfgx";
+        hi110x,gpio_bfgx_wakeup_host = <&gpio22 1 0>;      /*GPIO_177*/
+        hi110x,uart_port = "/dev/ttyAMA4";
+    };
+
+    /*customize*/
+    hisi_cust_cfg {
+        compatible = "hi110x,customize";
+        ini_file_name = "/vendor/etc/cfg_udp_1103_mpw2.ini";
+    };
+
+    /*hisi gps*/
+    hisi_gps {
+        compatible = "hisilicon,hisi_gps";
+        clocks = <&clk_gate_gps_ref>, <&clk_mux_gps_ref>, <&clk_gate_mdm2gps0>, <&clk_gate_mdm2gps1>, <&clk_gate_mdm2gps2>;
+        clock-names = "ref_clk", "mux_clk", "mdm_clk0", "mdm_clk1", "mdm_clk2";
+        /*hisi gps iomux config*/
+        pinctrl-names = "default", "idle";
+        pinctrl-0 = <&gpio248_pmx_func &gpio248_cfg_func>;
+        pinctrl-1 = <&gpio248_pmx_idle &gpio248_cfg_idle>;
+    };
+};

@@ -1,0 +1,1 @@
+obj-$(CONFIG_LTC7820) += ltc7820.o

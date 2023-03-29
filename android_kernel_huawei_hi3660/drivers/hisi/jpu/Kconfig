@@ -1,0 +1,5 @@
+config HISI_JPU_SUPPORT
+    tristate "Support for Hisilicon JPEG processing unit"
+    default n
+    help
+        The decode device provides decode function for JPEG.

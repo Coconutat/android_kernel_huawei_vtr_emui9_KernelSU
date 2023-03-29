@@ -1,0 +1,12 @@
+/ {
+	fairchild_fsa9685_sensorhub: fsa9685_sensorhub {
+		compatible = "huawei,fairchild_fsa9685_sensorhub";
+		reg = <0x25>;
+		fairchild_fsa9685,gpio-intb = <&gpio25 6 0>;
+		usbid-enable = <1>;
+		fcp_support = <0>;
+		scp_support = <0>;
+		mhl_detect_disable = <1>;
+		status = "disabled";
+	};
+};

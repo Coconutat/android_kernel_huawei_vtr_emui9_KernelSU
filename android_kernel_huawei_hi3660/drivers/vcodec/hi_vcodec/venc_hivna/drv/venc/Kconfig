@@ -1,0 +1,8 @@
+menu "Hisilicon video venc support"
+config HI_VCODEC_VENC_HIVNA
+    #depends on ANDROID_PMEM
+    tristate "Support for venc"
+    default n
+    help
+        The decode device provides venc function
+endmenu

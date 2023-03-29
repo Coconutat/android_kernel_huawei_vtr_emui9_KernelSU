@@ -1,0 +1,5 @@
+config HUAWEI_BOOT_TIME
+	default n
+	  bool "huawei boot time"
+	help
+	  only open on eng mode.

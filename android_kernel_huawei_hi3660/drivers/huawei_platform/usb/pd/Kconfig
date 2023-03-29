@@ -1,0 +1,14 @@
+source "drivers/huawei_platform/usb/pd/ti/Kconfig"
+source "drivers/huawei_platform/usb/pd/richtek/Kconfig"
+
+config HUAWEI_HISHOW
+        bool "support huawei hishow function"
+        default n
+        help
+          Say Y to enable
+
+config TYPEC_CAP_CUSTOM_SRC2
+        bool "Support Double 22/10k Pullup Function"
+        default n
+        help
+          Say Y to enable

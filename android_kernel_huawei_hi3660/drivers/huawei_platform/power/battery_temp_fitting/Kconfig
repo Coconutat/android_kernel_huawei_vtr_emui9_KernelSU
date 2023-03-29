@@ -1,0 +1,3 @@
+config	HUAWEI_BATTERY_TEMP_FITTING
+	bool "huawei battery temperature fitting"
+	default n

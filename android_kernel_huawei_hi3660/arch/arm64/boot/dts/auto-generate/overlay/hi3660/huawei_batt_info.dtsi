@@ -1,0 +1,41 @@
+/{
+	huawei_batt_info: huawei_batt_info {
+		compatible = "huawei,battery-information";
+		eng-debug = <1>;
+		runtime-step = <60>;
+		free-runtime = <4320>;
+		free-cycles = <10>;
+		status = "disabled";
+	};
+
+	ds28el15: ds28el15 {
+		name = "ds28el15";
+		compatible = "maxim,onewire-sha";
+		phy-ctrl = <&gpio_pl061_ctrl>;
+		rom-id-length = <8>;
+		/* id-mask = /bits/ 8 <0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00>; */
+		/* id-example = /bits/ 8 <0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00>; */
+		block-number = <4>;
+		block-size = <16>;
+		personality-length = <4>;
+		sram-length = <32>;
+		page-number = <2>;
+		page-size = <32>;
+		mac-length = <32>;
+		reset-time-request = <64000 9000 48000>;
+		write-time-request = <1500 10500 6000>;
+		read-time-request = <1500 12500>;
+		program-time = <10>;
+		secret-program-time = <200>;
+		compute-mac-time  = <3>;
+		sn-page = <1>;
+		sn-offset-bits = <8>;
+		status = "disabled";
+	};
+
+	gpio_pl061_ctrl: gpio_pl061_ctrl {
+		compatible = "onewire-phy,pl061,gpio";
+		/* onewire-gpio = <&gpio6 7 0>; */
+		status = "disabled";
+	};
+};

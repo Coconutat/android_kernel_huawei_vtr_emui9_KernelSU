@@ -1,0 +1,6 @@
+config HUAWEI_POWER_MESG_INTERFACE
+	bool
+	prompt "Huawei power message interface."
+	default n
+	help
+		It's for asking and getting HMAC from user space.

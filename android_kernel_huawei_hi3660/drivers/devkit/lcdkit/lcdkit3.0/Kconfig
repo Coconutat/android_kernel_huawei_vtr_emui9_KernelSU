@@ -1,0 +1,16 @@
+#
+# lcdkit hisi driver configuration
+#
+
+menuconfig LCD_KIT_DRIVER
+	bool "lcd kit 3.0 driver"
+	default n
+	help
+	    If you say yes here you get support for lcd kit driver.
+
+source "drivers/devkit/lcdkit/lcdkit3.0/kernel/common/src/Kconfig"
+source "drivers/devkit/lcdkit/lcdkit3.0/kernel/hisi/src/Kconfig"
+source "drivers/devkit/lcdkit/lcdkit3.0/kernel/hisi/adapt/Kconfig"
+source "drivers/devkit/lcdkit/lcdkit3.0/kernel/mtk/src/Kconfig"
+source "drivers/devkit/lcdkit/lcdkit3.0/kernel/mtk/adapt/Kconfig"
+

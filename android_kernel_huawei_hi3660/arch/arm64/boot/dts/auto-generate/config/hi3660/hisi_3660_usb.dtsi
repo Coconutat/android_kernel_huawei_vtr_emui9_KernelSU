@@ -1,0 +1,31 @@
+
+
+  /{
+		hisi_usb@ff200000 {
+			compatible = "hisilicon,jan-dwc3";
+			reg = <0x0 0xff200000 0x0 0x1000 0x0 0xff100000 0x0 0x100000>;
+			ranges;
+			bc_again_flag = <1>;
+			bc_unknown_again_flag = <2>;
+			dma_mask_bit = <64>;
+
+			clocks = <&clk_gate_abb_usb &aclk_gate_usb3otg>;
+			clock-names = "clk_usb3phy_ref", "aclk_usb3otg";
+
+			eye_diagram_param = <0x1c466e3>;
+			eye_diagram_host_param = <0x1c466e3>;
+			usb3_phy_cr_param = <0xb80>;
+			usb3_phy_host_cr_param = <0x980>;
+			usb3_phy_tx_vboost_lvl = <0x5>;
+
+			dwc3@ff100000 {
+				compatible = "snps,dwc3";
+				reg = <0x0 0xff100000 0x0 0x100000>;
+				interrupts = <0 159 4>, <0 161 4>;
+				interrupt-names = "irq", "otg_irq";
+				snps,phy_quirk;
+				otg;
+				super-speed;
+			};
+		};
+  };

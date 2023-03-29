@@ -1,0 +1,11 @@
+/ {
+	cc_anti_corrosion: cc_anti_corrosion {
+		compatible = "huawei,cc-anti-corrosion";
+		cc_corrosion_gpio = <&gpio25 0 0>;
+		pinctrl-names = "default", "idle";
+		pinctrl-0 = <&gpio200_pmx_func &gpio200_cfg_func>;
+		pinctrl-1 = <&gpio200_pmx_idle &gpio200_cfg_idle>;
+		gpio_mode = <0>;/* 0:when default gpio in high level, 1:default gpio in low level*/
+		status = "disabled";
+        };
+};

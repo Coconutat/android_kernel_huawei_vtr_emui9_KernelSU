@@ -1,0 +1,5 @@
+config HW_VIP_THREAD
+    bool "iaware 2.0 vip thread"
+    default n
+    help
+      if set, vip thread is pick first in cfs sched policy

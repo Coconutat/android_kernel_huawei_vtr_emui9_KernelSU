@@ -1,0 +1,29 @@
+menu "Huawei Bastet Support"
+	depends on INET && NETFILTER
+
+config HUAWEI_BASTET
+	tristate "Huawei Bastet support"
+	default n
+	---help---
+	  This driver provides TCP sequence sync, traffic flow correction, etc. for Huawei Bastet.
+
+config BASTET_BALONG_COMM
+	bool "Bastet Balong comm driver support"
+	depends on HUAWEI_BASTET && (HISI_BALONG_MODEM_HI3XXX || HISI_BALONG_MODEM_HI6XXX || HISI_BALONG_MODEM_HI3650)
+	default n
+	---help---
+	  This driver provides Balong modem comm interface for Huawei Bastet.
+
+config HUAWEI_BASTET_COMM_NEW
+	bool "Bastet new Balong comm driver support"
+	default n
+	---help---
+	  This driver provides new Balong modem comm interface for Huawei Bastet.
+
+config HUAWEI_WIFI_WEIXIN_HONGBAO_ENABLE_PRIORITY
+	bool "Huawei Weixin Hongbao priority support"
+	depends on HUAWEI_BASTET
+	default n
+	---help---
+	  This feature provides Huawei Weixin Hongbao priority support.
+endmenu

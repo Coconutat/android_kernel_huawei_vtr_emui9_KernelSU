@@ -1,0 +1,37 @@
+
+
+/{
+	cci@e8100000 {
+		compatible = "arm,cci-550";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		reg = <0x0 0xe8100000 0x0 0x1000>;
+	};
+
+	cci_pmu@e8110000 {
+		compatible = "arm,cci-550-pmu,r0";
+		reg = <0x0 0xe8110000 0x0 0x80000>;
+		interrupts = <0 176 4>,
+			     <0 176 4>,
+			     <0 176 4>,
+			     <0 176 4>,
+			     <0 176 4>,
+			     <0 176 4>,
+			     <0 176 4>,
+			     <0 177 4>;
+	};
+
+	cci_extra@e8100000 {
+		compatible = "hisilicon,cci500-extra";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		reg = <0x0 0xe8100000 0x0 0x1000>;
+		/*crg-qos-accept = <0x0>;*/
+	};
+
+	cci_extra_pmu@0xe81ff000 {
+		compatible = "hisilicon,cci-extra-pmu";
+		reg = <0x0 0xe81ff000 0x0 0x1000>;
+		scale = <0>;
+	};
+};

@@ -1,0 +1,8 @@
+#
+#vibator TI2605 driver configuration
+#
+menuconfig DRV2605
+	tristate "vibator drv2605 driver"
+	default n
+	help
+	Say yes here to support for vibator drv2605 driver.

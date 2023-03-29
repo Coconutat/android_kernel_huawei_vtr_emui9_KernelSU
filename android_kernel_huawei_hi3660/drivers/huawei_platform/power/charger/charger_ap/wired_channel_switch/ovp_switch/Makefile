@@ -1,0 +1,1 @@
+obj-$(CONFIG_WIRED_CHANNEL_OVP_SWITCH) += ovp_switch.o

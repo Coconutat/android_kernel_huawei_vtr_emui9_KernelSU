@@ -1,0 +1,39 @@
+ / {
+	soft_isc:soft_isc{
+		compatible = "hisi,soft-isc";
+		iscd_enable = <1>;
+		iscd_ocv_min = <4000000>;
+		iscd_batt_temp_min = <100>;
+		iscd_batt_temp_max = <500>;
+		iscd_batt_temp_diff_max = <100>;
+		iscd_sample_time_interval = <600>;
+		iscd_sample_time_delay = <10>;
+		iscd_calc_time_interval_min = <3600>;
+		iscd_calc_time_interval_max = <21600>;
+		iscd_level_warning_threhold = <10000>;
+		iscd_level_error_threhold = <30000>;
+		iscd_level_critical_threhold = <100000>;
+		iscd_level_info = <
+			0	10000	920001048	0	0	0
+			10000	15000	920001049	0	0	0
+			15000	20000	920001050	0	0	0
+			20000	25000	920001051	0	0	0
+			25000	30000	920001052	0	0	0
+			30000	50000	920001053	0	0	0
+			50000	100000	920001054	0	0	0
+			100000	200000	920001055	0	0	0
+			200000	9999999	920001056	0	0	0>;
+		/* <recharge_soc uplimit_soc> */
+		fatal_isc_soc_limit = <55 60>;
+		/* 0 means invalid; 1 is successive judgement; others is illegal */
+		fatal_isc_trigger_type = <0>;
+		/*DMD normal-charge-limitation direct-charge-limitation Uevent OCV-update*/
+		fatal_isc_actions = <1 1 1 1 1>;
+		/* fatal isc ocv update time interval in seconds only valid when fatal_isc_action OCV-update is enabled*/
+		fatal_isc_ocv_update_interval = <7200>;
+		/* <trigger_level trigger_num DMD_num> */
+		fatal_isc_trigger_condition = <30000 3 920001078 50000 2 920001077>;
+		/* isc history information valid days */
+		fatal_isc_deadline = <15>;
+	};
+};

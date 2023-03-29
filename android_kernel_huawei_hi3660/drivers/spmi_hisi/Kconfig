@@ -1,0 +1,16 @@
+#
+# HISI SPMI driver configuration
+#
+
+
+config HISI_SPMI
+	tristate "HISI SPMI Controller"
+	help
+	  enabel hisi spmi
+
+config HISI_SPMI_DEBUG_FS
+	tristate "HISI SPMI Controller Debug"
+	depends on HISI_SPMI
+	depends on HISI_DEBUG_FS
+	help
+	  enable hisi spmi debug fs

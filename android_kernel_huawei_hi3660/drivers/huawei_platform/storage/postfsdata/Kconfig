@@ -1,0 +1,5 @@
+config PROC_POSTFSDATA
+	bool "/proc/post-fs-data support"
+	default n
+	help
+	   set data ready flag to kernel.

@@ -1,0 +1,102 @@
+config HISI_FB_FAKE
+	tristate "HISI Framebuffer Fake support"
+	depends on FB
+	select FB_CFB_FILLRECT
+	select FB_CFB_COPYAREA
+	select FB_CFB_IMAGEBLIT
+	select REGMAP
+	help
+	  This framebuffer driver supports HISI FB Fake.
+
+config HISI_FB_3650
+	tristate "HISI FB 3650 Framebuffer support"
+	depends on FB
+	select FB_CFB_FILLRECT
+	select FB_CFB_COPYAREA
+	select FB_CFB_IMAGEBLIT
+	select REGMAP
+	help
+	  This framebuffer driver supports HISI3650 FB.
+
+config HISI_FB_6250
+	tristate "HISI FB 6250 Framebuffer support"
+	depends on FB
+	select FB_CFB_FILLRECT
+	select FB_CFB_COPYAREA
+	select FB_CFB_IMAGEBLIT
+	select REGMAP
+	help
+	  This framebuffer driver supports HISI6250 FB.
+
+config HISI_FB_3660
+	tristate "HISI FB 3660 Framebuffer support"
+	depends on FB
+	select FB_CFB_FILLRECT
+	select FB_CFB_COPYAREA
+	select FB_CFB_IMAGEBLIT
+	select REGMAP
+	help
+	  This framebuffer driver supports HISI3660 FB.
+
+config HISI_FB_970
+	tristate "HISI FB 970 Framebuffer support"
+	depends on FB
+	select FB_CFB_FILLRECT
+	select FB_CFB_COPYAREA
+	select FB_CFB_IMAGEBLIT
+	select REGMAP
+	help
+	  This framebuffer driver supports HISI970 FB.
+
+config HISI_FB_V501
+	tristate "HISI FB V501 Framebuffer support"
+	depends on FB
+	select FB_CFB_FILLRECT
+	select FB_CFB_COPYAREA
+	select FB_CFB_IMAGEBLIT
+	select REGMAP
+	help
+	  This framebuffer driver supports HISI V501 FB.
+
+config HISI_FB_V510
+	tristate "HISI FB V510 Framebuffer support"
+	depends on FB
+	select FB_CFB_FILLRECT
+	select FB_CFB_COPYAREA
+	select FB_CFB_IMAGEBLIT
+	select REGMAP
+	help
+	  This framebuffer driver supports HISI V510 FB.
+
+config HISI_FB_V320
+	tristate "HISI FB V320 Framebuffer support"
+	depends on FB
+	select FB_CFB_FILLRECT
+	select FB_CFB_COPYAREA
+	select FB_CFB_IMAGEBLIT
+	select REGMAP
+	help
+	  This framebuffer driver supports HISI V320 FB.
+  
+config HISI_FB_V330
+	tristate "HISI FB V330 Framebuffer support"
+	depends on FB
+	select FB_CFB_FILLRECT
+	select FB_CFB_COPYAREA
+	select FB_CFB_IMAGEBLIT
+	select REGMAP
+	help
+	  This framebuffer driver supports HISI V330 FB.
+
+
+config HISI_FB_ENG_DBG
+	tristate "HISI FB ENG DEBUG support"
+	depends on FB
+	help
+	  This config only used in eng version.
+
+config FASTBOOT_DISP_ENABLE
+	tristate "HISI fastboot display enable support"
+	depends on FB
+	help
+	  Display system have already initialized in fastboot.

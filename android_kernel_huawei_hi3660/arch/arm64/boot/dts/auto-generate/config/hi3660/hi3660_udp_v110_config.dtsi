@@ -1,0 +1,16 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/include/ "hi3660_udp_default_config.dtsi"
+/ {
+	hisi,boardid = <5 0 9 0>;
+	hisi,boardname = "hi3660_udp_v110";
+	hisi,product_id = <0x3AF5FC90>;
+	hisi,gpu_arch = "mimir";
+	hisi,camera_arch = "platform_v110";
+};

@@ -1,0 +1,1 @@
+obj-$(CONFIG_HUAWEI_BOOT_TIME) += hw_boottime.o

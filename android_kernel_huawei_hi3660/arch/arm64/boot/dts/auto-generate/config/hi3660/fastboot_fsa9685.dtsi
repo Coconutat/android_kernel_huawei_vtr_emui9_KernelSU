@@ -1,0 +1,7 @@
+/ {
+	fastboot_fsa9685: fastboot_fsa9685{
+		compatible = "fastboot,fsa9685";
+		chip_i2c_num = <6>;
+		status = "disabled";
+	};
+};

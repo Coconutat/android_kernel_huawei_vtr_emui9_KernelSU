@@ -1,0 +1,4 @@
+config POGO_PIN
+	tristate "POGO_PIN support"
+	help
+	  Say Y here to enable Pogopin support.

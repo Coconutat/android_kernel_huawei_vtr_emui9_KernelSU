@@ -1,0 +1,18 @@
+ / {
+    hisi_bci_battery:battery {
+        compatible = "huawei,hisi_bci_battery";
+        battery_is_removable = <0>; 
+        battery_board_type = <0>; /*0:sft 1:udp 2:asic*/
+		bci_work_interval_para =
+			"0","10","5000",
+			"10","90","10000",
+			"90","100","30000";
+        status = "disabled";
+		temp_throttling = <0>;
+		temp_shutdown = <68>;
+		temp_below_vr_min = <0>;
+		bci_soc_at_term = <100>;
+		vth_correct_en = <1>;
+		vth_correct_para = <6 3690>, <10 3708>;
+    }; 	
+};

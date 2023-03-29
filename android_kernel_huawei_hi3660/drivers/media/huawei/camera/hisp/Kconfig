@@ -1,0 +1,30 @@
+comment "HISI ISP"
+
+
+if HISI_CAMERA_HISTAR_ISPV110
+source "drivers/media/huawei/camera/hisp/hisp110/Kconfig"
+endif
+
+if HISI_CAMERA_HISTAR_ISPV150
+source "drivers/media/huawei/camera/hisp/hisp150/Kconfig"
+endif
+
+if HISI_CAMERA_HISTAR_ISPV160
+source "drivers/media/huawei/camera/hisp/hisp160/Kconfig"
+endif
+
+if HISI_CAMERA_HISTAR_ISPV120
+source "drivers/media/huawei/camera/hisp/hisp120/Kconfig"
+endif
+
+if HISI_CAMERA_HISTAR_ISPV200
+source "drivers/media/huawei/camera/hisp/hisp200/Kconfig"
+endif
+
+if HISI_CAMERA_HISTAR_ISPV250
+source "drivers/media/huawei/camera/hisp/hisp250/Kconfig"
+endif
+
+if HISI_CAMERA_HISTAR_ISPV210
+source "drivers/media/huawei/camera/hisp/hisp210/Kconfig"
+endif

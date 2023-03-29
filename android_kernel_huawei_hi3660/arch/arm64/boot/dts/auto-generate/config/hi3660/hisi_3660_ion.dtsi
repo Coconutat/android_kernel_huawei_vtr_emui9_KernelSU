@@ -1,0 +1,161 @@
+/* Copyright (c) 2012, Code Aurora Forum. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/ {
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		graphic_heap:	graphic {
+			size  = <0x0 0x1E00000>;
+			alignment = <0x0 0x100000>;
+			alloc-ranges = <0x0 0x0 0x1 0x0>;
+			compatible = "hisi_ion";
+			heap-name = "carveout_gralloc";
+		};
+
+		camera_heap:	camera-mem {
+			size  = <0x0 0x28000000>;
+			alignment = <0x0 0x400000>;
+			alloc-ranges = <0x1 0x0 0x1 0x0>;
+			compatible = "hisi-camera-pool";
+			reusable;
+			status = "disable";
+		};
+
+		hisi_cma {
+			reg = <0x0 0x60000000 0x0 0x20000000>;
+			compatible = "hisi-cma-pool";
+			sec-attr = <0x0 0x20>;
+			reusable;
+			status = "ok";
+		};
+	};
+
+	hisi,ion {
+		compatible = "hisilicon,hisi-ion";
+		cluster-0-resume = <0xfff0a42c>;
+		cluster-1-resume = <0xfff0a430>;
+
+		iommu_info {
+			start-addr = <0x40000>;
+			size = <0xbffc0000>;
+			iova-align = <0x0 0x8000>;
+		};
+
+		linear {
+			start-addr = <0x40000>;
+			size = <0xbffc0000>;
+			page-size = <0x1000>;
+			page-align = <0x40000>;
+		};
+
+		heap_sys_user@0 {
+			heap-name = "sys_heap";
+			heap-id   = <0x0>;
+			heap-base = <0x0>;
+			heap-size = <0x0>;
+			heap-type = "ion_system";
+		};
+		heap_carveout_gralloc@2 {
+			heap-name = <&graphic_heap>;
+			heap-id   = <0x2>;
+			heap-base = <0x0>;
+			heap-size = <0x0>;
+			heap-type = "ion_carveout";
+		};
+
+		heap_daemon_camera@6 {
+			heap-name = "camera_daemonheap";
+			heap-id   = <0x6>;
+			heap-base = <0xffffffff>;
+			heap-size = <0xffffffff>;
+			heap-type = "ion_dma_pool";
+		};
+
+		heap_camera@19 {
+			heap-name = "camera_heap";
+			heap-id   = <0x13>;
+			heap-base = <0xffffffff>;
+			heap-size = <0xffffffff>;
+			heap-type = "ion_dma_pool";
+		};
+
+                heap_unsec_drm@14 {
+                        heap-name = "heap_unsec_drm";
+                        heap-id   = <0xe>;
+                        heap-base = <0x0>;
+                        heap-size = <0x3000000>;
+                        heap-type = "ion_sec";
+
+                        region-nr = <0x0 0x3>;
+                        protect-id = <0x0 0xf>;
+                        access-attr = <0x0 0x7de>;
+                        water-mark = <0x0 0x2000000>;
+                        per-alloc-size = <0x0 0x1000000>;
+                        per-bit-size = <0x0 0x1000000>;
+
+                        status = "ok";
+                };
+
+		heap_sec_tui@17 {
+			heap-name = "heap_sec_tui";
+			heap-id   = <0x11>;
+			heap-base = <0x0>;
+			heap-size = <0x2000000>;
+			heap-type = "ion_sec";
+
+			region-nr = <0x0 0x3>;
+			protect-id = <0x0 0x1>;
+			access-attr = <0x0 0x6d8>;
+			water-mark = <0x0 0x2000000>;
+			per-alloc-size = <0x0 0x2000000>;
+			per-bit-size = <0x0 0x1000000>;
+			status = "disable";
+		};
+		heap_sec_iris@5 {
+			heap-name = "heap_sec_iris";
+			heap-id   = <0x5>;
+			heap-base = <0x0>;
+			heap-size = <0x6000000>;
+			heap-type = "ion_sec";
+
+			region-nr = <0x0 0x3>;
+			protect-id = <0x0 0x2>;
+			access-attr = <0x0 0x6d8>;
+			water-mark = <0x0 0x2000000>;
+			per-alloc-size = <0x0 0x2000000>;
+			per-bit-size = <0x0 0x1000000>;
+
+			status = "disable";
+		};
+
+		heap_sec_drm@20 {
+			heap-name = "heap_sec_drm";
+			heap-id   = <0x14>;
+			heap-base = <0x0>;
+			heap-size = <0x20000000>;
+			heap-type = "ion_sec";
+
+			region-nr = <0x0 0x3>;
+			protect-id = <0x0 0x0>;
+			access-attr = <0x0 0x7de>;
+			water-mark = <0x0 0x8000000>;
+			per-alloc-size = <0x0 0x4000000>;
+			per-bit-size = <0x0 0x1000000>;
+
+			status = "ok";
+		};
+	};
+};
+

@@ -1,0 +1,8 @@
+config TLB_CONFLICT_WORKAROUND
+	bool "Artemis: work around for tlb conflict in high load"
+	default n
+	help
+	  This option enable the work around for tlb conflict error in
+	  Artemis. We found, when Artemis runs in high load, 2 same translate
+	  items may appear in the tlb, we shall flush the tlb, the conflict
+	  shall be ignored.

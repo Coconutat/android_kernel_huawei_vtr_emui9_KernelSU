@@ -1,0 +1,11 @@
+if HISI_CAMERA_FPGA
+
+config HISI_CAMERA_FPGA_ICE40
+    tristate "ice40 camera fpga driver"
+    depends on HISI_CAMERA_FPGA
+    default n
+    ---help---
+        ice40 camera fpga driver
+
+endif
+

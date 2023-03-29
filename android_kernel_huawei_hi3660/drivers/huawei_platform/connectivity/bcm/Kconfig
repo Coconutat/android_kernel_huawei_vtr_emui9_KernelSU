@@ -1,0 +1,13 @@
+menuconfig BCMCONNECTIVITY
+       bool "Broadcom  connectivity drivers support"
+       default n
+       help
+       Say yes here to support the BCM chip connectivity
+
+if BCMCONNECTIVITY
+
+source "drivers/huawei_platform/connectivity/bcm/bluetooth/Kconfig"
+source "drivers/huawei_platform/connectivity/bcm/gps/Kconfig"
+source "drivers/huawei_platform/connectivity/bcm/wifi/Kconfig"
+
+endif #BCM

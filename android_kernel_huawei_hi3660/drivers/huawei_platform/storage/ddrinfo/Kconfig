@@ -1,0 +1,5 @@
+config DDR_INFO
+	bool "/proc/ddr_info support,huawei ddr_info support"
+	default n
+	help
+	    get DDR manufacturer id and memory size from xloader.

@@ -1,0 +1,31 @@
+config HI6402_CODEC
+	tristate "Support HiSilicon Hi6402 Codec IC"
+	default n
+        help
+          Enables the HI6402 core driver.
+
+config HI6403_CODEC
+	tristate "Support HiSilicon Hi6403 Codec IC"
+	default n
+	help
+          Enables the HI6403 core driver.
+
+config HI6402_MBHC_ANC
+	tristate "Support ANC for Hi6402 Codec"
+        default n
+        help
+          Enables support of ANC for Hi6402.
+
+config HAC_SUPPORT
+	bool "Support HAC for Hi6403 Codec"
+	depends on HI6403_CODEC
+	default n
+	help
+          Enables hac for HI6403 Codec.
+
+config RCV_TDD_SUPPORT
+	bool "Support RCV TDD for Hi6403 Codec"
+	depends on HI6403_CODEC
+	default n
+	help
+          Enables rcv tdd for HI6403 Codec.

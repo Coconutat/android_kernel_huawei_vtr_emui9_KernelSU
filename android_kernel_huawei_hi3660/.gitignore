@@ -1,0 +1,53 @@
+#
+# NOTE! Don't add files that are generated in specific
+# subdirectories here. Add them in the ".gitignore" file
+# in that subdirectory instead.
+#
+# NOTE! Please use 'git ls-files -i --exclude-standard'
+# command after changing this file, to see if there are
+# any tracked files which get ignored after the change.
+#
+# Normal rules
+#
+.*
+*.o
+*.o.*
+*.a
+*.s
+*.ko
+*.so
+*.so.dbg
+*.m*
+modules.builtin
+*.elf
+*.bin*
+*.patch
+*.zip
+*modules.order
+*.symvers
+*bzImage
+vmlinux
+*.log
+extra_certificates
+signing_key.priv
+signing_key.x509
+x509.genkey
+*.img
+
+#
+# git files that we don't want to ignore even it they are dot-files
+#
+!.gitignore
+!.mailmap
+!*.rc
+
+#
+# Generated include files
+#
+include/config
+include/generated
+arch/*/include/generated
+
+out/
+drivers/hisi/tzdriver/
+mybuild.sh

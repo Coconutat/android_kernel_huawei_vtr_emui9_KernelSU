@@ -1,0 +1,66 @@
+/ {
+	touchscreen {
+		compatible = "huawei,touchscreen";
+		status = "disabled";
+		bus_type = "i2c";
+		bus_id = <0>;
+		product = "hi3660_sft";
+		has_virtualkey = <0>;
+		roi_supported = <0>;
+		roi_control_addr_offset = <0x0446>;
+		roi_data_addr_offset = <0x0418>;
+		fpga_flag = <1>;
+		lcd_full = <1375>;
+		virtual_keys = /* KeyCode CenterX CenterY Width Height */
+		/* KEY_BACK */
+		<158 142 1342 150 100
+		/* KEY_HOME(172) */
+		172 360 1342 150 100
+		/* KEY_MENU */
+		139 578 1342 150 100>;
+		support_chip_name = "synaptics";
+		synaptics: touchscreen@70 {
+			compatible = "synaptics";
+			/*0-S3207, 1-S3350, 2-3320*/
+			ic_type = <0>;
+			need_wd_check_status = <0>;
+			x_max = <720>;
+			y_max = <1280>;
+			x_max_mt = <720>;
+			y_max_mt = <1280>;
+			flip_x = <0>;
+			flip_y = <0>;
+			unite_cap_test_interface =<0>;
+			report_rate_test =<0>;
+			vci_gpio_type = <1>;
+			vci_regulator_type = <0>;
+			vddio_gpio_type = <1>;
+			vddio_regulator_type = <0>;
+			vci_ctrl_gpio = <&gpio7 1 0>;
+			vddio_ctrl_gpio = <&gpio6 1 0>;
+			vci_gpio_en_val = <1>;
+			vddio_gpio_en_val = <0>;
+			slave_address = <0x70>;
+
+			pinctrl-names = "default", "idle";
+			pinctrl-0 = <&gpio058_pmx_func &gpio058_cfg_func>;
+			pinctrl-1 = <&gpio058_pmx_idle &gpio058_cfg_idle>;
+
+
+			synaptics-vdd-supply;
+			synaptics-io-supply;
+			reset_gpio = <&gpio7 2 0>;
+			attn_gpio = <&gpio4 2 0>;
+			irq_config = <3>;
+			algo_id = <2>;
+			raw_data_limit = "4200", /*rawdata-max*/
+				"1000", /*rawdata-min*/
+				"15", /*deltadata-max*/
+				"-15", /*deltadata-min*/
+				"490", /*rx-to-rx-diff-max*/
+				"-490", /*rx-to-rx-diff-min*/
+				"490", /*tx-to-tx-diff-max*/
+				"-490";/*tx-to-tx-diff-min*/
+		};
+	};
+};

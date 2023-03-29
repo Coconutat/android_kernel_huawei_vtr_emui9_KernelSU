@@ -1,0 +1,77 @@
+/*
+ *  Copyright (C) 2013 Huawei co Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+	&hw_connectivity {
+		/*huawei configuration*/
+		chip_type = "bcm43xx";
+		status = "ok";
+	};
+	//node for bcm wifi
+	&bcm_wifi {
+		clocks = <&clk_pmu32kb>;
+		clock-names = "apb_pclk";
+	};
+
+	//node for bcm bluetooth
+	&bluetooth_sleep{
+		status = "ok";
+	};
+	&bluetooth_power{
+		status = "ok";
+		clocks = <&clk_pmu32kb>;
+		clock-names = "apb_pclk";
+	};
+
+	//node for bcm gps
+	&gps_power{
+		status = "ok";
+		huawei,gps_cal_req = <12>;
+		clocks = <&clk_pmu32kc>, <&clk_gate_gps_m>;
+		clock-names = "gps_32k", "clk_gps";
+		pinctrl-names = "default","idle";
+	};
+
+	//node for 110x wifi
+	/*power*/
+	&hi110x {
+		status="disabled";
+	};
+
+	/*wifi*/
+	&hisi_wifi {
+		status="disabled";
+
+		hisi_wifi_supp {
+			status="disabled";
+		};
+
+		hisi_wifi_p2p {
+			status="disabled";
+		};
+
+		hisi_wifi_apd {
+			status="disabled";
+		};
+	};
+
+	/*bfgx*/
+	&hisi_bfgx {
+		status="disabled";
+	};
+
+	/*customize*/
+	&hisi_cust_cfg {
+		status="disabled";
+	};
+
+	/*hisi gps*/
+	&hisi_gps {
+		status="disabled";
+	};
+};

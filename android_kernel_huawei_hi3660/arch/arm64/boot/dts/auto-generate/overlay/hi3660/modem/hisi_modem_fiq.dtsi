@@ -1,0 +1,22 @@
+/*
+ * Hisilicon Ltd.
+ *
+ * It is only a demo for hisilicon balong modem board. You show change the
+ * address of each node according to datasheet.
+ */
+
+/ {
+	fiq:sysctrl_fiq{
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,fiq";
+		reg = <0x0 0xFFF35000 0x0 0x1000>;
+		fiq_enable_offset = <0x12C>; /*fiq enable offset*/
+		fiq_enable_bit = <12>;         /*fiq enable bit*/
+		fiq_clear_offset = <0x12C>;  /*fiq clear offset*/
+		fiq_clear_bit = <12>;          /*fiq clear bit*/
+		fiq_status_offset = <0x12C>; /*fiq status offset*/
+		fiq_status_bit = <12>;         /*fiq status bit*/
+		chip_type = <0>;              /*MBB=1 PHONE=0*/
+	};
+};

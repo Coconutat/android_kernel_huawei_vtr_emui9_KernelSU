@@ -1,0 +1,6 @@
+config HW_FDLEAK
+	depends on HW_LOGGER
+	bool "Huawei fd leak driver"
+	default n
+	---help---
+	  This feature support to catch fd leak log

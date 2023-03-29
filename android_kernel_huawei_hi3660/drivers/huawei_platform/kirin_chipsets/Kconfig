@@ -1,0 +1,12 @@
+###################################################
+#                                                 #
+# huawei device state monitor audio configuration #
+#                                                 #
+###################################################
+
+config HUAWEI_DSM_KIRIN_CHIPSETS
+	bool "huawei dsm kirin chipsets"
+	default n
+	depends on HUAWEI_DSM
+	help
+	  If you say yes here you get support for huawei dsm audio.

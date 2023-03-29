@@ -1,0 +1,8 @@
+source "drivers/huawei_platform/net/ipv4/Kconfig"
+source "drivers/huawei_platform/net/hw_netfilter/Kconfig"
+source "drivers/huawei_platform/net/commstat/Kconfig"
+source "drivers/huawei_platform/net/qtaguid_pid/Kconfig"
+source "drivers/huawei_platform/net/hw_dpi_mark/Kconfig"
+source "drivers/huawei_platform/net/netbooster/Kconfig"
+source "drivers/huawei_platform/net/himos/Kconfig"
+source "drivers/huawei_platform/net/bastet/Kconfig"

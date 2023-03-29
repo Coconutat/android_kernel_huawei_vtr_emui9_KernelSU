@@ -1,0 +1,51 @@
+/{
+    contexthub: contexthub {
+        compatible = "hisilicon,contexthub_status";
+        status = "ok";
+
+        flp_geofence {
+			compatible = "hisilicon,flp_geofence";
+			lpm = <0>;
+			unavail_timeout = <30>;
+			valid_accuracy = <50>;
+			high_accuracy = <16>;
+			min_off_time = <180>;
+			prestart_time = <15>;
+			vehicle_speed = <120>;
+			riding_speed = <50>;
+			walking_speed = <5>;
+			running_speed = <36>;
+		};
+	};
+    iomcu_subsys_config {
+        compatible = "hisilicon,iomcu_config";
+        clk_sel = <0x2003>;
+        cfg_div0 = <0x808000>;
+    };
+
+    hisi_ar:ar {
+        compatible = "hisilicon,hismart-ar";
+        status = "ok";
+        hisi,environment_switch = "off";    /* on/off */
+    };
+
+    hisi_softtimer:softtimer {
+        compatible = "hisilicon,contexthub-softtimer";
+        status = "ok";
+        reg = <0x0 0xfff19000 0x0 0x1000>;
+        interrupts = <0x0 0x3a 0x4>;
+        clocks = <&clk_gate_timer5>;
+        clock-names = "clk_timer5";
+    };
+
+    hisi_flp:flp {
+        compatible = "hisilicon,flp-common";
+        hisi,flp_switch = "on";    /* on/off */
+        status = "ok";
+    };
+
+    playback {
+		compatible = "hisilicon,Contexthub-playback";
+		status = "ok";
+    };
+};

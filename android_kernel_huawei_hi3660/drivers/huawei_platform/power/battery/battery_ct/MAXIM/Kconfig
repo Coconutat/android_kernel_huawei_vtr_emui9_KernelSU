@@ -1,0 +1,16 @@
+config CERTIFICATION_IC_DS28EL15
+	bool
+	prompt "Support ds28el15 as certification IC."
+	depends on HUAWEI_BATTERY_INFORMATION
+	default n
+	help
+		It needs a onewire physical controller to work.
+
+config ONEWIRE_PHY_PL061_GPIO
+	bool
+	prompt "Onewire physical controller: pl061(GPIO)."
+	depends on HUAWEI_BATTERY_INFORMATION
+	depends on GPIO_PL061
+	default n
+	help
+		It's an onewire physical controller.

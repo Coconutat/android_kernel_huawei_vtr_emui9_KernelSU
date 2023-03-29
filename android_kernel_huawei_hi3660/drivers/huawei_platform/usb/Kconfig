@@ -1,0 +1,14 @@
+source "drivers/huawei_platform/usb/switch/Kconfig"
+source "drivers/huawei_platform/usb/otg_gpio_switch/Kconfig"
+source "drivers/huawei_platform/usb/typec/Kconfig"
+source "drivers/huawei_platform/usb/pd/Kconfig"
+source "drivers/huawei_platform/usb/otg_gpio_id/Kconfig"
+source "drivers/huawei_platform/usb/superswitch/Kconfig"
+source "drivers/huawei_platform/usb/otg_dual_role/Kconfig"
+source "drivers/huawei_platform/usb/pogopin/Kconfig"
+source "drivers/huawei_platform/usb/hw_usb/Kconfig"
+config SUPERSWITCH
+	tristate "superswitch support"
+	help
+	  Say Y here to enable superswitch support.
+

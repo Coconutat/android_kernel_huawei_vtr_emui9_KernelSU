@@ -1,0 +1,7 @@
+config PROC_IO_INFO
+	bool "/proc/ioinfo support"
+	depends on PROC_FS
+	default n
+	help
+	  get IO information, include disk io stat, io top, io wait.
+	  

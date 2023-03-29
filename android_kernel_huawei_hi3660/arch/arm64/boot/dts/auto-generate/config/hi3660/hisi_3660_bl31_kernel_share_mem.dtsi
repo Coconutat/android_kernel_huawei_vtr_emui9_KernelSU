@@ -1,0 +1,41 @@
+/{
+
+	bl31-kernel-shared-memory {
+	/*reg <offset size>*/
+		dmss-int-mem {
+			reg = <0x0 0x400>;
+		};
+
+		ddr-flux-mem {
+			reg = <0x400 0x400>;
+		};
+
+		efuse-mem {
+			compatible = "hisi,share-memory-efuse";
+			reg = <0x800 0x400>;
+		};
+
+		freqdump-mem {
+			compatible = "hisi,hisi-freqdump";
+			reg = <0xC00 0x400>;
+		};
+
+		drm-mem {
+			compatible = "hisi,share-memory-drm";
+			reg = <0x1000 0x400>;
+		};
+
+		getval-mem {
+			compatible = "hisilicon, get_val";
+			hisi,bl31-share-mem = <0x1400 0x400>;
+		};
+		bl31-mntn-mem {
+			compatible = "hisilicon, bl31_mntn";
+			hisi,bl31-share-mem = <0x1800 0x100>;
+		};
+		rpmd-mem {
+			compatible = "hisilicon,hisi-rpmb";
+			hisi,bl31-share-mem = <0x8000 0x8000>;
+		};
+	};
+};

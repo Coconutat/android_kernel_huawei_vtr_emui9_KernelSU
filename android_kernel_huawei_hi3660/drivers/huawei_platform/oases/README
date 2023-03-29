@@ -1,0 +1,17 @@
+1. add oases souce code to drivers/char/oases
+
+2. add oases in file drivers/char/Kconfig
+
+	source "drivers/char/oases/Kconfig"
+
+3. add oases in file drivers/char/Makefile
+
+	obj-$(CONFIG_OASES) += oases/
+
+4. kernel config dependence:
+
+	CONFIG_MODULE_FORCE_UNLOAD should not be set
+
+	on arm64, for Linux version before 3.18:
+
+	CONFIG_STRICT_MEMORY_RWX is not set

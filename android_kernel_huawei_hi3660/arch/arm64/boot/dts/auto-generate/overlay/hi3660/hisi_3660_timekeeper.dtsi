@@ -1,0 +1,7 @@
+/ {
+	hisi_timekeeper@fff1b000{
+		compatible = "hisilicon,hisi-timekeeper";
+		device_name = "rtc0";
+		status = "ok";
+	};
+};

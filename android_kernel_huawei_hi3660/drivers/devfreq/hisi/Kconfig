@@ -1,0 +1,92 @@
+config HISI_DEVFREQ
+    tristate "Hisilicon DEVFREQ Driver"
+    depends on ARCH_HISI && PM_DEVFREQ
+    select PM_OPP
+    help
+      This enables the hisilicon DDRfreq driver.
+
+config HISI_DDR_DEVFREQ
+    tristate "Hisilicon DDR DEVFREQ Driver"
+    depends on ARCH_HISI && PM_DEVFREQ
+    select PM_OPP
+    select DEVFREQ_GOV_PM_QOS
+    select HISI_DEVFREQ
+    help
+      This enables the hisilicon DDRfreq driver.
+
+config DEVFREQ_GOV_PM_QOS
+	bool "PM QOS"
+	help
+	  Sets the frequency based on pm_qos throughput constraints.
+
+config DEVFREQ_GOV_MALI_ONDEMAND
+    tristate "Hisilicon GPU DEVFREQ Driver"
+    depends on ARCH_HISI && PM_DEVFREQ
+    select PM_OPP
+    select HISI_DEVFREQ
+    help
+      This enables the hisilicon MALI GPU driver.
+
+config DEVFREQ_GOV_GPU_SCENE_AWARE
+    tristate "Hisilicon GPU Scene Aware"
+    depends on ARCH_HISI && PM_DEVFREQ
+    select PM_OPP
+
+config DEVFREQ_GOV_NPU_PM_QOS
+    tristate "Hisilicon NPU PM QOS"
+    depends on ARCH_HISI && PM_DEVFREQ
+    select PM_OPP
+
+config HISI_DDR_CHINTLV
+    bool "Hisilicon ddr devfreq chintlv"
+    default n
+    help
+      Deliver register address of GLB_ADDR_INTLV to ATF.
+
+config HISI_DDR_DEVFREQ_DEBUGFS
+	bool "Hisilicon ddr devfreq debugfs"
+	depends on HI3650_DDR_DEVFREQ && DEBUG_FS
+	default n
+	help
+	  This is a testing driver for HISI ddr devfreq function.
+
+config ARM_MEMLAT_MON
+        tristate "ARM CPU Memory Latency monitor hardware"
+        help
+          The PMU present on these ARM cores allow for the use of counters to
+          monitor the memory latency characteristics of an ARM CPU workload.
+          This driver uses these counters to implement the APIs needed by
+          the mem_latency devfreq governor.
+
+config DEVFREQ_GOV_MEMLAT
+        tristate "HW monitor based governor for device BW"
+        depends on ARM_MEMLAT_MON
+        help
+          HW monitor based governor for device to DDR bandwidth voting.
+          This governor sets the CPU BW vote based on stats obtained from memalat
+          monitor if it determines that a workload is memory latency bound. Since
+          this uses target specific counters it can conflict with existing profiling
+          tools.
+
+config HISI_DEVFREQ_DEVBW
+        bool "HISI DEVFREQ device for device BW/FREQ voting"
+        select DEVFREQ_GOV_PERFORMANCE
+        select DEVFREQ_GOV_MEMLAT
+        select ARM_MEMLAT_MON
+        default n
+        help
+          Different devfreq governors use this devfreq device to make CPU to
+          DDR bandwidth votes. This driver provides a SoC topology
+          agnostic interface to so that some of the devfreq governors can be
+          shared across SoCs.
+
+config DDR_HW_VOTE_15BITS
+        bool "Hisilicon ddr dfs hardware vote 15 bits"
+        depends on HISI_DDR_DEVFREQ
+        default n
+        help
+          Hisilicon ddr dfs "hardware vote 15 bits" enbale.
+
+source "drivers/devfreq/hisi/dsu_pctrl/Kconfig"
+source "drivers/devfreq/hisi/l3c_devfreq/Kconfig"
+source "drivers/devfreq/hisi/l3p_karma/Kconfig"

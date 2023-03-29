@@ -1,0 +1,9 @@
+#
+# WPA DMD configuration
+#
+config  HUAWEI_WPA_DMD
+	bool "huawei log module"
+	default n
+	depends on HUAWEI_DSM
+	help
+          huawei wpa_dmd_client module control

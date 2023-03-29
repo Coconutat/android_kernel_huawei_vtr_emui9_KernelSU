@@ -1,0 +1,19 @@
+if HUAWEI_CAMERA_PMIC
+menu "Camera PMIC"
+    config HUAWEI_CAMERA_PMIC_RT5112
+        tristate "Richtek RT5112"
+        depends on HUAWEI_CAMERA_PMIC
+        default n
+        ---help---
+            Richtek RT5112 pmic chip
+
+    config HUAWEI_CAMERA_PMIC_FAN53880
+        tristate "On Semiconductor Fan53880"
+        depends on HUAWEI_CAMERA_PMIC
+        default n
+        ---help---
+            On Semiconductor pmic chip
+
+endmenu
+endif
+

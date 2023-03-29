@@ -1,0 +1,9 @@
+#
+# huawei touchscreen driver configuration
+#
+
+menuconfig GOODIX_GT1X_TS_KIT_3_0
+	tristate "TS_KIT_3_0 goodix GT1X drivers"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.

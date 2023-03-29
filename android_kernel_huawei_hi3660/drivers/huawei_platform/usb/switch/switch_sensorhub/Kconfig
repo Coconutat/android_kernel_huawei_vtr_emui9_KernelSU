@@ -1,0 +1,11 @@
+
+if SWITCH
+
+# I2C SWITCH_CHIP driver configuration
+config SWITCH_FSA9685_SENSORHUB
+	tristate "SWITCH_FSA9685_SENSORHUB"
+	depends on INPUTHUB
+	help
+	  If you say yes here you get support for SWITCH_FSA9685_SENSORHUB.
+endif # SWITCH
+

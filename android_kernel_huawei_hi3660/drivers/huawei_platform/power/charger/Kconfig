@@ -1,0 +1,6 @@
+source "drivers/huawei_platform/power/charger/charger_ap/Kconfig"
+source "drivers/huawei_platform/power/charger/charger_sensorhub/Kconfig"
+
+config HUAWEI_CHARGER
+	bool "huawei charger"
+	default n

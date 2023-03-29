@@ -1,0 +1,11 @@
+#
+# Synaptics TCM touchscreen driver configuration
+#
+menuconfig SYNAPTICS_TCM_TS_KIT_3_0
+	tristate "SYNAPTICS_TCM_TS_KIT_3_0 touchscreen"
+	default n
+	help
+	  Say Y here if you have a Synaptics TCM touchscreen connected
+	  to your system.
+
+	  If unsure, say N.
