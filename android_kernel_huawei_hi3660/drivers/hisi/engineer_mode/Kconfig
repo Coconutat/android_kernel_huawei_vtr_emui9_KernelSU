@@ -1,0 +1,6 @@
+config HISI_ENGINEER_MODE
+	bool"Hisilicon engineer mode driver"
+	default n
+	help
+	  hisilicon engineer mode driver. this driver will load eng_system
+	  and eng_vendor partitions.

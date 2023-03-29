@@ -1,0 +1,6 @@
+config HUAWEI_BATTERY_VOLTAGE
+	bool "huawei BATTERY VOLTAGE"
+	default n
+config HUAWEI_VBAT_HKADC
+	bool "huawei vbat hkadc"
+	default n

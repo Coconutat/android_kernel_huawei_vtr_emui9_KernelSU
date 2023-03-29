@@ -1,0 +1,11 @@
+/ {
+	usb_short_circuit_protect: usb_short_circuit_protect{
+		compatible = "huawei,usb_short_circuit_protect";
+		gpio_usb_short_circuit_protect = <&gpio4 2 0>;
+		uscp_threshold_tusb = <40>;
+		open_mosfet_temp = <10>;
+		close_mosfet_temp = <9>;
+		interval_switch_temp = <7>;
+		status = "disable";
+	};
+};

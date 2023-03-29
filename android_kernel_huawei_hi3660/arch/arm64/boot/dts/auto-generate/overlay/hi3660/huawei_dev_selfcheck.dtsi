@@ -1,0 +1,66 @@
+/*
+* This dtsi is for device detect. They may use in bc detect, running detect,
+* MMI1, MMI2 detect.
+* The value of device detect type means:
+* value 0 means that it do not need to detect;
+* value 1 means that it check at board detect;
+* value 2 means that it check at running detect;
+* value 4 means that it check at MMI1 detect;
+* value 8 means that it check at MMI2 detect;
+*
+* It also provide composable functionality required to support complex detect,
+* you can add the value of several types together to support complex detect.
+* (e.g., value 3 means that it detect at board check and rt detect,
+* value 7 means that it detect at board check, rt detect and MMI1 detect)
+*/
+/{
+	dev_detect: dev_detect {
+		compatible = "huawei,dev_detect";
+		touch_panel = <0>;
+		compass = <0>;
+		g_sensor = <0>;
+		camera_main = <0>;
+		camera_slave = <0>;
+		keypad = <0>;
+		aps = <0>;
+		gyroscope = <0>;
+		nfc = <0>;
+		dc_dc = <0>;
+		speaker = <0>;
+		ofn = <0>;
+		tps = <0>;
+		l_sensor = <0>;
+		charge = <0>;
+		battery = <0>;
+		nct = <0>;
+		mhl = <0>;
+		audience = <0>;
+		irda = <0>;
+		hand_sensor = <0>;
+		usb_switch = <0>;
+		pmu_dcdc = <0>;
+		camera_pmu = <0>;
+		fm = <0>;
+		wifi = <0>;
+		bt = <0>;
+		gps = <0>;
+		gpu = <0>;
+		cpu_chip = <0>;
+		antenna_ctl = <0>;
+		airpress = <0>;
+		handpress = <0>;
+		fflash = <0>;
+		vibrator_lra = <0>;
+		laser = <0>;
+		camera_pmic = <0>;
+		typec = <0>;
+		anc_max14744 = <0>;
+		charge_loadswitch = <0>;
+		max77813 = <0>;
+		coul = <0>;
+		antennaboard = <0>;
+		battery_state = <0>;
+		pmic = <0>;
+		status = "disabled";
+	};
+};

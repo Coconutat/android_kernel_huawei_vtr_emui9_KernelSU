@@ -1,0 +1,20 @@
+#
+# huawei device state monitor configuration
+#
+
+config HUAWEI_DSM
+	bool "huawei dsm"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+config HUAWEI_SDCARD_VOLD
+	bool "huawei sdcard vold"
+	default n
+	help
+	  If you say yes here you get support for huawei vold radar.
+config HUAWEI_DATA_ACQUISITION
+	bool "huawei data acquisition"
+	default n
+	depends on HUAWEI_DSM
+	help
+	  If you say yes here you get support for huawei data acquisition.

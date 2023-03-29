@@ -1,0 +1,9 @@
+#
+#vibrator using classd on pmu configuration
+#
+config CLASSD_VIBRATOR
+	tristate "vibator using classd on pmu"
+	depends on ANDROID_TIMED_OUTPUT
+	default n
+	help
+	Say yes here to support for vibrator using classd on pmu.

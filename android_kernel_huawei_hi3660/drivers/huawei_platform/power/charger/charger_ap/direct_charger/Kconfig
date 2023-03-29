@@ -1,0 +1,12 @@
+source "drivers/huawei_platform/power/charger/charger_ap/direct_charger/loadswitch/Kconfig"
+source "drivers/huawei_platform/power/charger/charger_ap/direct_charger/switchcap/Kconfig"
+#source "drivers/huawei_platform/power/charger/direct_charger/ina231/Kconfig"
+config LOADSWITCH
+	bool "loadswitch"
+	default n
+config SWITCHCAP
+	bool "switchcap"
+	default n
+config INA231_FOR_CHARGE
+	bool "ina231_for_charge"
+	default n

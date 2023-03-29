@@ -1,0 +1,14 @@
+
+
+/ {
+	hisee@0x0 {
+		compatible = "hisilicon,hisee-device";
+		memory-region = <&fastboot_cma>;
+		reg = <0x0 0x0 0x0 0x0>;
+		sm_flag_pos = <46>;
+		hibench_flag_pos = <44>;
+		pre_enable_hisee_clk;/*whether we need to pre enable clk before power hisee*/
+		hisee_partition_byname_find;
+		status="okay";
+	};
+};

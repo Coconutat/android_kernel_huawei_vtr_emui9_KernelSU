@@ -1,0 +1,3 @@
+config HW_HIDATA_HIMOS
+    bool "HIDATA HIMOS stats module"
+    default n

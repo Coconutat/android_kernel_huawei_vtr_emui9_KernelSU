@@ -1,0 +1,57 @@
+menu "Huawei Platform Drivers"
+
+menuconfig HUAWEI_PLATFORM
+       bool "Huawei platform drivers support"
+       default n
+       help
+       Say yes here to support the huawei platform
+
+if HUAWEI_PLATFORM
+
+source "drivers/huawei_platform/antenna_board_match/Kconfig"
+#source "drivers/huawei_platform/antenna_fpga/Kconfig"
+source "drivers/huawei_platform/audio/Kconfig"
+source "drivers/huawei_platform/chr/Kconfig"
+source "drivers/huawei_platform/riltcp/Kconfig"
+source "drivers/huawei_platform/connectivity/Kconfig"
+source "drivers/huawei_platform/devdetect/Kconfig"
+source "drivers/huawei_platform/dev_selfcheck/Kconfig"
+#source "drivers/huawei_platform/dsm/Kconfig"
+source "drivers/huawei_platform/iotrace/Kconfig"
+source "drivers/huawei_platform/ext_modem/Kconfig"
+source "drivers/huawei_platform/inputhub/Kconfig"
+source "drivers/huawei_platform/irda/Kconfig"
+source "drivers/huawei_platform/lcd/Kconfig"
+#source "drivers/huawei_platform/log/Kconfig"
+source "drivers/huawei_platform/mm/Kconfig"
+source "drivers/huawei_platform/net/Kconfig"
+source "drivers/huawei_platform/nfc/Kconfig"
+source "drivers/huawei_platform/power/Kconfig"
+source "drivers/huawei_platform/sensor/Kconfig"
+source "drivers/huawei_platform/storage/Kconfig"
+source "drivers/huawei_platform/touthscreen/Kconfig"
+source "drivers/huawei_platform/touch_key/Kconfig"
+source "drivers/huawei_platform/uid_iostats/Kconfig"
+source "drivers/huawei_platform/usb/Kconfig"
+source "drivers/huawei_platform/voltage_detection/Kconfig"
+source "drivers/huawei_platform/antenna_board_gpio_match/Kconfig"
+source "drivers/huawei_platform/vibrator/Kconfig"
+source "drivers/huawei_platform/ocp/Kconfig"
+source "drivers/huawei_platform/madapt/Kconfig"
+source "drivers/huawei_platform/dome_key/Kconfig"
+source "drivers/huawei_platform/handpress_switch/Kconfig"
+source "drivers/huawei_platform/led_alwayson/Kconfig"
+source "drivers/huawei_platform/boottime/Kconfig"
+source "drivers/huawei_platform/hw_led/Kconfig"
+source "drivers/huawei_platform/emcom/Kconfig"
+source "drivers/huawei_platform/mm_tuner/Kconfig"
+source "drivers/huawei_platform/dp_aux_switch/Kconfig"
+source "drivers/huawei_platform/oases/Kconfig"
+source "drivers/huawei_platform/dp_source/Kconfig"
+source "drivers/huawei_platform/rilsim/Kconfig"
+source "drivers/huawei_platform/sw/Kconfig"
+source "drivers/huawei_platform/kirin_chipsets/Kconfig"
+source "drivers/huawei_platform/vendor_exception/Kconfig"
+endif #HUAWEI_PLATFORM
+
+endmenu

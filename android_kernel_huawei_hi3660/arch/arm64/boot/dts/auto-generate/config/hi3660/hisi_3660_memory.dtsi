@@ -1,0 +1,64 @@
+/include/ "hisi_3660_memory_common.dtsi"
+
+/{
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		modem-s {
+			reg = <0x0 0x80000000 0x0 0x9200000>;
+			no-map;
+		};
+
+		hifi-base {
+			reg = <0x0 0x89200000 0x0 0xC00000>;
+			no-map;
+		};
+
+		lpmx-core {
+			reg = <0x0 0x89E00000 0x0 0x100000>;
+			no-map;
+		};
+
+		lpmcu {
+			reg = <0x0 0x89F00000 0x0 0x40000>;
+			no-map;
+		};
+
+		align-reserved {
+			reg = <0x0 0x89F40000 0x0 0xC0000>;
+			no-map;
+		};
+
+		modem-share-mem {
+			reg = <0x0 0x8A000000 0x0 0x500000>;
+			no-map;
+		};
+
+		modem-socp {
+			reg = <0x0 0x8A500000 0x0 0x1100000>;
+			no-map;
+			status = "disable";
+		};
+
+
+		hifi-data {
+			reg = <0x0 0x8B600000 0x0 0x500000>;
+			no-map;
+		};
+
+		mntn_mem:bbox-mem {
+			reg = <0x0 0x8BB00000 0x0 0x800000>;
+			hisi,cma-mem;
+		};
+	};
+
+	cma-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+	};
+
+};

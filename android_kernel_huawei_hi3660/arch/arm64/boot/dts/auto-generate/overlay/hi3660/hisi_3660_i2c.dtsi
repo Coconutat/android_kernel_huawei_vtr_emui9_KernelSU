@@ -1,0 +1,134 @@
+
+
+/{
+	aliases {
+		i2c0 = &i2c0;
+		i2c1 = &i2c1;
+		i2c2 = &i2c2;
+		i2c3 = &i2c3;
+		i2c4 = &i2c4;
+		i2c6 = &i2c6;
+		i2c7 = &i2c7;
+	};
+
+	amba{
+		/* IOMCU */
+		i2c0: i2c@FFD71000 {
+			compatible = "hisilicon,designware-i2c";
+			reg = <0x0 0xFFD71000 0x0 0x1000>;
+			interrupts = <0 118 4>;
+			clocks = <&clk_gate_i2c0 &pclk>;
+			clock-names = "clk_i2c", "apb_pclk";
+			//dmas = <&iomcu_dma 2 &iomcu_dma 3>; /* rx channel ; tx channel */
+			//dma-names = "rx", "tx";
+			delay-off = <300>;
+			reset-reg-base = <0x0 0xFFD7E000 0x0 0x1000>; /* IOMCU_CONFIG */
+			reset-controller-reg = <0x20 0x24 0X28 3>;
+			retries = <3>;
+			timeout = <100>;
+			status = "disabled";
+		};
+
+		/* IOMCU */
+		i2c1: i2c@FFD72000 {
+			compatible = "hisilicon,designware-i2c";
+			reg = <0x0 0xFFD72000 0x0 0x1000>;
+			interrupts = <0 119 4>;
+			clocks = <&clk_gate_i2c1  &clk_gate_i2c1>;
+			clock-names = "clk_i2c", "apb_pclk";
+			//dmas = <&iomcu_dma 4 &iomcu_dma 5>; /* rx channel ; tx channel, reserved */
+			//dma-names = "rx", "tx";
+			delay-off = <300>;
+			reset-reg-base = <0x0 0xFFD7E000 0x0 0x1000>; /* IOMCU_CONFIG */
+			reset-controller-reg = <0x20 0x24 0X28 4>;
+			retries = <3>;
+			timeout = <100>;
+			status = "disabled";
+		};
+
+		/* IOMCU */
+		i2c2: i2c@FFD73000 {
+			compatible = "hisilicon,designware-i2c";
+			reg = <0x0 0xFFD73000 0x0 0x1000>;
+			interrupts = <0 120 4>;
+			clocks = <&clk_gate_i2c2 &pclk>;
+			clock-names = "clk_i2c", "apb_pclk";
+			//dmas = <&iomcu_dma 6 &iomcu_dma 7>; /* rx channel ; tx channel, reserved */
+			//dma-names = "rx", "tx";
+			delay-off = <300>;
+			reset-reg-base = <0x0 0xFFD7E000 0x0 0x1000>; /* IOMCU_CONFIG */
+			reset-controller-reg = <0x20 0x24 0x28 5>;
+			retries = <3>;
+			timeout = <100>;
+			status = "disabled";
+		};
+
+		/* PERI */
+		i2c3: i2c@FDF0C000 {
+			compatible = "hisilicon,designware-i2c";
+			reg = <0x0 0xFDF0C000 0x0 0x1000>;
+			interrupts = <0 81 4>;
+			clocks = <&clk_gate_i2c3 &pclk>;
+			clock-names = "clk_i2c", "apb_pclk";
+			//dmas = <&dma0 14 &dma0 15>; /* rx channel ; tx channel */
+			//dma-names = "rx", "tx";
+			delay-off = <300>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 7>;
+			retries = <3>;
+			timeout = <100>;
+			status = "disabled";
+		};
+
+		/* PERI */
+		i2c4: i2c@FDF0D000 {
+			compatible = "hisilicon,designware-i2c";
+			reg = <0x0 0xFDF0D000 0x0 0x1000>;
+			interrupts = <0 82 4>;
+			clocks = <&clk_gate_i2c4 &pclk>;
+			clock-names = "clk_i2c", "apb_pclk";
+			//dmas = <&dma0 16 &dma0 17>; /* rx channel ; tx channel */
+			//dma-names = "rx", "tx";
+			delay-off = <300>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x78 0x7c 0x80 27>;
+			retries = <3>;
+			timeout = <100>;
+			status = "disabled";
+		};
+
+		/* IOMCU */
+		i2c6: i2c@FFD6A000 {
+			compatible = "hisilicon,designware-i2c";
+			reg = <0x0 0xFFD6A000 0x0 0x1000>;
+			interrupts = <0 117 4>;
+			clocks = <&clk_gate_i2c6 &clk_gate_i2c6>;
+			clock-names = "clk_i2c", "apb_pclk";
+			//dmas = <&iomcu_dma 10 &iomcu_dma 11>; /* rx channel ; tx channel, reserved */
+			//dma-names = "rx", "tx";
+			delay-off = <300>;
+			reset-reg-base = <0x0 0xFFD7E000 0x0 0x1000>; /* IOMCU_CONFIG */
+			reset-controller-reg = <0x20 0x24 0X28 27>;
+			retries = <3>;
+			timeout = <100>;
+			status = "disabled";
+		};
+
+		/* PERI */
+		i2c7: i2c@FDF0B000 {
+			compatible = "hisilicon,designware-i2c";
+			reg = <0x0 0xFDF0B000 0x0 0x1000>;
+			interrupts = <0 314 4>;
+			clocks = <&clk_gate_i2c7 &pclk>;
+			clock-names = "clk_i2c", "apb_pclk";
+			//dmas = <&dma0 18 &dma0 19>; /* rx channel ; tx channel */
+			//dma-names = "rx", "tx";
+			delay-off = <300>;
+			reset-reg-base = <0x0 0xFFF35000 0x0 0x1000>; /* PERI_CRG */
+			reset-controller-reg = <0x60 0x64 0x68 14>;
+			retries = <3>;
+			timeout = <100>;
+			status = "disabled";
+		};
+	};
+};

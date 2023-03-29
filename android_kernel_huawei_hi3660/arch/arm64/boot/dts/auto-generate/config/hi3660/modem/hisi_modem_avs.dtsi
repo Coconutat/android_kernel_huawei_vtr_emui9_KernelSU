@@ -1,0 +1,38 @@
+/*
+ * Hisilicon Ltd.
+ *
+ * It is only for hisilicon balong modem board. You show change the
+ * address of each node according to datasheet.
+ */
+/*
+ *	enum avs_core_type{
+ *	AVS_CORE_CCPU = 0,
+ * 	AVS_CORE_DSP,
+ *	AVS_CORE_BBP,
+ *	AVS_CORE_MAX,
+ *	};
+ */
+
+ / {
+
+	hisi_modem_avs:avs{
+		compatible = "hisilicon,avs_balong";
+		/*hisi_avs_regulator_name = "buck4";*/
+		hisi_avs-vdd-supply = <&buck4>;
+		hisi_avs_core_num = <4>;
+		hisi_avs_core_type = <0 0 1 2>;
+		hisi_avs_dstfreq = <1066 800 0 0>;
+		hisi_avs_dstvolt = <800 800 800 800 >;
+		hisi_avs_maxvolt = <800000 800000 800000 800000>;
+		hisi_avs_minvolt = <750000  750000 750000 750000>;
+		hisi_avs_target_hpm = <527 527 527 527>;
+		hisi_avs_para_A = <1206 1206 1206 1206>;//0.1206
+		hisi_avs_para_B = <8250 8250 8250 8250>;
+		hisi_avs_target_hpmx = <591 591 591 591>;
+		hisi_avs_para_Ax = <0x400001C4 0x400001C4 0x400001C4 0x400001C4>;//-0.0452
+		hisi_avs_para_Bx = <10126 10126 10126 10126>;
+		hisi_avs_volt_num = <10>;
+		hisi_avs_volt_list = <700 725 750 775 790 800 810 825 830 850>;
+	};
+};
+

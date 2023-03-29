@@ -1,0 +1,6 @@
+config HW_STAT_MM
+	bool "memory dmd"
+	depends on HUAWEI_DSM
+	default n
+	help
+	  memory dmd

@@ -1,0 +1,8 @@
+#
+#led alwayson driver configuration
+#
+menuconfig HW_LED_ALWAYSON
+	bool "led alwayson driver"
+	default n
+	help
+	Say yes here to support for led alwayson driver.

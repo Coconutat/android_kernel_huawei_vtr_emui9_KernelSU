@@ -1,0 +1,23 @@
+config HW_PTM
+    boolean "Huawei Power Thermal Monitor"
+    default n
+    help
+        Huawei PTM, please choose it.
+
+config HW_PTM_K3V5
+    boolean "Huawei Power Thermal Monitor For K3V5"
+    default n
+    help
+        Huawei PTM, please choose it for K3V5.
+
+config HW_PTM_K3V6
+    boolean "Huawei Power Thermal Monitor For K3V6"
+    default n
+    help
+        Huawei PTM, please choose it for K3V6.
+
+config HW_PTM_K3V7
+    boolean "Huawei Power Thermal Monitor For K3V7"
+    default n
+    help
+        Huawei PTM, please choose it for K3V7.

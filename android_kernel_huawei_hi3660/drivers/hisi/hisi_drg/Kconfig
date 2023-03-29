@@ -1,0 +1,6 @@
+config HISI_DRG
+	bool "dual rail governor"
+	default n
+	help
+	 manager frequency dependency caused by dual rail between
+	 different cpufreq device and devfreq device.

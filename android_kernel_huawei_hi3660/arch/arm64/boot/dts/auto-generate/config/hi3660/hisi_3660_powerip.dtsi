@@ -1,0 +1,200 @@
+/*
+ *  Copyright (C) 2012-2013 Linaro Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/ {
+	regulators_ip: regulator_ip@0xFFF35000 {
+		compatible = "hisilicon,hisi_regulator_ip_atf_core";
+		reg = <0x00 0xFFF35000 0x00 0x1000>;
+
+		vivobus: ip@0 {
+			compatible = "ip-regulator-atf";
+			regulator-name = "vivobus";
+			hisilicon,hisi-regulator-id = <0>;
+			hisilicon,hisi-regulator-type = <1>;/*0:pmu;1:ip;2:scharger*/
+			clocks = <&clk_gate_vivobus>;
+			clock-names = "clk_vivobus";
+			hisilicon,hisi-regulator-clk-num = <1>;
+			hisilicon,hisi-regulator-clk-check-flag = <0>;/*0:not check clock state;1:check clock state*/
+			hisilicon,hisi-need-to-enable-clock = <1>;/*0:donot enable clock;1:enable clock*/
+			hisilicon,hisi-clock-rate-set-flag = <0>;/*low frequency clock set flag:0:donot set clock rate;1:set clock rate*/
+			hisilicon,hisi-clock-rate-set = <0>;/*frequency:0:not set frequency;*/
+			hisilicon,hisi-need-to-autofreqdump = <1>;/*0:not need enale autofreqdump;1:need autofreqdump*/
+			hisilicon,hisi-regulator-is-fake = <0>;/*0:this ip is effective;1:this ip is ineffective*/
+		};
+		dsssubsys: ip@1 {
+			compatible = "ip-regulator-atf";
+			regulator-name = "dsssubsys";
+			hisilicon,hisi-regulator-id = <1>;
+			dsssubsys-supply = <&vivobus>;
+			hisilicon,supply_name = "dsssubsys";
+			hisilicon,hisi-regulator-type = <1>;
+			clocks = <&clk_gate_edc0 &clk_gate_ldi0>;
+			clock-names = "clk_edc0", "clk_ldi0";
+			hisilicon,hisi-regulator-clk-num = <2>;
+			hisilicon,hisi-regulator-clk-check-flag = <0>;
+			hisilicon,hisi-need-to-enable-clock = <0>;
+			hisilicon,hisi-clock-rate-set-flag = <1>;
+			hisilicon,hisi-clock-rate-set = <135000000 135000000>;
+			hisilicon,hisi-need-to-autofreqdump = <0>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+		vcodecsubsys: ip@2 {
+			compatible = "ip-regulator-atf";
+			regulator-name = "vcodecsubsys";
+			hisi,noc-node-name = "peri_vcodec_bus";
+			hisilicon,hisi-regulator-id = <2>;
+			vcodecsubsys-supply = <&dsssubsys>;
+			hisilicon,supply_name = "vcodecsubsys";
+			hisilicon,hisi-regulator-type = <1>;
+			hisilicon,hisi-regulator-clk-num = <0>;
+			hisilicon,hisi-regulator-clk-check-flag = <0>;
+			hisilicon,hisi-need-to-enable-clock = <0>;
+			hisilicon,hisi-clock-rate-set-flag = <0>;
+			hisilicon,hisi-clock-rate-set = <0>;
+			hisilicon,hisi-need-to-autofreqdump = <1>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+		vdec: ip@3 {
+			compatible = "ip-regulator-atf";
+			regulator-name = "vdec";
+			hisilicon,hisi-regulator-id = <3>;
+			vdec-supply = <&vcodecsubsys>;
+			hisilicon,supply_name = "vdec";
+			hisilicon,hisi-regulator-type = <1>;
+			hisilicon,hisi-regulator-clk-num = <0>;
+			hisilicon,hisi-regulator-clk-check-flag = <0>;
+			hisilicon,hisi-need-to-enable-clock = <0>;
+			hisilicon,hisi-clock-rate-set-flag = <0>;
+			hisilicon,hisi-clock-rate-set = <0>;
+			hisilicon,hisi-need-to-autofreqdump = <1>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+		venc: ip@4 {
+			compatible = "ip-regulator-atf";
+			regulator-name = "venc";
+			hisilicon,hisi-regulator-id = <4>;
+			venc-supply = <&vcodecsubsys>;
+			hisilicon,supply_name = "venc";
+			hisilicon,hisi-regulator-type = <1>;
+			clocks = <&clk_gate_venc>;
+			clock-names = "clk_venc";
+			hisilicon,hisi-regulator-clk-num = <1>;
+			hisilicon,hisi-regulator-clk-check-flag = <0>;
+			hisilicon,hisi-need-to-enable-clock = <0>;
+			hisilicon,hisi-clock-rate-set-flag = <1>;
+			hisilicon,hisi-clock-rate-set = <258000000>;/*1290MHz/5*/
+			hisilicon,hisi-need-to-autofreqdump = <1>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+		ispsubsys: ip@5 {
+			compatible = "ip-regulator-atf";
+			regulator-name = "ispsubsys";
+			hisilicon,hisi-regulator-id = <5>;
+			ispsubsys-supply = <&dsssubsys>;
+			hisilicon,supply_name = "ispsubsys";
+			hisilicon,hisi-regulator-type = <1>;
+			clocks = <&aclk_gate_isp>;
+			clock-names = "aclk_isp";
+			hisilicon,hisi-regulator-clk-num = <1>;
+			hisilicon,hisi-regulator-clk-check-flag = <0>;
+			hisilicon,hisi-need-to-enable-clock = <0>;
+			hisilicon,hisi-clock-rate-set-flag = <0>;
+			hisilicon,hisi-clock-rate-set = <0>;
+			hisilicon,hisi-need-to-autofreqdump = <1>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+		ivp: ip@6 {
+			compatible = "ip-regulator-atf";
+			regulator-name = "ivp";
+			hisi,noc-node-name = "ivp32_bus";
+			hisilicon,hisi-regulator-id = <6>;
+			ivp-supply = <&dsssubsys>;
+			hisilicon,supply_name = "ivp";
+			hisilicon,hisi-regulator-type = <1>;
+			clocks = <&clk_gate_ivp32dsp_core>;
+			clock-names = "clk_ivpdsp_core";
+			hisilicon,hisi-regulator-clk-num = <1>;
+			hisilicon,hisi-regulator-clk-check-flag = <1>;
+			hisilicon,hisi-need-to-enable-clock = <0>;
+			hisilicon,hisi-clock-rate-set-flag = <1>;
+			hisilicon,hisi-clock-rate-set = <267000000>;
+			hisilicon,hisi-need-to-autofreqdump = <1>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+		g3d: ip@7 {
+			compatible = "ip-regulator-lpm";
+			regulator-name = "g3d";
+			ip_to_lpm_enable_step = <0x00030004 0x00>;
+			ip_to_lpm_disable_step = <0x00030104 0x00>;
+			hisilicon,hisi-regulator-id = <7>;
+			hisilicon,hisi-regulator-type = <1>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+		asp: ip@8 {
+			compatible = "ip-regulator-lpm";
+			regulator-name = "asp";
+			ip_to_lpm_enable_step = <0x00050001 0x00>;
+			ip_to_lpm_disable_step = <0x00050101 0x00>;
+			hisilicon,hisi-regulator-id = <8>;
+			hisilicon,hisi-regulator-type = <1>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+
+		isp_srt: ip@9 {
+
+			compatible = "ip-regulator-atf";
+			regulator-name = "isp_srt";
+			hisilicon,hisi-regulator-id = <9>;
+			isp_srt-supply = <&ispsubsys>;
+			hisilicon,supply_name = "isp_srt";
+			hisilicon,hisi-regulator-type = <1>;
+			hisilicon,hisi-regulator-clk-num = <0>;
+			hisilicon,hisi-regulator-clk-check-flag = <0>;
+			hisilicon,hisi-need-to-enable-clock = <0>;
+			hisilicon,hisi-clock-rate-set-flag = <0>;
+			hisilicon,hisi-clock-rate-set = <0>;
+			hisilicon,hisi-need-to-autofreqdump = <0>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+		pcie: ip@10 {
+			compatible = "ip-regulator-atf";
+			regulator-name = "pcie";
+			hisilicon,hisi-regulator-id = <10>;
+			hisilicon,hisi-regulator-type = <1>;
+			hisilicon,hisi-regulator-clk-num = <0>;
+			hisilicon,hisi-regulator-clk-check-flag = <0>;
+			hisilicon,hisi-need-to-enable-clock = <0>;
+			hisilicon,hisi-clock-rate-set-flag = <0>;
+			hisilicon,hisi-clock-rate-set = <0>;
+			hisilicon,hisi-need-to-autofreqdump = <0>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+		mmbuf: ip@11 {
+			compatible = "ip-regulator-lpm";
+			regulator-name = "mmbuf";
+			ip_to_lpm_enable_step = <0x000C0001 0x09>;
+			ip_to_lpm_disable_step = <0x000C0101 0x09>;
+			hisilicon,hisi-regulator-id = <11>;
+			hisilicon,hisi-regulator-type = <1>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+		sec_s: ip@12 {
+			compatible = "ip-regulator-atf";
+			regulator-name = "sec_s";
+			hisilicon,hisi-regulator-id = <12>;
+			hisilicon,hisi-regulator-type = <1>;
+			hisilicon,hisi-regulator-clk-num = <0>;
+			hisilicon,hisi-regulator-clk-check-flag = <0>;
+			hisilicon,hisi-need-to-enable-clock = <0>;
+			hisilicon,hisi-clock-rate-set-flag = <0>;
+			hisilicon,hisi-clock-rate-set = <0>;
+			hisilicon,hisi-need-to-autofreqdump = <0>;
+			hisilicon,hisi-regulator-is-fake = <0>;
+		};
+	};
+};

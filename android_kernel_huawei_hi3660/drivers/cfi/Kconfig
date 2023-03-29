@@ -1,0 +1,23 @@
+#
+# CFI configuration
+#
+
+config HUAWEI_CFI_TAG
+    hex "huawei cfi tag"
+    default "0x0035c000"
+    help
+      It configs the 4-byte value used to tag function entry.
+      Note, for ARM architecture, not all integer constants can be encoded in one instruction.
+      Refer to "Flexible second operand" in ARM Instruction Reference for more info.
+
+config HUAWEI_CFI
+    bool "HUAWEI CFI support"
+    default n
+    help
+      Say yes here to support the HUAWEI CFI feature
+
+config HUAWEI_CFI_DEBUG
+    bool "HUAWEI CFI test support"
+    default n
+    help
+      Say yes here to support the HUAWEI CFI debug

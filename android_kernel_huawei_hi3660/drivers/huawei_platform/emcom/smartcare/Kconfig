@@ -1,0 +1,8 @@
+menuconfig HW_NETWORK_MEASUREMENT
+	bool "Huawei Network Measurement System"
+	depends on HUAWEI_EMCOM
+	default n
+
+if HW_NETWORK_MEASUREMENT
+source "drivers/huawei_platform/emcom/smartcare/fi/Kconfig"
+endif # if HW_NETWORK_MEASUREMENT

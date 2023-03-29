@@ -1,0 +1,51 @@
+config CONTEXTHUB
+	bool "Sensor CONTEXTHUB driver"
+	depends on INPUTHUB || INPUTHUB_20
+	default n
+	help
+	Sensor CONTEXTHUB driver.
+
+config CONTEXTHUB_SHMEM
+	bool "Sensor CONTEXTHUB SHMEM driver"
+	depends on INPUTHUB || INPUTHUB_20
+	default y
+	help
+	Say yes here if you want to configure contexthub share memory
+
+config CONTEXTHUB_SHELL
+	bool "Sensor CONTEXTHUB SHELL DBG driver"
+	depends on CONTEXTHUB
+	default n
+	help
+	Say yes here if you want to use contexthub shell dbg function
+
+config CONTEXTHUB_PLAYBACK
+	bool "Sensor CONTEXTHUB playback driver"
+	depends on CONTEXTHUB
+	default n
+	help
+	Say yes here if you want to use contexthub playback function
+
+config CONTEXTHUB_LOADMONITOR
+	bool "Sensor CONTEXTHUB LOADMONITOR driver"
+	depends on CONTEXTHUB
+	default n
+	help
+	Say yes here if you want to use contexthub shell dbg function
+
+config CONTEXTHUB_CHRE
+	bool "Sensor CONTEXTHUB CHRE driver"
+	depends on CONTEXTHUB
+	default n
+	help
+	Say yes here if you want to use contexthub shell dbg function
+
+config INPUTHUB_MOCK_SENSOR
+	bool "mock sensor feature support"
+	depends on INPUTHUB_20
+	default n
+	help
+	Say yes here if you want to configure INPUTHUB_MOCK_SENSOR
+
+source "drivers/contexthub/flp/Kconfig"
+

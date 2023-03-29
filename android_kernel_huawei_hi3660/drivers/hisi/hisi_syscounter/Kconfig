@@ -1,0 +1,6 @@
+config HISI_SYSCOUNTER
+	bool "Hisilicon SysCounter driver"
+	depends on INPUTHUB || INPUTHUB_20
+	default n
+	help
+	Say yes here if you want to use hisi syscounter

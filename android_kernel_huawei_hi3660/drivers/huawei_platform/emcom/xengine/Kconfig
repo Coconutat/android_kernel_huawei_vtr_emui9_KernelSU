@@ -1,0 +1,16 @@
+config HUAWEI_XENGINE
+	bool "Huawei xengine feature support"
+	default n
+
+config HUAWEI_EMCOM_CHANNEL
+	bool "Huawei emcom channel feature support"
+	default n
+
+config SMART_MP
+        bool 'change stats of smart mp modules'
+        depends on NETFILTER_XT_MATCH_QTAGUID && HUAWEI_XENGINE
+        help
+          This option try to fix the repeated calculation of the stats
+          on both app and smartmp module.
+          If unsure, say `N'.
+

@@ -1,0 +1,8 @@
+#
+# Huawei boot fail recovery subsystem configuration
+#
+
+config USE_BOOTFAIL_RECOVERY_SOLUTION
+        bool "Enable boot fail recovery subsystem"
+        default n
+

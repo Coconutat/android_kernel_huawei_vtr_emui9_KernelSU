@@ -1,0 +1,62 @@
+/*
+ * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+ /*
+ *    Copyright (c) 2016 Huawei co Ltd
+ *    Multiple choice chips DTS Configuration NOTES
+ */
+
+/{
+	amba {
+		i2c3: i2c@FDF0C000 {
+			fsa7830_0:fsa7830_0@42 {
+				compatible = "huawei,fsa7830";
+				reg = <0x42>;
+				huawei,id = <0>;
+				huawei,chip_total_flag = <0x03>;					/* must echo bit match one chip , the value of all chip must be same  */
+				huawei,chip_info = "fsa7830";
+				huawei,chip_id_reg= <0x01>;
+				huawei,chip_id_val = <0x08 0x48>;		/* add the new chip id to auto adapt the code */
+				huawei,adc_channel = <4>;
+				huawei,main_channel_count = <8>;
+				huawei,sec_channel_count = <3>;
+				huawei,input_cfg = <0>;					/* bit0 to bit7, each bit represents a channel */
+				huawei,ovp_threshold = <0 0 0 0 0 0 0 0>;			/* must 8 data for each channel interrupts*/
+				huawei,ovp_action = <0 0 0 0 0 0 0 0 0>;			/* must 8 data for each channel action */
+				huawei,max_threshold = <0 0 0 0 0 0 0 0>;			/* must 8 data for each channel dmd report*/
+				huawei,min_threshold = <0 0 0 0 0 0 0 0>;			/* must 8 data for each channel dmd report*/
+				huawei,switch_cfg = <0 0 0 0 0 0 0 0>;				/* must 8 data for sec channel cfg 0:(1) 1:(2/3) 2:(1/3)*/
+				status = "disable";
+			};
+			fsa7830_1:fsa7830_1@43 {
+				compatible = "huawei,fsa7830";
+				reg = <0x43>;
+				huawei,id = <1>;
+				huawei,chip_total_flag = <0x03>;					/* must echo bit match one chip , the value of all chip must be same  */
+				huawei,chip_info = "fsa7830";
+				huawei,chip_id_reg= <0x01>;
+				huawei,chip_id_val = <0x08 0x48>;		/* add the new chip id to auto adapt the code */
+				huawei,adc_channel = <13>;
+				huawei,main_channel_count = <8>;
+				huawei,sec_channel_count = <3>;
+				huawei,input_cfg = <0>;						/* bit0 to bit7, each bit represents a channel */
+				huawei,ovp_threshold = <0 0 0 0 0 0 0 0>;			/* must 8 data for each channel interrupts*/
+				huawei,ovp_action = <0 0 0 0 0 0 0 0 0>;			/* must 8 data for each channel action */
+				huawei,max_threshold = <0 0 0 0 0 0 0 0>;			/* must 8 data for each channel dmd report*/
+				huawei,min_threshold = <0 0 0 0 0 0 0 0>;			/* must 8 data for each channel dmd report*/
+				huawei,switch_cfg = <0 0 0 0 0 0 0 0>;				/* must 8 data for sec channel cfg 0:(1) 1:(2/3) 2:(1/3)*/
+				status = "disable";
+			};
+		};
+	};
+};

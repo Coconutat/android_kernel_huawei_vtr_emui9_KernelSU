@@ -1,0 +1,5 @@
+config HISI_KERNEL_HARDEN_DEBUG
+	bool "HISI kernel harden test support"
+	default n
+	help
+	  Say yes here to support the HISI kernel harden debug

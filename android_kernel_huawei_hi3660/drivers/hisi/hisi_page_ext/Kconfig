@@ -1,0 +1,5 @@
+config HISI_PAGE_EXT
+	bool "Page ext api on HISI Plat."
+	depends on FLATMEM
+	---help---
+	  This function enable will free the unused page ext memory.

@@ -1,0 +1,45 @@
+#
+# huawei touchscreen driver configuration
+#
+
+menuconfig HUAWEI_HOST_TS_KIT
+	tristate "huawei HOST_TS_KIT touchscreen"
+	default n
+	help
+	  If you say yes here you get support for hostprocessing touchscreen.
+menuconfig HUAWEI_TS_KIT
+	tristate "huawei TS_KIT drivers"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+menuconfig HUAWEI_TS_KIT_TEST
+	bool "huawei TS_KIT test"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+menuconfig HUAWEI_TS_KIT_COMMON
+	bool "huawei TS_KIT common"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+menuconfig HUAWEI_DEVKIT_HISI
+	tristate "huawei CONFIG_DEVKIT_HISI"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+menuconfig HUAWEI_DEVKIT_QCOM
+	tristate "huawei CONFIG_DEVKIT_QCOM"
+	default n
+	help
+	  If you say yes here you get support for huawei touchscreen.
+
+source "drivers/devkit/tpkit/hostprocessing/Kconfig"
+source "drivers/devkit/tpkit/panel/Kconfig"
+source "drivers/devkit/tpkit/3_0/Kconfig"
+
+#sensor unification for differ platform
+menuconfig HUAWEI_TP_KIT_COLOR_INFO
+	tristate "huawei TS_KIT tp color info"
+	default n
+	help
+		get the huawei TS_KIT tp color information.

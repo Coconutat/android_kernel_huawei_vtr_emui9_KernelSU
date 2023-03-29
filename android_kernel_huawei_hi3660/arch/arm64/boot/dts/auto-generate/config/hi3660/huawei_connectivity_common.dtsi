@@ -1,0 +1,237 @@
+/*
+ *  Copyright (C) 2013 Huawei co Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+/{
+	hw_connectivity: hw_connectivity {
+		compatible = "huawei,hw_connectivity";
+		/*put configs below into chipset_dto.dtsi
+		* for these configs at most time are same, but may be changed in different produt
+		*
+		* chip_type = "hisi";
+		*/
+	};
+	bcm_wifi:bcm_wifi {
+		compatible = "hisilicon,bcm_wifi";
+		/*put configs below into chipset_dto.dtsi
+		* for these configs at most time are same, but may be changed in different produt
+		* clocks = <&clk_pmu32kb>;
+		* clock-names = "apb_pclk";
+		*/
+
+		/*put configs below into overlay.dts of
+		* for these configs at most time are different.
+		* wifi_fw_test_name = "/vendor/firmware/fw_bcm43455_test_hw_apsta.bin";
+		* wifi_fw_ap_name = "/vendor/firmware/fw_bcm43455_apsta_hw.bin";
+		* wifi_fw_name = "/vendor/firmware/fw_bcm43455_hw.bin";
+		* wifi_nvram_name = "/vendor/firmware/nvram43455_hw_bkl_l04.txt";
+		* clock-names = "apb_pclk";
+		* pinctrl-names = "default", "idle";
+		* pinctrl-0 = <&gpio128_pmx_func &gpio129_pmx_func &gpio130_pmx_func
+		* 	     &gpio131_pmx_func &gpio132_pmx_func &gpio133_pmx_func
+		* 	     &gpio128_cfg_func &gpio129_cfg_func &gpio130_cfg_func
+		* 	     &gpio131_cfg_func &gpio132_cfg_func &gpio133_cfg_func>;
+		* pinctrl-1 = <&gpio128_pmx_idle &gpio129_pmx_idle &gpio130_pmx_idle
+		* 	     &gpio131_pmx_idle &gpio132_pmx_idle &gpio133_pmx_idle
+		* 	     &gpio128_cfg_idle &gpio129_cfg_idle &gpio130_cfg_idle
+		* 	     &gpio131_cfg_idle &gpio132_cfg_idle &gpio133_cfg_idle>;
+		* wifi_supply_type = <0>;
+		* wlan-on,gpio-enable= <&gpio6 3 0>;
+		* wlan-irq,gpio-irq = <&gpio22 1 0>;
+		*/
+	};
+
+	bcm_bt:bcm_bt {
+		compatible = "hisilicon,bcm_bt";
+		/*put configs below into overlay.dts of
+		* for these configs at most time are different.
+		* ic_type = "bcm4359";
+		* bt_fw_type = "pmic";
+		*/
+	};
+
+	bluetooth_sleep:bluetooth_sleep{
+		compatible = "huawei,bluetooth_sleep";
+		/*put configs below into chipset_dto.dtsi
+		* for these configs at most time are same, but may be changed in different produt
+		*/
+
+		/*put configs below into overlay.dts of
+		* for these configs at most time are different.
+		* huawei,host_wake_bt = <183>;
+		* huawei,bt_wake_host = <151>;
+		*/
+	};
+	bluetooth_power:bluetooth_power{
+		compatible = "huawei,bluetooth_power";
+		/*put configs below into chipset_dto.dtsi
+		* for these configs at most time are same, but may be changed in different produt
+		* clocks = <&clk_pmu32kb>;
+		* clock-names = "apb_pclk";
+		*/
+
+		/*put configs below into overlay.dts of
+		* for these configs at most time are different.
+		* huawei,bt_en = <54>;
+		* huawei,no_vio_switch = <1>;
+		*/
+	};
+	gps_power:gps_power{
+		compatible = "huawei,gps_power";
+		/*put configs below into chipset_dto.dtsi
+		* for these configs at most time are same, but may be changed in different produt
+		* huawei,gps_cal_req = <12>;
+		* clocks = <&clk_pmu32kc>, <&clk_gate_gps_m>;
+		* clock-names = "gps_32k", "clk_gps";
+		* pinctrl-names = "default","idle";
+		* factest_timeout="9";
+		* batching,channel_type = "sensorhub";
+		*/
+
+		/*put configs below into overlay.dts of
+		* for these configs at most time are different.
+		* pinctrl-0 = <&gpio012_pmx_func &gpio012_cfg_func>;
+		* pinctrl-1 = <&gpio012_pmx_idle &gpio012_cfg_idle>;
+		* huawei,gps_en = <&gpio24 3 0>;
+		* huawei,gps_hostwake = <&gpio22 6 0>;
+		* huawei,gps_refclk = <5>;
+		* huawei,mcu_req = <&gpio24 4 0>;
+		* huawei,mcu_req_rsp = <&gpio27 2 0>;
+		* broadcom_config,ic_type="bcm4774";
+		* broadcom_config,tty_port="ttyAMA5";
+		*/
+	};
+
+	/*power*/
+	hi110x: hi110x {
+		compatible = "hisilicon,hi110x","hisilicon,hi1102";
+		/*put configs below into chipset_dto.dtsi
+		* for these configs at most time are same, but may be changed in different produt
+		*
+		* huawei,pmu_clk32b = "clk_pmu32kb";
+		*/
+
+		/*put configs below into overlay.dts of
+		* for these configs at most time are different.
+		*
+		* hi110x,subchip_type="hi1103";
+		* for 1102 power control
+		* hi1102,gpio_power_on = <&gpio32 2 0>;
+		*
+		* for 1103 power control
+		* hi110x,gpio_power_on = <&gpio32 2 0>;
+		* hi110x,gpio_bfgx_power_on = <&gpio25 2 0>;
+		* hi110x,gpio_wlan_power_on = <&gpio25 0 0>;
+		*/
+	};
+
+	/*wifi*/
+	hisi_wifi:hisi_wifi {
+		compatible = "hisilicon,hisi_wifi";
+
+		/*put configs below into overlay.dts of
+		* for these configs at most time are different.
+		*
+		* for 1102 power config
+		* hi1102,gpio_wlan_wakeup_host;
+		* for 1103 power config
+		* hi110x,gpio_wlan_wakeup_host =  <&gpio29 5 0>;
+		* hi110x,gpio_host_wakeup_wlan =  <&gpio32 7 0>;
+		*/
+		hisi_wifi_firmware {
+			compatible = "hisi,wifi_firmware";
+			/*put configs below into overlay.dts of
+			* for these configs at most time are different.
+			*
+			* firmware_type_num="1"
+			*/
+		};
+
+		hisi_wifi_supp {
+			compatible = "hisi,wifi_supp";
+			/*put configs below into overlay.dts of
+			* for these configs at most time are different.
+			*
+			* supp_config_template="/vendor/etc/wifi/wpa_supplicant_hisi.conf"
+			*/
+		};
+
+		hisi_wifi_p2p {
+			compatible = "hisi,wifi_p2p";
+			/*put configs below into overlay.dts of
+			* for these configs at most time are different.
+			*
+			* p2p_config_template="/vendor/etc/wifi/p2p_supplicant_hisi.conf
+			*/
+		};
+
+		hisi_wifi_apd {
+			compatible = "hisi,wifi_hostapd";
+			/*put configs below into overlay.dts of
+			* for these configs at most time are different.
+			*
+			* hostapd_bin_file="/vendor/bin/hostapd_hisi";
+			*/
+		};
+	};
+
+	/*bfgx*/
+	hisi_bfgx:hisi_bfgx {
+		compatible = "hisilicon,hisi_bfgx";
+
+		/*put configs below into overlay.dts of
+		* for these configs at most time are different.
+		* hi1102 configs:
+		* hi1102,uart_port = "/dev/ttyAMA4";
+		* hi1102,gpio_bfgx_wakeup_host = <&gpio22 1 0>;
+		* hi1103 configs:
+		* hi110x,uart_port = "/dev/ttyAMA4";
+		* hi110x,gpio_bfgx_wakeup_host = <&gpio22 1 0>;
+		*/
+	};
+
+	/*customize*/
+	hisi_cust_cfg:hisi_cust_cfg {
+		compatible = "hi110x,customize","hi1102,customize";
+
+		/*put configs below into overlay.dts of
+		* for these configs at most time are different.
+		*
+		* ini_file_name;
+		*/
+	};
+
+	/*hisi gps*/
+	hisi_gps:hisi_gps {
+		compatible = "hisilicon,hisi_gps";
+		/*put configs below into dto.dtsi
+		* for these configs at most time are same, but may be changed in different produt
+		*
+		* clocks = <&clk_gate_gps_ref>, <&clk_mux_gps_ref>, <&clk_gate_mdm2gps0>, <&clk_gate_mdm2gps1>, <&clk_gate_mdm2gps2>;
+		* clock-names = "ref_clk", "mux_clk", "mdm_clk0", "mdm_clk1", "mdm_clk2";
+		*/
+
+		/*put configs below into overlay.dts of
+		* for these configs at most time are different.
+		*
+		* pinctrl-names = "default", "idle";
+		* pinctrl-0 = <&gpio248_pmx_func &gpio248_cfg_func>;
+		* pinctrl-1 = <&gpio248_pmx_idle &gpio248_cfg_idle>;
+		*/
+	};
+
+    /*hisi gps sync*/
+    hisi_gps_sync:hisi_gps_sync {
+        compatible = "hisilicon,hisi_gps_sync";
+        /*put configs below into dto.dtsi
+        * for these configs at most time are same, but may be changed in different produt
+        *
+        * version = <1>;
+        * addr_base = <0xfff11000>;
+        * addr_offset = <0x0b8>;
+        */
+    };
+};

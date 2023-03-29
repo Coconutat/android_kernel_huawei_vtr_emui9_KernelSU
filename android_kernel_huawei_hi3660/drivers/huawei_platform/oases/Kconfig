@@ -1,0 +1,24 @@
+#
+# OASES device configuration
+#
+
+config OASES
+	bool "OASES device"
+	default y
+	depends on ARM || ARM64
+	help
+	  Enable OASES
+
+config OASES_SIGNATURE_SUPPORT
+	bool "OASES patch signature verification"
+	default y
+	depends on OASES
+	help
+	  Enable OASES patch signature verification
+
+config OASES_STATIC_PLTS
+	bool "OASES static PLTs"
+	default y
+	depends on OASES
+	help
+	  Enable static PLT allocation

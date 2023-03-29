@@ -1,0 +1,84 @@
+/{
+	aliases {
+		mshc1 = &dwmmc1;
+		mshc2 = &dwmmc2;
+	};
+
+	/* emmc 5.0 */
+	sdhci0: sdhci@FF3FB000 {
+		compatible = "arasan,sdhci";
+		reg = <0x0 0xff3fb000 0x0 0x1000>;
+		clock-names = "clk_xin", "clk_ahb";
+		clocks = <&clk_gate_emmc0>, <&hclk_gate_emmc0>;
+		interrupt-parent = <&gic>;
+		interrupts = <0 137 4>;
+		bus-width = <8>;
+		non-removable;
+		use-adma;//use-pio, use-dma, use-adma
+		sdhci-adma-64bit;
+		cmdq_check_busy;
+		caps2-mmc-cache-ctrl;
+		caps2-mmc-HC-erase-size;
+		phy-config = <0x0 0x5>;
+		peri-crg-rst-emmc0-bit = <17>;
+		/*0--50ohm,1--33ohm,0x2--66ohm,3--100ohm,4--40ohm*/
+		drv-strength = <4 4>;/*first:host drv-strength,second:dev drv-strength*/
+		status = "ok";
+
+		mmccard: mmccard@0 {
+			reg = <0>;
+			compatible = "mmc-card";
+			broken-hpi;
+		};
+	};
+
+	/* SD */
+	dwmmc1: dwmmc1@FF37F000 {
+		compatible = "hisilicon,hi3660-dw-mshc";
+		reg = <0x0 0xff37f000 0x0 0x1000>;
+		interrupts = <0 139 4>;
+		num-slots = <1>;
+		clocks = <&clk_gate_sd>, <&hclk_gate_sd>;
+		clock-names = "ciu", "biu";
+		fifo-depth = <0x100>;
+		card-detect-delay = <200>;
+		supports-highspeed;
+		pinctrl-names = "default","idle";
+		pinctrl-0 = <&gpio160_pmx_func &gpio161_pmx_func &gpio162_pmx_func
+				&gpio163_pmx_func &gpio164_pmx_func &gpio165_pmx_func
+				&gpio160_cfg_func &gpio161_cfg_func &gpio162_cfg_func
+				&gpio163_cfg_func &gpio164_cfg_func &gpio165_cfg_func>;
+		pinctrl-1 = <&gpio160_pmx_idle &gpio161_pmx_idle &gpio162_pmx_idle
+				&gpio163_pmx_idle &gpio164_pmx_idle &gpio165_pmx_idle
+				&gpio160_cfg_idle &gpio161_cfg_idle &gpio162_cfg_idle
+				&gpio163_cfg_idle &gpio164_cfg_idle &gpio165_cfg_idle>;
+		slot@0 {
+                       reg = <0>;
+                       bus-width = <4>;
+                       disable-wp;
+               };
+	};
+
+	/* wifi */
+	dwmmc2: dwmmc2@FF3FF000 {
+		compatible = "hisilicon,hi3660-dw-mshc";
+		reg = <0x0 0xff3ff000 0x0 0x1000>;
+		interrupts = <0 140 4>;
+		num-slots = <1>;
+		clocks = <&clk_gate_sdio0>, <&hclk_gate_sdio0>;
+		clock-names = "ciu", "biu";
+		fifo-depth = <0x100>;
+		card-detect-delay = <200>;
+		caps2-support-wifi;
+		supports-highspeed;
+		keep-power-in-suspend;
+		pinctrl-names = "default","idle";
+		pinctrl-0 = <>;
+		pinctrl-1 = <>;
+		slot@0 {
+			reg = <0>;
+			bus-width = <4>;
+			disable-wp;
+		};
+	};
+};

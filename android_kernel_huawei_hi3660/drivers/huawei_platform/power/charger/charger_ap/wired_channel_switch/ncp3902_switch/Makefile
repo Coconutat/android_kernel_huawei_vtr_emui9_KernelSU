@@ -1,0 +1,1 @@
+obj-$(CONFIG_WIRED_CHANNEL_NCP3902_SWITCH) += ncp3902_channel_switch.o

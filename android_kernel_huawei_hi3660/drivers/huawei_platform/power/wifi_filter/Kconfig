@@ -1,0 +1,4 @@
+config DOZE_FILTER
+	tristate "Huawei doze wifi filter Support"
+	---help---
+        the wifi filter when enter doze mode,open it

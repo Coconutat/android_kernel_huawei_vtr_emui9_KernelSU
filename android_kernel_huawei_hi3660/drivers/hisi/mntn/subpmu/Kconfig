@@ -1,0 +1,5 @@
+config HISI_SUBPMU
+    bool "subpmu module support"
+    default n
+    help
+      Say yes here to support the subpmu module.

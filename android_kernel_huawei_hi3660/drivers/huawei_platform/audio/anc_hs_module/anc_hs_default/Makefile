@@ -1,0 +1,1 @@
+obj-$(CONFIG_ANC_DEFAULT)	:= anc_hs_default.o

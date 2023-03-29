@@ -1,0 +1,33 @@
+menuconfig ANC_HS_MODULE
+       bool "ANC headset drivers support"
+       default n
+       help
+       Say yes here to support the ANC headset module
+
+if ANC_HS_MODULE
+config ANC_HS_INTERFACE
+	tristate "Support for ANC_HS_INTERFACE"
+	default n
+	---help---
+	 Say Y here if you want to support ANC_HS_INTERFACE
+config ANC_HS
+	tristate "Support for ANC headset"
+	default n
+	---help---
+	 Say Y here if you want to support ANC headset
+config ANC_MAX14744
+	tristate "Support for ANC MAX14744"
+	default n
+	---help---
+	 Say Y here if you want to support ANC MAX14744
+config ANC_DEFAULT
+	tristate "Support for ANC DEFAULT"
+	default n
+	---help---
+	 Say Y here if you want to support ANC DEFAULT
+config ANC_NCX8293
+	tristate "Support for ANC NCX8293"
+	default n
+	---help---
+	 Say Y here if you want to support ANC NCX8293
+endif #ANC_HS_MODULE

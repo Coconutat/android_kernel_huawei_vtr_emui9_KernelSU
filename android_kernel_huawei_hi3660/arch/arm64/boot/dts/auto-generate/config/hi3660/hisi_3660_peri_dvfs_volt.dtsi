@@ -1,0 +1,137 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2012-2013 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+/{
+			hisi_peri_dvfs: peri_dvfs@0xfff31000 {
+				compatible = "hisilicon,soc-peri-dvfs";
+				reg = <0x0 0xfff31000 0x0 0x1000>;
+				status = "ok";
+
+				pvp_edc0: pvp_edc0 {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0x3>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <20>;
+					perivolt-output-names = "pvp_edc0";
+				};
+
+				pvp_vdec: pvp_vdec {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0xC>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <21>;
+					perivolt-output-names = "pvp_vdec";
+				};
+
+				pvp_ldi0: pvp_ldi0 {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0x30>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <22>;
+					perivolt-output-names = "pvp_ldi0";
+				};
+
+				pvp_ldi1: pvp_ldi1 {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0xC0>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <23>;
+					perivolt-output-names = "pvp_ldi1";
+				};
+
+				pvp_venc: pvp_venc {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0x300>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <24>;
+					perivolt-output-names = "pvp_venc";
+				};
+
+				pvp_ispa7: pvp_ispa7 {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0xC00>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <25>;
+					perivolt-output-names = "pvp_ispa7";
+				};
+
+				pvp_ispfunc: pvp_ispfunc {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0x3000>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <26>;
+					perivolt-output-names = "pvp_ispfunc";
+				};
+
+				pvp_ivpcore: pvp_ivpcore {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0xC000>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <27>;
+					perivolt-output-names = "pvp_ivpcore";
+				};
+
+				pvp_usb3otg: pvp_usb3otg {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0x30000>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <28>;
+					perivolt-output-names = "pvp_usb3otg";
+				};
+
+				pvp_socp: pvp_socp {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0xC0000>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <29>;
+					perivolt-output-names = "pvp_socp";
+				};
+
+				pvp_perfstat: pvp_perfstat {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0x300000>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <19>;
+					perivolt-output-names = "pvp_perfstat";
+				};
+
+				pvp_coresight: pvp_coresight {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0xC00000>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <17>;
+					perivolt-output-names = "pvp_coresight";
+				};
+
+				pvp_secp: pvp_secp {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0x03000000>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <30>;
+					perivolt-output-names = "pvp_secp";
+				};
+
+				pvp_secs: pvp_secs {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0x0C000000>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <31>;
+					perivolt-output-names = "pvp_secs";
+				};
+
+				pvp_hold: pvp_hold {
+					compatible = "hisilicon,soc-peri-volt";
+					perivolt-poll-reg = <0x354 0x30000000>;
+					perivolt-poll-lpmcu = <0x350>;
+					perivolt-poll-id = <18>;
+					perivolt-output-names = "pvp_hold";
+				};
+			};
+};

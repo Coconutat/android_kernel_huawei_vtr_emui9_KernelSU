@@ -1,0 +1,13 @@
+#
+# Audiokit configuration
+#
+config AUDIOKIT
+bool "Audio Kit"
+default n
+help
+ choose y to open Audio Kit
+if AUDIOKIT
+source "drivers/devkit/audiokit/dsm_audio/Kconfig"
+source "drivers/devkit/audiokit/deviceboxID/Kconfig"
+source "drivers/devkit/audiokit/smartpakit/Kconfig"
+endif

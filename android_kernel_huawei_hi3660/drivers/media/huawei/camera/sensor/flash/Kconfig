@@ -1,0 +1,123 @@
+if HISI_CAMERA_FLASH
+
+menu "Hisilicon camera flash driver support"
+
+config HISI_CAMERA_TPS61310
+    tristate "TPS61310 camera flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        TPS61310 camera flash driver
+
+config HISI_CAMERA_LM3642
+    tristate "LM3642  flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        LM3642 camera flash driver
+
+config HISI_CAMERA_LM3642_FRONT
+    tristate "LM3642 front flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        LM3642 front camera flash driver
+
+config HISI_CAMERA_LM3642_IR
+    tristate "LM3642 ir flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        LM3642 ir camera flash driver
+
+config HISI_CAMERA_MP3331_IR
+    tristate "MP3331 ir flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        MP3331 front camera flash driver
+
+config HISI_CAMERA_MP3331
+    tristate "MP3331  flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        MP3331 camera flash driver
+
+config HISI_CAMERA_MP3331_FRONT
+    tristate "MP3331 front flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        MP3331 front camera flash driver
+
+config HISI_CAMERA_AW3642
+    tristate "AW3642 flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        AW3642 camera flash driver
+
+config HISI_CAMERA_LM3646_FRONT
+    tristate "LM3646 FRONT control camera flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        LM3646 front camera flash driver
+
+config HISI_CAMERA_LM3646
+    bool "LM3646 camera flash driver"
+    default n
+    depends on HISI_CAMERA_FLASH    
+    ---help---
+        LM3646 front camera flash driver
+config HISI_CAMERA_MP3336
+    bool "MP3336 camera flash driver"
+    default n
+    depends on HISI_CAMERA_FLASH
+    ---help---
+        MP3336 camera flash driver
+
+config HISI_CAMERA_LM3646_MIX
+    bool "LM3646 mix camera flash driver"
+    default n
+    depends on HISI_CAMERA_FLASH
+    ---help---
+        LM3646 mix camera flash driver
+
+config HISI_CAMERA_MP3336_MIX
+    bool "MP3336 mix camera flash driver"
+    default n
+    depends on HISI_CAMERA_FLASH
+    ---help---
+        MP3336 mix camera flash driver
+
+config HISI_CAMERA_MP3336_MIX_IR
+    bool "MP3336 mix camera flash driver with IR"
+    default n
+    depends on HISI_CAMERA_FLASH
+    ---help---
+        MP3336 mix camera flash driver with IR
+
+config HISI_CAMERA_LM3646_MIX_IR
+    bool "LM3646 mix camera flash driver with IR"
+    default n
+    depends on HISI_CAMERA_FLASH
+    ---help---
+        LM3646 mix camera flash driver with IR
+
+config HISI_CAMERA_PMU_LED
+    tristate "PMU LED camera flash driver"
+    depends on HISI_CAMERA_FLASH
+    default n
+    ---help---
+        PMU LED camera flash driver
+
+config HISI_CAMERA_SCHARGER
+    bool "schage camera flash driver"
+    default n
+    depends on HISI_CAMERA_FLASH
+
+endmenu
+
+endif

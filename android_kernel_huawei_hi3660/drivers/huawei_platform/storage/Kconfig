@@ -1,0 +1,4 @@
+source "drivers/huawei_platform/storage/ddrinfo/Kconfig"
+source "drivers/huawei_platform/storage/appinfo/Kconfig"
+source "drivers/huawei_platform/storage/postfsdata/Kconfig"
+source "drivers/huawei_platform/storage/ioinfo/Kconfig"

@@ -1,0 +1,1 @@
+source "drivers/connectivity/hi11xx/hi1103/wifi/1103/Kconfig"

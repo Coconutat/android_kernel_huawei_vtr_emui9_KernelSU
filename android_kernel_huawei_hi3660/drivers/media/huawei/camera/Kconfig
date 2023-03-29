@@ -1,0 +1,103 @@
+comment "Huawei Camera"
+
+# source "drivers/media/huawei/camera/isp/Kconfig"
+source "drivers/media/huawei/camera/hisp/Kconfig"
+source "drivers/media/huawei/camera/sensor/Kconfig"
+source "drivers/media/huawei/camera/laser/Kconfig"
+source "drivers/media/huawei/camera/fd/Kconfig"
+source "drivers/media/huawei/camera/pmic/Kconfig"
+
+source "drivers/media/huawei/camera/platform/Kconfig"
+
+source "drivers/media/huawei/camera/fpga/Kconfig"
+source "drivers/media/huawei/camera/driver_ic/Kconfig"
+source "drivers/media/huawei/camera/dot/Kconfig"
+
+menuconfig HISI_CAMERA_LASER
+    bool "Huawei laser support"
+    default n
+    help
+        Say Y here to enable Laser for Huawei camera
+
+menuconfig HISI_CAMERA_FLASH
+    bool "Huawei flash support"
+    default n
+    help
+        Say Y here to enable Flash for Huawei camera
+menuconfig HISI_CAMERA_FPGA
+    bool "Huawei Camera FPGA support"
+    default n
+    help
+        Say Y here to enable fpga for Huawei camera
+menuconfig HISI_CAMERA_DRIVER_IC
+    bool "Huawei Camera Driver IC support"
+    default n
+    help
+        Say Y here to enable driver ic for Huawei camera
+menuconfig HISI_CAMERA_DOT_PROJECTOR
+    bool "Huawei Camera Dot support"
+    default n
+    help
+        Say Y here to enable dot projector for Huawei camera
+
+config HISI_CAMERA_HISTAR_ISPV110
+    tristate "Support histar ispv110 driver"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Hisilicon histar ispv110 driver.
+
+config HISI_CAMERA_HISTAR_ISPV150
+    tristate "Support histar ispv150 driver"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Hisilicon histar ispv150 driver.
+
+config HISI_CAMERA_HISTAR_ISPV160
+    tristate "Support histar ispv160 driver"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Hisilicon histar ispv160 driver.
+
+config HISI_CAMERA_HISTAR_ISPV120
+    tristate "Support histar ispv120 driver"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Hisilicon histar ispv120 driver.
+
+config HISI_CAMERA_HISTAR_ISPV200
+    tristate "Support histar ispv200 driver"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Hisilicon histar ispv200 driver.
+
+config HISI_CAMERA_HISTAR_ISPV250
+    tristate "Support histar ispv250 driver"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Hisilicon histar ispv250 driver.
+
+config HISI_CAMERA_HISTAR_ISPV210
+    tristate "Support histar ispv210 driver"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Hisilicon histar ispv210 driver.
+
+config HISI_CAMERA_ISP_SECURE
+    tristate "Support histar isp secure"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Hisilicon histar isp secure.
+config HUAWEI_CAMERA_PMIC
+    tristate "Support Camera PMIC"
+    depends on HUAWEI_CAMERA
+    default n
+    ---help---
+        Support Camera PMIC chip

@@ -1,0 +1,6 @@
+
+menuconfig DOME_KEY
+	bool "dome_key driver"
+	default n
+	help
+		If you say yes here you get support for dome_key.

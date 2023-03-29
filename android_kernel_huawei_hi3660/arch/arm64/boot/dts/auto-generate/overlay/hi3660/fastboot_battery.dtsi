@@ -1,0 +1,10 @@
+/ {
+	fastboot_battery: fastboot_battery{
+		compatible = "fastboot,battery";
+		iin_limit_ac = <1200>;
+		iin_limit_usb = <500>;
+		ichrg_limit_ac = <700>;
+		switch_on_voltage = <3450>;
+		status = "disabled";
+	};
+};

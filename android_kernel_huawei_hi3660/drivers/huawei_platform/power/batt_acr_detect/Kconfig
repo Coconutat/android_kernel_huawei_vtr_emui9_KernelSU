@@ -1,0 +1,3 @@
+config HUAWEI_BATT_ACR_DETECT
+	bool "huawei batt acr detect"
+	default n

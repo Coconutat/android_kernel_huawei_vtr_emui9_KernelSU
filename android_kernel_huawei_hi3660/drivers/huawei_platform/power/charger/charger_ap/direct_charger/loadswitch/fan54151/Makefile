@@ -1,0 +1,1 @@
+obj-$(CONFIG_FAN54151) += fan54151.o

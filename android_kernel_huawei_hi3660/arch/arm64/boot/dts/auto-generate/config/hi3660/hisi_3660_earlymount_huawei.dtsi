@@ -1,0 +1,74 @@
+/{
+	firmware {
+		huawei {
+			compatible = "huawei,firmware";
+			fstab {
+				compatible = "huawei,fstab";
+				dfx {
+					compatible = "huawei,dfx";
+					dev = "/dev/block/by-name/dfx";
+					type = "emmc";
+					mnt_flags = "defaults";
+					fsmgr_flags = "defaults";
+					status = "ok";
+				};
+				rrecord {
+					compatible = "huawei,rrecord";
+					dev = "/dev/block/by-name/rrecord";
+					type = "emmc";
+					mnt_flags = "defaults";
+					fsmgr_flags = "defaults";
+					status = "ok";
+				};
+				misc {
+					compatible = "huawei,misc";
+					dev = "/dev/block/by-name/misc";
+					type = "emmc";
+					mnt_flags = "defaults";
+					fsmgr_flags = "defaults";
+					status = "ok";
+				};
+				bfi {
+					compatible = "huawei,bfi";
+					dev = "/dev/block/by-name/bootfail_info";
+					type = "emmc";
+					mnt_flags = "defaults";
+					fsmgr_flags = "defaults";
+					status = "ok";
+				};
+				cust {
+					compatible = "huawei,cust";
+					dev = "/dev/block/by-name/cust";
+					type = "ext4";
+					mnt_flags = "ro";
+					fsmgr_flags = "wait,avb";
+					status = "ok";
+				};
+				version {
+					compatible = "huawei,version";
+					dev = "/dev/block/by-name/version";
+					type = "ext4";
+					mnt_flags = "ro";
+					fsmgr_flags = "wait,avb";
+					status = "ok";
+				};
+				product {
+					compatible = "huawei,product";
+					dev = "/dev/block/by-name/product";
+					type = "ext4";
+					mnt_flags = "ro";
+					fsmgr_flags = "wait,avb";
+					status = "ok";
+				};
+				preload {
+					compatible = "huawei,preload";
+					dev = "/dev/block/by-name/preload";
+					type = "ext4";
+					mnt_flags = "ro";
+					fsmgr_flags = "wait,avb";
+					status = "ok";
+				};
+			};
+		};
+	};
+};

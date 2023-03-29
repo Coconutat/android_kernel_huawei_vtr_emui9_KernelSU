@@ -1,0 +1,54 @@
+/{
+	/*add empty node here*/
+	memory@0 {};       /*4*/
+	reserved-memory {};   /*130*/
+	chosen{};	/*1*/
+	nve_himntn:himntn {};	/*2*/
+	nve_uartctl:uartctl {}; /*4*/
+	hisi_charger: hisi_charger{};   /*4*/
+	fastboot_fsa9685: fastboot_fsa9685{};
+	fastboot_charger: fastboot_charger{};	/*5*/
+	coul_core:coul_core{};   /*6*/
+	fastboot_coul:fastboot_core{};
+	fastboot_battery: fastboot_battery{};	/*6*/
+	fastboot {};   /*9*/
+	iomcu_subsys_config {}; /*3*/
+	pmx0: pinmux@e896c000 {};
+	pmx1: pinmux@fff11000 {};
+	pmx2: pinmux@e896c800 {};
+	pmx3: pinmux@fff11800 {};
+	pmx5: pinmux@ff3b6000 {};
+	pmx6: pinmux@ff3b6800 {};
+	pmx7: pinmux@ff37e000 {};
+	pmx8: pinmux@ff37e800 {};
+	pmx9: pinmux@ff3fd000 {};
+	pmx10: pinmux@ff3fd800 {};
+	pmx11: pinmux@e896c870 {};
+	amba {};  /*500*/
+	hisi_bci_battery:battery {};   /*6*/
+	huawei,lcd_panel {}; /*21*/
+	watchdog0 {};	/*9*/
+	rdr {};	/*10*/
+	slimbusmisc@0xe8050000 {};   /*11*/
+	codecssi@0xe82b9000 {};		/*11*/
+	ipa_sensor0: ipa-sensor@0 {};	/*11*/
+	uart@fff32000 {};	/*16*/
+	panel_lcd_lg_S6E3HF4_5P5 {};	/*20*/
+	panel_lcd_samsung_S6E3HF4_5P5 {};	/*20*/
+	panel_lcd_lg_TD4322_6P0 {};	/*20*/
+	panel_lcd_sharp_TD4322_6P0 {};	/*20*/
+	panel_lcd_jdi_R63452_6P0 {};	/*20*/
+	sdhci0: sdhci@FF3FB000 {};	/*17*/
+	ddr_devfreq@fffc0000 {};	/*20*/
+	hisi_charging_core:hisi_charging_core{};   /*21*/
+	gpu: mali@E82C0000 {};	/*22*/
+	thermal-zones {};	/*45*/
+	ip_freq_autodown: ip_freq_autodown@0xFFF35000 {};	/*48*/
+	codec_controller: codec_controller@e82b9000 {};         /*132*/
+	ddr_devfreq_up_threshold@fffc0000 {};	/*21*/
+	modem_pinctrl {};    /*156*/
+	cpus {};	/*210*/
+	fastboot_pmic_mntn: fastboot_pmic_mntn {}; /*65*/
+	jtagtosd {};
+	sysctrl_reason {}; /*3*/
+};

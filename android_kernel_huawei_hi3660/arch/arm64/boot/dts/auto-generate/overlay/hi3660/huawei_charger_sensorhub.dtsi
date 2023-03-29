@@ -1,0 +1,68 @@
+/ {
+	charging_core_sensorhub:charging_core_sensorhub{
+		compatible = "huawei,charging_core_sensorhub";
+		iin_ac = <2000>;
+		ichg_ac = <1900>;
+		otg_curr = <1200>;
+		iin_usb = <500>;
+		ichg_usb = <500>;
+		iin_nonstd = <1200>;
+		ichg_nonstd = <1000>;
+		iin_bc_usb = <1500>;
+		ichg_bc_usb = <1400>;
+		iin_vr = <1000>;
+		ichg_vr = <1000>;
+		iin_typech = <2000>;
+		ichg_typech = <2100>;
+		typec_support = <0>;
+		iterm = <100>;
+		ichrg_pre_limit = <128>;
+		segment_type = <0>;
+		vdpm_para =
+			"-32767", "90", "4520", "0",
+			"90", "32767", "4600", "0";
+		inductance_para =
+			"-32767", "15", "1600", "0",
+			"15", "32767", "1700", "0";
+		status = "disabled";
+	};
+
+	huawei_charger_sensorhub: huawei_charger_sensorhub {
+		compatible = "huawei,charger_sensorhub";
+		pd_support = <0>;
+		support_usb_nonstandard_ico = <0>;
+		support_standard_ico = <0>;
+		ico_all_the_way = <0>;
+		water_check_enabled = <0>;
+		fcp_vindpm = <4600>;
+		pd_cur_trans_ratio = <88>;
+		status = "disabled";
+	};
+	
+	bq25892_charger_sensorhub: bq25892_charger_sensorhub {
+		compatible = "huawei,bq25892_charger_sensorhub";
+		reg = <0x6B>;
+		gpio_cd = <&gpio22 1 0>;
+		gpio_int = <&gpio22 4 0>;
+		bat_comp = <60>;
+		vclamp = <192>;
+		rilim = <124>;
+		adc_channel_iin = <5>;
+		adc_channel_vbat_sys = <14>;
+		fcp_support = <0>;
+		status = "disabled";
+	};
+
+	hi6523_charger_sensorhub: hi6523_charger_sensorhub {
+		compatible = "huawei,hi6523_charger_sensorhub";
+		reg = <0x6B>;
+		gpio_int = <&gpio22 4 0>;
+		bat_comp = <60>;
+		vclamp = <192>;
+		rilim = <124>;
+		adc_channel_iin = <5>;
+		adc_channel_vbat_sys = <14>;
+		fcp_support = <0>;
+		status = "disabled";
+	};
+};

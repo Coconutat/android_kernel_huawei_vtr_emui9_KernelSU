@@ -1,0 +1,155 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2012-2013 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+  /{
+    nve_himntn:himntn {
+        compatible = "hisilicon,hisi-himntn";
+        himntn = "01111111111110100010110000000000000000101000";
+    };
+
+    rdr_ap_adapter {
+        compatible = "hisilicon,rdr_ap_adapter";
+        reg-dump-regions = <4>; /*NOTE:should be less than 10*/
+        reg-names = "sctrl", "pctrl", "peri_crg", "gic";
+        reg = <0x0 0xFFF0A000 0x0 0x800>,   /*sctrl_base_addr*/
+              <0x0 0xE8A09000 0x0 0xC00>,   /*pctrl_base_addr*/
+              <0x0 0xFFF35000 0x0 0xC00>,   /*peri_crg_base_addr*/
+              <0x0 0xE82B0000 0x0 0x2000>;   /*gic_base_addr*/
+        ldrx2dbg-abs-timer = <0xFFF0A000 0x1000 0x534 0x538>;
+        /* AP_size:0x47FE00 4607.5k
+         * PMU_RESET_RECORD_DDR_AREA_SIZE:0x100 0.25k
+         * AP_EH_ROOT:0x800 2k     按1k字节对齐
+         * all_reg_size = sctrl_size + pctrl_size + peri_size + gic_size
+         *              = 0x4000 16k
+         * all_trace_size = ap_trace_irq_size + ap_trace_task_size + ... + ap_trace_tasklet_size
+         *                = 0x247400 2333k
+         * last_task_size = ap_last_task_struct_size + ap_last_task_stack_size
+         *                = 0x26900 154.25k
+         * all_modu_size = ap_dump_mem_modu_noc_size + ap_dump_mem_modu_ddr_size + ap_dump_mem_modu_tmc_size + ap_dump_mem_modu_gap_size
+         *               = 0x23100 140.25k
+         * Ap_used_size = PMU_RESET_RECORD_DDR_AREA_SIZE + AP_EH_ROOT + all_reg_size + all_trace_size + last_task_size + all_modu_size
+         *              = 0x295700 2645.75k
+         * Ap_remainder_size = AP_size - Ap_used_size
+         *                   = 0x1EA700 1961.75k
+         */
+        /***************AP trace memory area size**************/
+        ap_trace_irq_size = <0x80000>;         /*0x80000 512k*/
+        ap_trace_task_size = <0x80000>;        /*0x80000 512k*/
+        ap_trace_cpu_idle_size = <0x40000>;    /*0x40000 256k*/
+        ap_trace_worker_size = <0x4000>;       /*0x4000 16k*/
+        ap_trace_mem_alloc_size = <0x80000>;   /*0x80000 512k*/
+        ap_trace_ion_alloc_size = <0x80000>;   /*0x80000 512k*/
+        ap_trace_time_size = <0x40000>;        /*0x40000 256K*/
+        /*percpu的轨迹加在此处以上，singe的轨迹加在此处以下，添加顺序和rdr_hisi_ap_hook.h中枚举hook_type添加顺序一致*/
+        ap_trace_cpu_on_off_size = <0x400>;    /*0x400 1k*/
+        ap_trace_syscall_size = <0x0>;         /*0x0 0k*/
+        ap_trace_hung_task_size = <0x1000>;    /*0x1000 4k*/
+        ap_trace_tasklet_size = <0x2000>;      /*0x2000 8k*/
+        ap_trace_diaginfo_size = <0x10000>;    /*0x10000 64k*/
+        /***********AP last task memory alloc switch***********
+        * ap_last_task_switch          1:on    0:off
+        * ap_last_task_struct_size     (NR_CPUS * 0xCC0 + 0x300)  0x6900 26.25k == 8 * 0xCC0 + 0x300 按1k字节对齐
+        * ap_last_task_stack_size      (NR_CPUS * THREAD_SIZE)    0x20000 128k
+        ******************************************************/
+        ap_last_task_switch = <1>;
+        /***************AP dump memory area size**************/
+        ap_dump_mem_modu_noc_size = <0x1000>;   /*0x1000 4k*/
+        ap_dump_mem_modu_ddr_size = <0x2000>;   /*0x2000 8k*/
+        ap_dump_mem_modu_tmc_size = <0x20000>;  /*0x20000 128k for TMC*/
+        ap_dump_mem_modu_gap_size = <0x100>;    /*0x100 256 byte space as the gap, adding modules need before this*/
+        status = "ok";
+    };
+
+    ramoops {
+        compatible = "ramoops";
+        memory-region = <&ramoops_ram>;
+        #address-cells = <2>;
+        #size-cells = <2>;
+        record-size = <0x0 0x20000>;
+        console-size = <0x0 0x80000>;
+        ftrace-size = <0x0 0x0>;
+        pmsg-size = <0x0 0x20000>;
+        dump-oops = <0x1>;
+        ecc-size = <0x0>;
+    };
+
+    rdr {
+        compatible = "hisilicon,rdr";
+        /* Confirm reg definition is same as in hisi_3660_memory.dtsi*/
+        bbox_addr = <&mntn_mem>;
+        rdr-dumpctl = "1111111111100000";
+        rdr-log-max-size = <0x19000000>;
+        rdr-log-max-nums = <20>;
+        rdr-diaginfo-size = <0x20000>;
+        wait-dumplog-timeout = <120000>;
+        rdr_area_num = <17>;
+        unexpected-max-reboot-times = <0x5>;
+        /* EXCEPTIONTRACE is not a core but to get the system exception trace record for each core, it's shared memory for each core. it's just used for getting the memory  */
+        bbox_area_names = "AP", "CP", "TEEOS", "HIFI", "LPM3", "IOM3", "ISP", "IVP", "EMMC", "MODEMAP","CLK", "REGULATOR", "BFM", "HISEE", "NPU", "CONN", "EXCEPTIONTRACE";
+        bbox_area_coreid = <0x1 0x2 0x4 0x8 0x10 0x20 0x40 0x80 0x100 0x200 0x400 0x800 0x1000 0x2000 0x4000 0x8000 0x10000>;
+        /* bbox_men_addr and bbox_mem_size is configured in hisi_3660_memory.dtsi, node_name is mntn_mem:bbox-mem
+         * bbox_men_size:0x800000 8M
+         * RDR_BASEINFO_SIZE:0x200 0.5k
+         * AP_size = bbox_men_size - RDR_BASEINFO_SIZE - CP_size - TEEOS_size - HIFI_size - LPM3_size - IOM3_size - ISP_size
+         *           - IVP_size - EMMC_size - MODEMAP_size - CLK_size - REGULATOR_size - BFM_size - HISEE_size - NPU_size - CONN_SIZE - EXCEPTIONTRACE_size
+         *         = 0x46FE00  4543.5K
+         */
+        rdr_area_sizes = <0 0x180000 0x40000 0x40000 0x40000 0x40000 0x40000 0x40000 0x40000 0x0 0x10000 0x10000 0x10000 0x10000 0x0 0x0 0x40000>;
+        status = "ok";
+    };
+
+    exceptiontrace {
+        compatible = "hisilicon,exceptiontrace";
+
+        area_num = <2>;
+        area_names = "AP", "BL31";
+        /* Note: the total size coming from above rdr dts record */
+        area_sizes = <0x200 0x3F100>;
+        status = "ok";
+    };
+
+    sysctrl_reason {
+        compatible = "hisilicon,sysctrl_reason";
+        sysctrl_reason_string = "AP_S_TSENSOR0", "AP_S_TSENSOR1", "G3D_S_G3DTSENSOR", "softreset", "AP_S_AWDT", "CHARGER_S_WDT", "LPM3_S_LPMCURST", "CP_S_CPTSENSOR",
+                                "IOM3_S_IOMCURST", "ASP_S_ASPWD", "CP_S_CPWD", "CP_S_CPWD", "IVP_S_IVPWD", "ISP_S_ISPWD", "AP_S_DDR_SELFREFLASH", "AP_S_DDR_FATAL_INTER",
+                                "AP_S_DDR_FATAL_INTER", "AP_S_DDR_FATAL_INTER", "AP_S_DDR_FATAL_INTER", "AP_S_DDR_UCE_WD", "AP_S_DDR_UCE_WD", "AP_S_DDR_UCE_WD", "AP_S_DDR_UCE_WD",
+                                "OCBC_S_WD";
+        sysctrl_reason_offset = <0x0 0x1 0x2 0x3 0x4 0x5 0x6 0x7 0x8 0x9 0xa 0xb 0xc 0xd 0xe 0xf 0x10 0x11 0x12 0x13 0x14 0x15 0x16 0x17>;
+    };
+
+    /*gpio needs to be pulled down when power off*/
+    powerhold: powerhold{
+        compatible = "hisi,powerhold";
+        reg = <0x0 0xFFF0B000 0x0 0x1000>;/*gpio176 base address*/
+        offset = <0x0>;/*gpio176 offset  address*/
+        status = "ok";
+    };
+
+    hisee_mntn {
+        compatible = "hisee-mntn";
+        memory-region = <&fastboot_cma>;
+        status = "ok";
+    };
+
+    hifi-cma {
+        compatible = "hisilicon,hifi-cma";
+        memory-region = <&cma_align2M>;
+        enable-status = "true";
+        hisi-align = <0x0>;
+        cma-sec-config = "atf";
+        status = "ok";
+    };
+    dfx_partition {
+        compatible = "hisilicon,dfx_partition";
+        dfx_module_num = <2>;
+        dfx_noreboot_size = <0x700000>;
+        dfx_zerohung_size = <0x10000>;
+    };
+  };

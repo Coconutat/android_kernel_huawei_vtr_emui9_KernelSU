@@ -1,0 +1,6 @@
+menuconfig HUAWEI_DTV_MMTUNER
+	bool "Panasonic mm_tuner driver support"
+	default n
+	help
+	This module adds support for wireless adapters based on
+	Panasonic MN8855x chipset.

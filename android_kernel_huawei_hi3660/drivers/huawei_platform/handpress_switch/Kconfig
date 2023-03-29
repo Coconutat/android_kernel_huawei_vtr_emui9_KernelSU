@@ -1,0 +1,5 @@
+menuconfig HW_HANDPRESS_SWITCH
+	bool "handpress switch driver"
+	default n
+	help
+		If you say yes here you get support for handpress switch.

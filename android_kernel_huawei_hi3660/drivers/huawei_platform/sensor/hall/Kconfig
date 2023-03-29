@@ -1,0 +1,8 @@
+#
+# hall sensor driver configuration
+#
+menuconfig HUAWEI_HALL_INPUTHUB
+	bool "hall sensor ak8789 driver"
+	default n
+	help
+	Say yes here to support for light hall ak8789.

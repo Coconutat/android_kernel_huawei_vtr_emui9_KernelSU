@@ -1,0 +1,5 @@
+config HW_NETFILTER_MODULE
+	tristate "kernel huawei custom netfilter hook for ad filter and app download monitor"
+    default n
+    help
+	  This module adds support for ad filter and app download monitor

@@ -1,0 +1,5 @@
+config HW_DPIMARK_MODULE
+	tristate "kernel huawei custom packet mark based on DPI rules"
+    default n
+    help
+	  This module adds support mark packets based on DPI rules

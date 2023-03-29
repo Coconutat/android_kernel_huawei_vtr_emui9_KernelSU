@@ -1,0 +1,19 @@
+if HISI_CAMERA_DRIVER_IC
+
+config HISI_CAMERA_DRIVER_IC_MP3336
+    tristate "mp3336 camera driver ic driver"
+    depends on HISI_CAMERA_DRIVER_IC
+    default n
+    ---help---
+        mp3336 camera driver ic driver
+
+		
+config HISI_CAMERA_DRIVER_IC_MP3331
+    tristate "mp3331 camera driver ic driver"
+    depends on HISI_CAMERA_DRIVER_IC
+    default n
+    ---help---
+        mp3331 camera driver ic driver
+		
+endif
+

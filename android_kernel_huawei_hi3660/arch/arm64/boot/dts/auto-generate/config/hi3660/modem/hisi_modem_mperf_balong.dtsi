@@ -1,0 +1,29 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+/include/ "skeleton.dtsi"
+
+/{
+	mperf:mperf@mem {
+		 compatible = "hisilicon,mperf_balong";
+		 memory-region = <&mperf_memory>;
+		 nr_cpus = <1>;
+	 };
+	 	
+		
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		mperf_memory:mperf{
+			size = <0x0 0x900000>;
+			alignment = <0x0 0x800000>;
+			alloc-ranges = <0x0 0x0 0x1 0x0>;
+			compatible = "hisi_mperf";
+			status ="disable"; 
+		};
+
+	};
+};

@@ -1,0 +1,85 @@
+#
+# Huawei Kernel Harden
+#
+
+menu "Huawei Kernel Harden"
+
+config HUAWEI_KERNEL_STACK_RANDOMIZE
+    bool "stack randomize"
+    depends on ARM64 && !KASAN
+    default n
+    help
+    Randomizes the base address of process's kernel stack.
+
+config HUAWEI_KERNEL_STACK_RANDOMIZE_STRONG
+    bool "stack randomize strong"
+    depends on ARM64 && !KASAN
+    default n
+    help
+    Randomizes the base address of process's thread_info struct.
+
+config HUAWEI_KERNEL_STACK_NX
+    bool "stack non executeable"
+    depends on ARM64
+    default n
+    help
+    Set process's kernel stack with non execution.
+
+config HUAWEI_KERNEL_MODULE_RANDOMIZE
+    bool "module randomize"
+    depends on ARM64
+    default n
+    help
+    Randomizes the base address of loaded kernel module.
+
+config HUAWEI_KASLR_DEBUGFS
+	bool "kaslr debugfs interface"
+	depends on DEBUG_FS
+	default n
+	help
+	The debugfs interface for kaslr feature.
+
+config HUAWEI_HIDESYMS
+	bool "hide symbols"
+	default n
+	help
+	Hide some sensitive kernel symbols
+
+config HUAWEI_HIDESYMS_DEBUGFS
+	bool "hide symbols debugfs interface"
+	depends on HUAWEI_HIDESYMS && DEBUG_FS
+	default n
+	help
+	Turn on the debugfs interface for hide symbols
+
+config HW_SLUB_SANITIZE
+	bool "Sanitize Slub allocations"
+	depends on SLUB
+	default n
+	help
+         Zero fill slab allocations on free, reducing the lifetime of
+         sensitive data and helping to mitigate use-after-free bugs.
+         For slabs with debug poisoning enabling, this has no impact.
+
+config HUAWEI_DOUBLE_FREE_CHECK_DEBUGFS
+	bool "double free check debugfs interface"
+	depends on DEBUG_FS
+	default n
+	help
+	The debugfs interface for double free check feature.
+
+config HUAWEI_HARDEN_DOUBLE_FREE_CHECK_DEBUGFS
+	bool "harden double free check debugfs interface"
+	depends on DEBUG_FS
+	default n
+	help
+	The debugfs interface for harden double free check feature.
+
+config HUAWEI_FREELIST_RANDOM_DEBUGFS
+	bool "freelist random debugfs interface"
+	depends on DEBUG_FS
+	default n
+	help
+	The debugfs interface for freelist random feature.
+endmenu
+#a blank line must be existed

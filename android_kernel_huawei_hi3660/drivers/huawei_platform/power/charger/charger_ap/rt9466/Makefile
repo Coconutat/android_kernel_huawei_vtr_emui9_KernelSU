@@ -1,0 +1,1 @@
+obj-$(CONFIG_RT9466_CHARGER) += rt9466.o

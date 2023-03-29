@@ -1,0 +1,18 @@
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/include/ "fastboot.dtsi"
+/include/ "hi3660_udp_EVB8_VERD_v110_pin.dtsi"
+/include/ "hi3660_udp_EVB8_VERD_config.dtsi"
+/ {
+	hisi,boardid = <5 0 9 3>;
+	hisi,boardname = "hi3660_udp_EVB8_VERD_v110";
+	hisi,gpu_arch = "mimir";
+	hisi,camera_arch = "platform_v110";
+};

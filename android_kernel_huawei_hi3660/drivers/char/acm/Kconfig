@@ -1,0 +1,30 @@
+menu "Access Control Module"
+
+config ACM
+    bool "Enable Access Control Module"
+    default n
+    ---help---
+        Access Control Module device driver
+
+config ACM_DSM
+	bool "Enable ACM dsm features"
+	depends on HUAWEI_DSM && ACM
+	default n
+	---help---
+		Enable dsm features for ACM
+
+config ACM_DEBUG
+	bool "Enable ACM debug features"
+	depends on ACM
+	default n
+	---help---
+		Enable debug info print and debugfs
+		features for ACM
+
+config ACM_TIME_COST
+	bool "Enable ACM time measurement"
+	depends on ACM_DEBUG
+	default n
+	---help---
+		Enable time measurement for ACM
+endmenu

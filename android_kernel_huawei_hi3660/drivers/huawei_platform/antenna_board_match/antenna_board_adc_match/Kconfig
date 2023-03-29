@@ -1,0 +1,5 @@
+menuconfig HW_ANTENNA_BOARD_ADC_MATCH
+	bool "antenna_board_adc_match support"
+	default n
+	help
+	Say yes here to support antenna boardid adc detection

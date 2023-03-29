@@ -1,0 +1,13 @@
+config HISI_IRQ_AFFINITY
+	bool "Hisilicon irq affinity"
+	depends on SMP
+	default n
+	help
+	  Driver for irq affinity recovery in smp system
+
+config HISI_IRQ_AFFINITY_DEBUGFS
+	bool "Hisilicon irq affinity debugfs"
+	depends on HISI_IRQ_AFFINITY && HISI_DEBUG_FS
+	default n
+	help
+	  Debug code for HISI irq affinity recovery in smp system

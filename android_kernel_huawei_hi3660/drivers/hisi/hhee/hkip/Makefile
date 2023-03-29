@@ -1,0 +1,1 @@
+obj-$(CONFIG_HISI_HHEE)		+= hvc.o rodata.o critdata.o

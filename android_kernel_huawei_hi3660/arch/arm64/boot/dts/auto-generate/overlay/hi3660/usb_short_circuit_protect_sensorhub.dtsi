@@ -1,0 +1,11 @@
+/ {
+	usb_short_circuit_protect_sensorhub: usb_short_circuit_protect_sensorhub{
+		compatible = "huawei,usb_short_circuit_protect_sensorhub";
+		gpio_usb_short_circuit_protect = <&gpio4 2 0>;
+		adc_channel_uscp = <5>;
+		open_mosfet_temp = <10>;
+		close_mosfet_temp = <9>;
+		interval_switch_temp = <7>;
+		status = "disable";
+	};
+};

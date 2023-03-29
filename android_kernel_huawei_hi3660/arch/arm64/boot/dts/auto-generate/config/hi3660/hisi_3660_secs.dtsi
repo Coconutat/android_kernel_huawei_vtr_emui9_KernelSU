@@ -1,0 +1,17 @@
+/*
+ * Hisilicon Ltd. hi3xxxASIC SoC
+ *
+ * Copyright (C) 2013 Hisilicon Technologies CO., Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+/{
+	hisi_secs: secs_power_ctrl {
+		compatible = "hisilicon,secs_power_ctrl";
+		sec-s-buring-supply = <&sec_s>;
+		sec-s-regulator-enable;
+		secs-clk-freq-adapt;
+	};
+};

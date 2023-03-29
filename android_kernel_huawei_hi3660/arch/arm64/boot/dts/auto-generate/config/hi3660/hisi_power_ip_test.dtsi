@@ -1,0 +1,16 @@
+ / {
+	regu_ip: test_regu_ip@0xFFF35000 {
+		compatible = "hisilicon,regulator-ip-test";
+		reg = <0x0 0xFFF35000 0x0 0x1000>; /* 4K */
+		vivobustest-supply = <&vivobus>;
+		dsssubsystest-supply = <&dsssubsys>;
+		vcodecsubsystest-supply = <&vcodecsubsys>;
+		vdectest-supply = <&vdec>;
+		venctest-supply = <&venc>;
+		ispsubsystest-supply = <&ispsubsys>;
+		ivptest-supply = <&ivp>;
+		g3dtest-supply = <&g3d>;
+		asptest-supply = <&asp>;
+		mmbuftest-supply = <&mmbuf>;
+	};
+};

@@ -1,0 +1,16 @@
+menu "Hisi HW Vote options"
+
+config HISI_HW_VOTE
+    tristate "Hisilicon Hardware Vote Driver"
+    default n
+    help
+      This enables the hisilicon Hardware Vote driver.
+
+config HISI_HW_VOTE_DEBUG
+    tristate "Hisilicon Hardware Vote Driver Debug"
+    depends on HISI_HW_VOTE && HISI_DEBUG_FS
+    default n
+    help
+      This enables the hisilicon Hardware Vote Driver Debug.
+
+endmenu

@@ -1,0 +1,154 @@
+/{
+	smmu {
+		compatible = "hisi,hisi-smmu";
+		phy_pgd_base = <0x0 0x34A78000>;
+	};
+	smmu_lpae{
+		compatible = "hisi,hisi-smmu-lpae";
+		status = "ok";
+	};
+
+	memory@0 {
+		device_type = "memory";
+		reg = <0x0 0x00400000 0x0 0xBFE00000>;
+	};
+
+	/* static-region */
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		/*Please modify HISEE_LOG_SPACE_ADDR_MIN and HISEE_LOG_SPACE_ADDR_MAX defined in atf for hisee mntn,
+		if you modify any value here!!!*/
+		fastboot_cma: fastboot-cma-mem {
+			reg = <0x0 0x16c00000 0x0 0x1400000>;
+			compatible = "shared-dma-pool";
+			hisi,cma-sec;
+			sec-attr = <0x0 0x0>;
+			reusable;
+			status = "ok";
+		};
+
+		cma_align2M: cma_align2M {
+			reg = <0x0 0x18000000 0x0 0x2000000>;
+			compatible = "shared-dma-pool";
+			order-per-bit = <9>;
+			reusable;
+			sec-attr = <0x0 0x10>;
+			status = "ok";
+		};
+
+		cma_align4K: cma_align4K {
+			reg = <0x0 0x1a000000 0x0 0xc00000>;
+			compatible = "shared-dma-pool";
+			reusable;
+			status = "ok";
+		};
+
+		isp_cma: isp-boot {
+			reg = <0x0 0x1AC00000 0x0 0x2400000>;
+			compatible = "shared-dma-pool";
+			reusable;
+		};
+
+		isp-boot-nocma {
+			reg = <0x0 0x1D000000 0x0 0x100000>;
+			no-map;
+		};
+
+		ivp {
+			reg = <0x0 0x1D100000 0x0 0x100000>;
+			no-map;
+		};
+
+		secos {
+			reg = <0x0 0x1d200000 0x0 0x3000000>;
+			no-map;
+		};
+
+		bl31 {
+			reg = <0x0 0x20200000 0x0 0x200000>;
+			no-map;
+		};
+
+		sensorhub-s {
+			reg = <0x0 0x20400000 0x0 0x600000>;
+			no-map;
+		};
+
+		ramoops_ram:pstore-mem{
+			reg = <0x0 0x20A00000 0x0 0x100000>;
+		};
+
+		/*fastboot kernel android reserve mem; non secure;no map*/
+		fka-mem{
+			reg = <0x0 0x20B00000 0x0 0x3F000>;
+			no-map;
+		};
+
+		/* At the end of fka-mem */
+		mntndump {
+			reg = <0x0 0x20B3F000 0x0 0x1000>;
+			no-map;
+		};
+
+		/* Temporary name  */
+		fka-mem_part2{
+			reg = <0x0 0x20B40000 0x0 0x40000>;
+			no-map;
+		};
+
+		sensorhub-share-mem {
+			reg = <0x0 0x20B80000 0x0 0x80000>;
+			no-map;
+		};
+
+		logo-buffer {
+			reg = <0x0 0x21000000 0x0 0x3000000>;
+			status = "disable";
+		 };
+
+		kerneldump {
+			reg = <0x0 0x40000000 0x0 0x20000000>;
+			status = "disable";
+		};
+
+		app_no_allocate {
+			reg = <0x0 0x0 0x0 0x1000>;
+		};
+
+		badpage {
+			reg = <0x1110 0x0 0x0 0x1000>;
+			bad-range = <0x0 0x24000000 0x0 0x40000000>,
+			            <0x0 0x90000000 0xffffffff 0xffffffff>;
+			no-map;
+			status = "disable";
+		};
+	};
+
+	/* dynamic-region */
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		tui_cma: tui-mem {
+			size  = <0x0 0x2000000>;
+			alignment = <0x0 0x2000000>;
+			alloc-ranges = <0x0 0x0 0x1 0x0>;
+			compatible = "shared-dma-pool";
+			reusable;
+			status = "disabled";
+		};
+
+		modem_xmode_memory: xmode-data {
+			size = <0x0 0x1F400000>;
+			alignment = <0x0 0x100000>;
+			alloc-ranges = <0x0 0x0 0x1 0x0>;
+			compatible = "modem_xmode_region";
+			region-name = "xmode-data";
+			status = "disabled";
+		};
+	};
+};

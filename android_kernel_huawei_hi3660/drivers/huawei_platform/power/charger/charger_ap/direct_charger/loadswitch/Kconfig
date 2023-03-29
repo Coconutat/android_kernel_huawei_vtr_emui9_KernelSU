@@ -1,0 +1,13 @@
+source "drivers/huawei_platform/power/charger/charger_ap/direct_charger/loadswitch/dual_loadswitch/Kconfig"
+#source "drivers/huawei_platform/power/charger/direct_charger/loadswitch/fan54151/Kconfig"
+#source "drivers/huawei_platform/power/charger/direct_charger/loadswitch/rt9748/Kconfig"
+config DUAL_LOADSWITCH
+	bool "dual_loadswitch"
+	default n
+config FAN54151
+	bool "fan54151"
+	default n
+config RT9748
+	bool "rt9748"
+	default n
+

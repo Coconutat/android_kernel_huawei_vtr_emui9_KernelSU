@@ -1,0 +1,5 @@
+config AK4376
+    tristate "AK4376 Driver for headset hifi"
+	default n
+	help
+		Say Y to enable AK4376 Driver Support For headset hifi

@@ -1,0 +1,5 @@
+config USB_AUDIO_COMMON
+	tristate "Support for usb audio common control"
+	default n
+	---help---
+	 Say Y here if you want to support usb audio common control

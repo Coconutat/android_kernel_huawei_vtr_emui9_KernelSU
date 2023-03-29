@@ -1,0 +1,12 @@
+menuconfig HUAWEI_EMCOM
+    bool "Huawei emcom feature support"
+    default n
+    help
+    Say yes here to support emcom feature
+
+if HUAWEI_EMCOM
+source "drivers/huawei_platform/emcom/argo/Kconfig"
+source "drivers/huawei_platform/emcom/xengine/Kconfig"
+source "drivers/huawei_platform/emcom/smartcare/Kconfig"
+source "drivers/huawei_platform/emcom/nweval/Kconfig"
+endif # if HUAWEI_EMCOM

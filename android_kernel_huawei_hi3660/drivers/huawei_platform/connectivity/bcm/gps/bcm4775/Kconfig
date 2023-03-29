@@ -1,0 +1,6 @@
+menuconfig BCMGPS4775
+	tristate "Bcm4775 gps support"
+	default n
+	help
+	  Say Y here to enable bcm4775 gps support. This allows
+	  ap to control this module.

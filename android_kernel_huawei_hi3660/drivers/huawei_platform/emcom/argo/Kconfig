@@ -1,0 +1,3 @@
+config TCP_ARGO
+	bool "TCP ARGO (Anti Retransmission Gap Optimization)"
+	default n

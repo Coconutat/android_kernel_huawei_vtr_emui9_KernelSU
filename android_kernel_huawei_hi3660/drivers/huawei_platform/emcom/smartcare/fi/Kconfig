@@ -1,0 +1,4 @@
+config HW_SMARTCARE_FI
+	bool "Huawei Smartcare FI"
+	depends on HW_NETWORK_MEASUREMENT
+	default n

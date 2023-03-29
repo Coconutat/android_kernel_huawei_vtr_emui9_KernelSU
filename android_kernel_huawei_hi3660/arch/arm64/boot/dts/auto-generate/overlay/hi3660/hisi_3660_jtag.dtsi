@@ -1,0 +1,36 @@
+/*
+ * Hisilicon Ltd. Hi3660 SoC
+ *
+ * Copyright (C) 2012-2013 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+  /{
+    jtagtosd {
+        compatible = "hisilicon,jtagtosd";
+        sdio-ldo = <&ldo9>;
+        reg = <0x0 0xFFF0A854 0x0 0x1000>;
+        value = <0x80000001>;
+        mask = <0x800000FF>;
+        sel0_pd_gpio = <0x7F>;
+    };
+
+    djtagtosd{
+        compatible = "hisilicon,djtagtosd";
+        reg = <0x0 0xFFF0A854 0x0 0x1000>;
+        value = <0x80000002>;
+        mask = <0x800000FF>;
+        sel0_pd_gpio = <0x7F>;
+    };
+
+    uart6tosd{
+        compatible = "hisilicon,uart6tosd";
+        reg = <0x0 0xFFF0A854 0x0 0x1000>;
+        value = <0x80000032>;
+        mask = <0x800000FF>;
+        sel0_pd_gpio = <0x7F>;
+    };
+  };

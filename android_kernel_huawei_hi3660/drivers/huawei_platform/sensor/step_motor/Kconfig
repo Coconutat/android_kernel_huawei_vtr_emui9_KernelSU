@@ -1,0 +1,8 @@
+#
+# step motor driver configuration
+#
+menuconfig STEP_MOTOR
+	bool "huawei step motor driver"
+	default n
+	help
+	Say yes here to support for step motor.

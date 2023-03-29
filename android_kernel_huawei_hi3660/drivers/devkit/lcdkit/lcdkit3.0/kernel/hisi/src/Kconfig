@@ -1,0 +1,9 @@
+#
+# lcdkit hisi driver configuration
+#
+
+menuconfig LCD_KIT_HISI
+	bool "lcd kit 3.0 hisi driver"
+	default n
+	help
+	   If you say yes here you get support for lcd kit hisi driver.

@@ -1,0 +1,31 @@
+
+config HISI_COUL
+        bool "hisi coul"
+        default n
+config HISI_COUL_HI6421V500
+        bool "hisi hi6421v500 coul"
+        default n
+config HISI_COUL_HI6421V600
+	bool "hisi hi6421v600 coul"
+	default n
+config HISI_COUL_HI6421V600_SPMI
+	bool "hisi hi6421v600_spmi coul"
+	default n
+config HISI_COUL_HI6555V100
+        bool "hisi hi6555v100 coul"
+        default n
+config HISI_COUL_HI6555V200
+        bool "hisi hi6555v200 coul"
+        default n
+config HISI_COUL_HI6421V700
+	bool "hisi hi6421v700 coul"
+	default n
+config HISI_COUL_HI6XXX
+	bool "hisi hi6XXX coul"
+	default n
+config HISI_COUL_TEST
+        bool "hisi coul test"
+        default n
+config HISI_COUL_POLAR
+        bool "hisi coul polar"
+        default n

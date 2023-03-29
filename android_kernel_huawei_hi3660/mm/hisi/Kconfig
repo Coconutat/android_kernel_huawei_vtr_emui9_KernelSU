@@ -1,0 +1,32 @@
+menuconfig HISI_MM
+	bool "Hisilicon MM support"
+	---help---
+	  This option add some hisilicon mm codes, needed by following modules.
+
+if HISI_MM
+
+config HISI_SLOW_PATH_COUNT
+	bool "page alloc enter slow path count"
+	default n
+	help
+	  Say 'Y' here is you want to count page alloc slow path.
+
+endif
+
+config HISI_PMALLOC
+	bool "Protectable Memory Allocator"
+	default y
+	depends on MMU
+	depends on HISI_MM
+	select  GENERIC_ALLOCATOR
+	help
+	It allows to write-protect variables allocated dynamically
+	ls /sys/kernel/pmalloc
+
+config DEBUG_HISI_PMALLOC
+	bool "Tests for Protectable Memory Allocator"
+	default y
+	depends on HISI_PMALLOC && HISI_HHEE_DEBUG
+	help
+	Various entries are listed under /sys/kernel/debug/pmalloc
+

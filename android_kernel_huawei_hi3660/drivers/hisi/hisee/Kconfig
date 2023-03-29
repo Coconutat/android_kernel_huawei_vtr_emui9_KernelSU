@@ -1,0 +1,124 @@
+config HISI_HISEE
+	depends on HISI_MAILBOX
+	bool "Hisilicon hisee "
+	default n
+	help
+	  Hisi hisee driver
+
+config HISEE_POWER_MANAGE_COUNT
+	depends on HISI_HISEE
+	bool "Hisilicon hisee power manage counter"
+	default n
+	help
+	  Hisi hisee driver
+
+config HISI_HISEE_SHUTDOWN_SWIPE
+	depends on HISI_HISEE
+	bool "Hisilicon hisee shutdown swipe"
+	default n
+	help
+	  whether to support hisee shutdown swipe
+
+config FAKE_HISEE_SHUTDOWN_SWIPE_SUPPORT
+	depends on HISI_HISEE_SHUTDOWN_SWIPE
+	bool "Hisilicon fake hisee shutdown swipe"
+	default n
+	help
+	  whether to support fake hisee shutdown swipe
+
+config HISEE_APPLET_APDU_TEST_OPTIMIZATION
+	depends on HISI_HISEE
+	bool "Hisilicon hisee applet apdu test optimize"
+	default n
+	help
+	  Hisi hisee driver used to optimize the apdu
+	  test cmd.It's orginal name is CONFIG_HISEE_
+	  CHIPTEST_SUPPORT_APPLET_OPTIMIZATION.
+
+config HICOS_MISCIMG_PATCH
+	depends on HISI_HISEE
+	bool "Hisilicon hisee msic patch driver"
+	default n
+	help
+	  Hisi hisee driver used to upgrade misc patch.
+	  It's orginal name is CFG_HICOS_MISCIMG_PATCH, the
+	  name used in cos is also named CFG_HICOS_MISCIMG_PATCH.
+
+config MISCIMG_SECUPGRADE
+	depends on HISI_HISEE
+	bool "Hisilicon hisee misc upgrade"
+	default n
+	help
+	  Hisi hisee driver used to upgrade misc image.
+
+config HISEE_SUPPORT_MULTI_COS
+	depends on HISI_HISEE
+	bool "Hisilicon hisee support multi cos"
+	default n
+	help
+	  Hisi hisee driver used to support multi cos.
+	  It's orginal name is HISEE_SUPPORT_MULTI_COS.
+
+config HISEE_NEW_COS_VERSION_HEADER
+	depends on HISI_HISEE
+	bool "Hisilicon hisee has new cos version format"
+	default n
+	help
+	  Hisi hisee driver used to support new cos version format.
+
+config HISEE_NEW_COSID_HEADER
+	depends on HISEE_SUPPORT_MULTI_COS
+	bool "Hisilicon hisee has new cos id format"
+	default n
+	help
+	  Hisi hisee driver used to support new cos id format.
+
+config HISEE_SUPPORT_8_COS
+	depends on HISEE_SUPPORT_MULTI_COS
+	bool "Hisilicon hisee can support 8 cos"
+	default n
+	help
+	  Hisi hisee driver used to support 8 cos.
+
+config HISI_HISEE_SUPPORT_CASDKEY
+	depends on HISI_HISEE
+	bool "Hisilicon hisee support CASD key"
+	default n
+	help
+	  whether hisee support CASD key
+
+config HISEE_SUPPORT_INSE_ENCRYPT
+	depends on HISI_HISEE
+	bool "Hisilicon hisee support inse encryption for bio, pin code and fingerprint."
+	default n
+	help
+	  whether hisee support inse encryption
+
+config HISEE_FACTORY_SECURITY_CHECK
+	depends on HISI_HISEE
+	bool "Hisilicon hisee support factory security check."
+	default n
+	help
+	  whether hisee support factory security check
+
+config HISEE_NFC_IRQ_SWITCH
+	depends on HISI_HISEE
+	bool "Hisilicon hisee support nfc irq switch."
+	default n
+	help
+	  whether hisee support nfc irq switch
+
+config HISEE_SUPPORT_OVERSEA
+	depends on HISI_HISEE
+	bool "Hisilicon hisee support oversea feature."
+	default n
+	help
+	  whether hisee support oversea feature
+
+config HISI_HISEE_MNTN_RESET_IRQ_SEPARATE
+	depends on HISI_HISEE
+	bool "Hisilicon hisee reset use separate interrupts."
+	default n
+	help
+	  whether hisee reset support separate interrupts feature
+

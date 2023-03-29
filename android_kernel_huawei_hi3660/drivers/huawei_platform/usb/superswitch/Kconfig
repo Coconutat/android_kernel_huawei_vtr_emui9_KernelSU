@@ -1,0 +1,5 @@
+config SUPERSWITCH_FSC
+	tristate "fsc superswitch support"
+	depends on SUPERSWITCH
+	help
+	  Say Y here to enable fsc superswitch support.

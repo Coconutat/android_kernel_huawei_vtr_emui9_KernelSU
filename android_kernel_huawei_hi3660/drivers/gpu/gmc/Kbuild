@@ -1,0 +1,15 @@
+
+SRC := \
+	gmc.c	\
+	gmc_storage.c
+
+ccflags-y += $(DEFINES)
+
+ifneq ($(TARGET_BUILD_VARIANT),user)
+EXTRA_CFLAGS += -DGPU_GMC_DEBUG
+endif
+
+obj-$(CONFIG_GPU_GMC_GENERIC) += gmc.o
+obj-$(CONFIG_GPU_GMC_GENERIC) += gmc_storage.o
+
+EXTRA_CFLAGS += -Idrivers/hisi/tzdriver/libhwsecurec

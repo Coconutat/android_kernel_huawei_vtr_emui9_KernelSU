@@ -1,0 +1,5 @@
+menuconfig OTG_DUAL_ROLE
+	bool "OTG_DUAL_ROLE support"
+	default n
+	help
+	Say Y here to enable dummy otg dual role driver.

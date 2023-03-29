@@ -1,0 +1,5 @@
+menuconfig MAXQ616_POWER_SWITCH
+	bool "irda MAXQ616 feature driver"
+	default n
+	help
+	Say yes here to support Infrared remote control feature.

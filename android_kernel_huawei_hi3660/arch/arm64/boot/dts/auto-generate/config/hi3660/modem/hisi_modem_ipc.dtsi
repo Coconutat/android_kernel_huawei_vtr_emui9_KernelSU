@@ -1,0 +1,33 @@
+/*
+ * Hisilicon Ltd Balong SOC
+ */
+
+
+
+/{
+	ipc_hisi_modem:ipc_hisi_modem@0xFF011000 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,ipc_balong_app";
+		reg = <0x0 0xFF011000 0x0 0x1000>;
+		interrupts = <0 154 4>, <0 155 4>;
+		status = "ok";
+	};
+	
+	ipc_hisi_modem_s:ipc_hisi_modem_s@0xFF010000 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,ipc_balong_app_s";
+		reg = <0x0 0xFF010000 0x0 0x1000>;
+		interrupts = <0 310 4>, <0 311 4>;
+		status = "ok";
+	};
+
+	ipc_hisi_v230_mdm:ipc_hisi_v230_mdm@0xE896B000 {
+		compatible = "hisilicon,ipc_v230_app";
+		reg = <0x0 0xE896B000 0x0 0x1000>;
+		src_id = <5>;
+		recv_mbx_id = <19>;
+		status = "ok";
+	};
+};

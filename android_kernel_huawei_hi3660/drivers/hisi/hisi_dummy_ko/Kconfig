@@ -1,0 +1,5 @@
+config HISI_DUMMY_KO
+	tristate "hisi dummy ko support"
+	depends on MODULES
+	help
+	  Say m here to support hisi dummy ko.

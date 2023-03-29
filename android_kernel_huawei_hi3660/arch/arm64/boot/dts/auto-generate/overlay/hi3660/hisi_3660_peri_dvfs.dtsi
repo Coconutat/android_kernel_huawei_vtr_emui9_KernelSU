@@ -1,0 +1,30 @@
+/*
+ * Hisilicon Ltd. Hi3660 SoC
+ *
+ * Copyright (C) 2014-2016 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+/{
+			clocks@0 {
+				clk_gate_vdec: clk_vdec {
+					compatible = "hisilicon,clkdev-dvfs";
+					#clock-cells = <0>;
+					hisilicon,clk-devfreq-id = <21>;
+					/*opp and freq KHz*/
+					hisilicon,freq-opp-range = <200000 480000>;
+					hisilicon,sensitive-freq = <228000>;
+					/* base_addr_type:      PERICRG:2       MEDIACRG:5 */
+					base_addr_type = <2>;
+					/* div-reg\mux-reg: <offset bits bits_offset> */
+					div-reg = <0xCC 0x1F 0>;
+					mux-reg = <0xCC 0x60 5>;
+					mux-table = "clk_ppll0","clk_ppll1","clk_ppll2","clk_ppll3";
+					clock-output-names = "clk_vdec";
+					clock-friend-names = "clk_vdecfreq";
+				};
+			};
+};

@@ -1,0 +1,5 @@
+config USB_AUDIO_POWER
+	tristate "Support for usb audio power control"
+	default n
+	---help---
+	 Say Y here if you want to support usb audio power control

@@ -1,0 +1,5 @@
+config HIFI_VIR_DAI
+    tristate "HIFI_VIR_DAI Driver for extern hifi DAC"
+	default n
+	help
+		Say Y to enable HIFI_VIR_DAI Driver Support For extern hifi DAC

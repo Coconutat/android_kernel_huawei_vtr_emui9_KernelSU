@@ -1,0 +1,421 @@
+/*
+ * Hisilicon Ltd. HI3660 SoC
+ *
+ * Copyright (C) 2012-2014 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ *
+ * mailbox-allocation-table
+ * ipc-channel		SOURCE		DESTINATION		remark
+ * mailbox-0		LPM3		GIC_1			ADC
+ * mailbox-1		DEFAULT		GIC_1			RDR
+ * mailbox-2		HIFI		GIC_1			HIFI
+ * mailbox-3		DEFAULT		GIC_1			RESERVED
+ * mailbox-4		IOM3		GIC_1			IOM3
+ * mailbox-5		IVP		GIC_2			IVP
+ * mailbox-6		DEFAULT		GIC_2			RESERVED
+ * mailbox-7		DEFAULT		GIC_2			RESERVED
+ * mailbox-8		ISP		GIC_2			ISP
+ * mailbox-9		ISP		GIC_2			ISP
+ * mailbox-10		GIC_1		IOM3			IOM3
+ * mailbox-11		GIC_1		IOM3			RESERVED
+ * mailbox-12		LPM3		IOM3			LPM3
+ * mailbox-13		GIC_1		LPM3			CLOCK
+ * mailbox-14		GIC_2		LPM3			IP_REGULATOR
+ * mailbox-15		IOM3		LPM3			IOM3
+ * mailbox-16		GIC_1		LPM3			ADC/MODEM PANIC
+ * mailbox-17		GIC_2		LPM3			RDR
+ * mailbox-18		GIC_2		HIFI			HIFI
+ * mailbox-19		GIC_1		MODEM-A9		RESERVED
+ * mailbox-20		GIC_1		MODEM-A9		RESERVED
+ * mailbox-21		GIC_1		MODEM-A9		RESERVED
+ * mailbox-22		GIC_1		MODEM-BBE16		RESERVED
+ * mailbox-23		GIC_1		ISP			ISP
+ * mailbox-24		GIC_1		ISP			ISP
+ * mailbox-25		GIC_1		IVP32			IVP
+ * mailbox-26		GIC_1		IVP32			IVP
+ * mailbox-27		GIC_1		LPM3			HISEE/DDR
+ * mailbox-28		GIC_1		LPM3			TSENSOR
+ * mailbox-29		GIC_1		HIFI			BSP_RESET_CORE_NOTIFY
+ * mailbox-30		GIC_COMM	COMM			RESERVED
+ */
+
+ /{
+	hisi_ipc: ipc@e896b000 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,HiIPCV230";
+		reg = <0x0 0xe896b000 0x0 0x1000>;
+		interrupts = <0 192 4>, <0 193 4>;
+		clocks = <&pclk>;
+		clock-names = "apb_pclk";
+		unlock_key = <0x1ACCE551>;
+		capability = <8>;
+		hardware_board_type = <0>; /* 1:udp & fpga 0:others */
+		status = "disable";
+
+		/*
+		 * "func"
+		 * <mbox_type, is_src_mbox, is_des_mbox>;
+		 *
+		 * "src_bit" & "des_bit"
+		 * <0: GIC_1>;
+		 * <1: GIC_2>;
+		 * <2: IOM7>;
+		 * <3: LPM3>;
+		 * <4: HIFI>;
+		 * <5: MODEM_A9>;
+		 * <6: MODEM_BBE16>;
+		 * <7: IVP>;
+		 * <8: ISP>;
+		 * <9: COMM>;
+		 *
+		 * "index"
+		 * software encoded the index of different ipc-mailbox,
+		 * if add new ipc, please add 100 in new ipc-dtsi,
+		 * example:
+		 * Kernel-PERI-IPC: 0~99;   ISP-IPC: 100~199;   NEW-IPC: 200~299
+		 *
+		 * "used"
+		 * <1: using   0: unused>
+		 *
+		 * "timeout"
+		 * <300> means TIMEOUT time is 300ms,
+		 * timeout must be multiple of 5ms,such as 305;
+		 *
+		 * "fifo_size"
+		 * <8> means IPC async send tx_thread_fifo is 8;
+		 *
+		 * "sched_priority"
+		 * <1: highest priority   20: default priority>
+		 *
+		 * "sched_policy"
+		 * <1: SCHED_FIFO   2: SCHED_RR   2:default policy>
+		 *
+		 * don't forget to increase the number of mailbox
+		 * when add or decrease a mailbox channel
+		 */
+		mailboxes = <25>;
+		mailbox-0 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 197 4>;
+			src_bit = <3>;
+			des_bit = <0>;
+			index = <0>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-1 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 198 4>;
+			src_bit = <3>;
+			des_bit = <0>;
+			index = <1>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-2 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 199 4>;
+			src_bit = <4>;
+			des_bit = <0>;
+			index = <2>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-3 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 200 4>;
+			src_bit = <3>;
+			des_bit = <0>;
+			index = <3>;
+			used = <0>;
+			timeout = <300>;
+		};
+
+		mailbox-4 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 201 4>;
+			src_bit = <2>;
+			des_bit = <0>;
+			index = <4>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-5 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 202 4>;
+			src_bit = <7>;
+			des_bit = <1>;
+			index = <5>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-6 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 203 4>;
+			src_bit = <7>;
+			des_bit = <1>;
+			index = <6>;
+			used = <0>;
+			timeout = <300>;
+		};
+		mailbox-7 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 204 4>;
+			src_bit = <3>;
+			des_bit = <1>;
+			index = <7>;
+			used = <0>;
+			timeout = <300>;
+		};
+		mailbox-8 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 205 4>;
+			src_bit = <8>;
+			des_bit = <1>;
+			index = <8>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-9 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 206 4>;
+			src_bit = <8>;
+			des_bit = <1>;
+			index = <9>;
+			used = <0>;
+			timeout = <300>;
+		};
+		mailbox-10 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <2>;
+			index = <10>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-11 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <2>;
+			index = <11>;
+			used = <0>;
+			timeout = <300>;
+		};
+
+		mailbox-12 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <2>;
+			index = <12>;
+			used = <0>;
+			timeout = <300>;
+		};
+
+		mailbox-13 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <3>;
+			index = <13>;
+			used = <1>;
+			timeout = <300>;
+			fifo_size = <8>;
+			sched_priority = <1>;
+			sched_policy = <1>;
+		};
+
+		mailbox-14 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <1>;
+			des_bit = <3>;
+			index = <14>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-15 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <3>;
+			index = <15>;
+			used = <0>;
+			timeout = <300>;
+		};
+
+		mailbox-16 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <3>;
+			index = <16>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-17 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <1>;
+			des_bit = <3>;
+			index = <17>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-18 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <1>;
+			des_bit = <4>;
+			index = <18>;
+			used = <1>;
+			timeout = <300>;
+		};
+		mailbox-19 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <5>;
+			index = <19>;
+			used = <0>;
+			timeout = <300>;
+		};
+
+		mailbox-20 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <5>;
+			index = <20>;
+			used = <0>;
+			timeout = <300>;
+		};
+
+		mailbox-21 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <5>;
+			index = <21>;
+			used = <0>;
+			timeout = <300>;
+		};
+
+		mailbox-22 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <6>;
+			index = <22>;
+			used = <0>;
+			timeout = <300>;
+		};
+		mailbox-23 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <8>;
+			index = <23>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-24 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <8>;
+			index = <24>;
+			used = <0>;
+			timeout = <300>;
+		};
+		mailbox-25 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <7>;
+			index = <25>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-26 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <7>;
+			index = <26>;
+			used = <0>;
+			timeout = <300>;
+		};
+
+		mailbox-27 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <3>;
+			index = <27>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-28 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <3>;
+			index = <28>;
+			used = <1>;
+			timeout = <300>;
+		};
+		/* The mailbox-29 and mailbox-30  is comm-mailbox in SOC,
+		 * but fast-mailbox in software, define the src and des here,
+		 * if need use, add it below
+		 */
+		mailbox-29 {
+			compatible = "HiIPCV230,mailbox-comm";
+			func = <1 1 0>;
+			src_bit = <0>;
+			des_bit = <4>;
+			index = <29>;
+			used = <1>;
+			timeout = <300>;
+		};
+
+		mailbox-30 {
+			compatible = "HiIPCV230,mailbox-comm";
+			func = <1 1 0>;
+			src_bit = <1>;
+			des_bit = <3>;
+			index = <30>;
+			used = <0>;
+			timeout = <300>;
+		};
+	};
+ };

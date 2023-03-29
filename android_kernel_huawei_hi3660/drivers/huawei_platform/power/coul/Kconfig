@@ -1,0 +1,6 @@
+config HUAWEI_COUL
+	bool "huawei coul"
+	default n
+config BQ28Z610_COUL
+	bool "bq28z610 coul"
+	default n

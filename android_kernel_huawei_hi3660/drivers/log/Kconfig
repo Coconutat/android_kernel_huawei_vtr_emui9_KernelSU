@@ -1,0 +1,55 @@
+#
+# Logger extend configuration
+#
+source "drivers/log/goldeneye/Kconfig"
+source "drivers/log/boot_log/Kconfig"
+
+menu "Logger extend configuration"
+
+config LOGGER_EXTEND
+	bool "Logger extend support"
+	depends on HW_LOGGER
+	default n
+	---help---
+	  Enable support for logger extend
+
+if LOGGER_EXTEND
+
+config LOG_SWITCH
+	tristate "log switch feature support"
+	depends on HISI_NVE
+	default n
+	---help---
+	  Say Y here to enable log switch feature support. This allows
+	  user to control log.
+
+config LOG_EXCEPTION
+	bool "log exception feature support"
+	default n
+	---help---
+	  Say Y here to enable log exception feature support. This allows
+	  user to send log to remote server by net.
+
+config LOG_JANK
+	bool "log jank feature support"
+	default n
+	---help---
+	  Say Y here to enable log jank feature support. This allows
+	  user to send log to remote server by net.
+
+config HWLOG_KERNEL
+        bool "hwlog feature support"
+        default n
+        ---help---
+          Say Y here to enable hwlog kernel feature support. This allows
+          user to send log to remote server by net.
+endif # if LOGGER_EXTEND
+
+config HIVIEW_SELINUX
+	bool "hiview selinux support"
+	depends on SECURITY && SECURITY_SELINUX
+	default n
+	---help---
+	  Say Y here to enable log switch feature support. This allows
+	  user to collect selinux log to hiview.
+endmenu

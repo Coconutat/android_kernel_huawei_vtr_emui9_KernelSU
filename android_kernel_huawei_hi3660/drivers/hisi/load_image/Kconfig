@@ -1,0 +1,6 @@
+config LOAD_IMAGE
+	bool "Support HiSilicon load image"
+	default n
+	depends on TZDRIVER
+	help
+	  This driver supports HiSilicon LOAD IMAGE

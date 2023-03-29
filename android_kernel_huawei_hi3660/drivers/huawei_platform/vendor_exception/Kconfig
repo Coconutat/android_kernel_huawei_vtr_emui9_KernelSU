@@ -1,0 +1,10 @@
+#
+# HUAWEI_VENDOR_EXCEPTION configuration
+#
+
+config HUAWEI_VENDOR_EXCEPTION
+    bool "Huawei vendor exception support"
+    depends on HISI_BB
+    default y
+    help
+      Say yes here to support HuaWei vendor exception feature.

@@ -1,0 +1,25 @@
+menu "Hisilicon ISP IPP"
+
+config HISPIPP
+	bool "Hisilicon ISP IPP Drivers"
+	depends on IOMMU_API
+	default n
+	help
+		Hisilicon isp IPP drivers.
+
+config HISPIPP_V200
+	bool "Hisilicon ISP IPP Drivers for V200"
+	depends on HISPIPP
+	default n
+	help
+		Hisilicon ISP IPP Drivers for V200
+
+config HISPIPP_V210
+    bool "Hisilicon ISP IPP Drivers for V210"
+	depends on HISPIPP
+    default n
+    help
+        Hisilicon ISP IPP Drivers for V210
+
+endmenu
+

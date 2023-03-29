@@ -1,0 +1,17 @@
+menu "HISI GPUFREQ Options"
+
+config HISI_GPUFREQ
+    tristate "Hisilicon GPUFREQ Driver"
+    depends on ARCH_HISI && PM_DEVFREQ
+    select PM_OPP
+    help
+      This enables the hisilicon gpufreq driver.
+
+config HISI_GPU_FHSS
+    tristate "Hisilicon GPU Frequency-Hopping Spread Spectrum Driver"
+    depends on HISI_GPUFREQ
+    select PM_OPP
+    help
+      This enables the hisilicon Frequency-Hopping Spread Spectrum of GPU feature.
+
+endmenu

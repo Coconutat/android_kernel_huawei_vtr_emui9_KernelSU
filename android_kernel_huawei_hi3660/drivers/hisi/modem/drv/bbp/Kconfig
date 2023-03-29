@@ -1,0 +1,11 @@
+#
+# ccore image load
+#
+
+comment "ccore image load driver"
+
+config BBP_ACORE
+	tristate "bbp drivers in acore"
+	default n
+	help
+	  BBP drivers in acore

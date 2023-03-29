@@ -1,0 +1,69 @@
+/*
+ * Hisilicon Ltd.
+ *
+ * It is only a demo for hisilicon balong modem board. You show change the
+ * address of each node according to datasheet.
+ */
+/include/ "skeleton.dtsi"
+/ {
+	dlock_irq:dlock_irq{
+	    compatible = "hisilicon,dlock_irq_balong";
+		interrupts = <0 224 4>;
+	};
+	
+	bus_state:bus_state{
+	    compatible = "hisilicon,bus_state_balong";
+		bus_num = <0x2>;
+		bus_state_reg = <0x624 17 17>,<0x628 17 17>;
+		bus_base_addr = <0xe0200000>,<0xe0200000>;
+		bus_name = "AXI_MDM","AXI_BBPHY";
+	};
+	
+	bus_reset_reg:bus_reset_reg{
+		compatible = "hisilicon,bus_reset_reg";
+		version = "chicago";
+		dlock_mdm_base_addr = <0xe0200000>;
+		dlock_mdm_reset_reg = <0x510 7 7>;
+		dlock_cnt_clk_div_num_reg = <0x50c 16 23>;
+	};
+	
+	dlock_mdm@0xe0200000{
+		compatible = "hisilicon,dlock_axi_mdm_balong";
+		/*axi_mdm桥锁死状态寄存器mst最小端口号*/
+		dlock_mst_port_reg = <0x624 0 3>;	
+		dlock_mst_port_num = <0x3>;
+		dlock_mst_port = <0x0>,<0x1>,<0x2>;
+		dlock_mst_name = "AXI_BBPHY","SYS_NOC","CCPU";		
+		/*axi_mdm桥锁死状态寄存器slv端口号*/
+		dlock_slv_port_reg = <0x624 4 7>;
+		/*axi_mdm桥锁死状态寄存器读写指示*/
+		dlock_wr_reg = <0x624 16 16>;
+		/*axi_mdm桥锁死地址寄存器*/
+		dlock_addr_reg = <0x650 0 31>;
+		/*需要查看mst_id的mst端口号*/
+		dlock_mst_port_id = <0x3>;
+		/*axi_mdm桥锁死状态寄存器mst_id*/
+		dlock_id_reg = <0x624 12 15>;
+		dlock_id_num = <0x7>;
+		dlock_id = <0x0>,<0x1>,<0x2>,<0x3>,<0x4>,<0x5>,<0x6>;			
+		dlock_id_mst_name = "EDMA1","EDMA0","CIPHER","UPACC","CICOMO","HDLC","CICOM1";
+	};		
+	
+	dlock_bbphy@0xe0200000{
+		compatible = "hisilicon,dlock_axi_bbphy_balong";
+		/*axi_bbphy桥锁死状态寄存器mst最小端口号*/
+		dlock_mst_port_reg = <0x628 0 3>;
+		dlock_mst_port_num = <0x5>;
+		dlock_mst_port = <0x0>,<0x1>,<0x2>,<0x3>,<0x4>;
+		dlock_mst_name = "AXI_MDM","BBP_TCM","BBP_DDR","TL_BBE16","C_BBE16";
+		/*axi_bbphy桥锁死状态寄存器slv端口号*/
+		dlock_slv_port_reg = <0x628 4 7>;
+		/*axi_bbphy桥锁死状态寄存器读写指示*/
+		dlock_wr_reg = <0x628 16 16>;
+		/*axi_bbphy桥锁死地址寄存器*/
+		dlock_addr_reg = <0x654 0 31>;
+		dlock_clear_reg = <0x510 8 8>;
+	};	
+};
+	
+		

@@ -1,0 +1,11 @@
+/ {
+	amba {
+		i2c3: i2c@FDF0C000{
+			max77813: max77813@18 {
+				compatible = "max77813";
+				reg = <0x18>;
+				status = "disabled";
+			};
+		};
+	};
+};

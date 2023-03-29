@@ -1,0 +1,103 @@
+menuconfig ION
+	bool "Ion Memory Manager"
+	depends on HAVE_MEMBLOCK && HAS_DMA && MMU
+	select GENERIC_ALLOCATOR
+	select DMA_SHARED_BUFFER
+	---help---
+	  Chose this option to enable the ION Memory Manager,
+	  used by Android to efficiently allocate buffers
+	  from userspace that can be shared between drivers.
+	  If you're not using Android its probably safe to
+	  say N here.
+
+config ION_TEST
+	tristate "Ion Test Device"
+	depends on ION
+	help
+	  Choose this option to create a device that can be used to test the
+	  kernel and device side ION functions.
+
+config ION_DUMMY
+	bool "Dummy Ion driver"
+	depends on ION
+	help
+	  Provides a dummy ION driver that registers the
+	  /dev/ion device and some basic heaps. This can
+	  be used for testing the ION infrastructure if
+	  one doesn't have access to hardware drivers that
+	  use ION.
+
+config ION_TEGRA
+	tristate "Ion for Tegra"
+	depends on ARCH_TEGRA && ION
+	help
+	  Choose this option if you wish to use ion on an nVidia Tegra.
+
+config ION_POOL_CACHE_POLICY
+	bool "Ion set page pool cache policy"
+	depends on ION
+	default y if X86
+	help
+	  Choose this option if need to explicity set cache policy of the
+	  pages in the page pool.
+
+config ION_HISI
+	tristate "Ion for Hisilicon"
+	depends on ION
+	select ION_OF
+	help
+	  Choose this option if you wish to use ion on Hisilicon Platform.
+
+config ION_OF
+	bool "Devicetree support for Ion"
+	depends on ION && OF_ADDRESS
+	help
+	  Provides base support for defining Ion heaps in devicetree
+	  and setting them up. Also includes functions for platforms
+	  to parse the devicetree and expand for their own custom
+	  extensions
+
+	  If using Ion and devicetree, you should say Y here
+
+config HISI_ION_SECSG_DEBUG
+	bool "Hisilicon ION secsg heap support"
+	depends on ION_HISI_SECSG
+	default n
+	help
+	  if you want to debug ion secsg, you should select this.
+
+config ION_HISI_SECSG
+	bool "Hisilicon ION secsg heap support"
+	depends on ION_HISI
+	help
+	 if you want to use secsg heap, you should select this.
+
+
+config ION_HISI_DMA_POOL
+	bool "Hisilicon ION DMA pool heap support"
+	depends on ION_HISI
+	help
+	  if you want to use DMA pool heap, you should select this.
+
+config ION_HISI_SECCM
+	bool "Hisilicon ION seccm heap support"
+	depends on ION_HISI
+	help
+	 if you want to use seccm heap, you should select this.
+
+config ION_HISI_SUPPORT_4GPLUS
+	bool "Hisilicon ION can support allocation above 4G"
+	depends on ION
+	default n
+
+config HISI_SMARTPOOL_OPT
+	bool "Support Hisilicon Smartpool"
+	default n
+	help
+	  This driver supports Hisilicon Smartpool.
+
+config HISI_SPECIAL_SCENE_POOL
+	bool "Support Hisilicon Special Scenes Pool"
+	default n
+	help
+	  This driver supports Hisilicon Special Scenes Pool.

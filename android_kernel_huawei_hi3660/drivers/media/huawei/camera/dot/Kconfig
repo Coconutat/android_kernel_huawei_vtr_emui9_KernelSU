@@ -1,0 +1,11 @@
+if HISI_CAMERA_DOT_PROJECTOR
+
+config HISI_CAMERA_DOT_PROJECTOR_CYC8
+    tristate "cyc8 camera dot driver"
+    depends on HISI_CAMERA_DOT_PROJECTOR
+    default n
+    ---help---
+        cyc8 camera dot driver
+
+endif
+

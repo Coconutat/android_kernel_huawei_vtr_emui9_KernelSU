@@ -1,0 +1,90 @@
+/*
+ *  Copyright (C) 2013 Huawei co Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+	&hw_connectivity {
+		compatible = "huawei,hw_connectivity";
+		/*huawei configuration*/
+		chip_type = "hisi";
+	};
+	//node for bcm wifi
+	&bcm_wifi {
+		status = "disabled";
+	};
+
+	//node for bcm bluetooth
+	&bluetooth_sleep{
+		status = "disabled";
+	};
+	&bluetooth_power{
+		status = "disabled";
+	};
+
+	//node for bcm gps
+	&gps_power{
+		status = "disabled";
+	};
+
+	//node for 110x wifi
+	/*power*/
+	&hi110x {
+		hi110x,gpio_bfgx_power_on;//1103 config, should be declared in 1102
+		hi110x,gpio_wlan_power_on;//1103 config, should be declared in 1102
+		huawei,pmu_clk32b = "clk_pmu32kb";
+		status = "ok";
+	};
+
+	/*wifi*/
+	&hisi_wifi {
+		status = "ok";
+		hi110x,gpio_host_wakeup_wlan;
+		hisi_wifi_firmware {
+			status = "ok";
+			firmware_type_num="1";
+		};
+
+		hisi_wifi_supp {
+			status = "ok";
+			supp_config_template="/vendor/etc/wifi/wpa_supplicant_hisi.conf";
+		};
+
+		hisi_wifi_p2p {
+			status = "ok";
+			p2p_config_template="/vendor/etc/wifi/p2p_supplicant_hisi.conf";
+		};
+
+		hisi_wifi_apd {
+			status = "ok";
+			hostapd_bin_file="/vendor/bin/hostapd_hisi";
+		};
+	};
+
+	/*bfgx*/
+	&hisi_bfgx {
+		status = "ok";
+	};
+
+	/*customize*/
+	&hisi_cust_cfg {
+		status = "ok";
+	};
+
+	/*hisi gps*/
+	&hisi_gps {
+		status = "ok";
+		clocks = <&clk_gate_gps_ref>, <&clk_mux_gps_ref>, <&clk_gate_mdm2gps0>, <&clk_gate_mdm2gps1>, <&clk_gate_mdm2gps2>;
+		clock-names = "ref_clk", "mux_clk", "mdm_clk0", "mdm_clk1", "mdm_clk2";
+		/*hisi gps iomux config*/
+	};
+
+    /*hisi gps sync*/
+    &hisi_gps_sync {
+        status = "ok";
+        version;
+        /*sync register configuration*/
+        addr_base;
+        addr_offset;
+    };

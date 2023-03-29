@@ -1,0 +1,5 @@
+config HW_IAWARE_THREAD_BOOST
+    bool "iaware 2.0 binder thread boost"
+    default n
+    help
+      if set, binder thread will be set to new group. if thread is in background group, set it to foreground group, else set it to boost group.

@@ -1,0 +1,31 @@
+menu "IProvision Scheduling v1.0"
+
+config FRAME_RTG
+	bool "Frame rtg control"
+	depends on HISI_RTG && HISI_PERF_CTRL
+	default n
+	help
+	  Frame RTG Process Control and Per Frame Load Tracking.
+	  If you say Y here, you can set the task to rtg group of
+	  DEFAULT_RT_FRAME_ID 8, and then kernel will statistic
+	  the load per frame.
+
+config FRAME_RTG_DEBUG
+	bool "Frame rtg control debugging info"
+	depends on DEBUG_KERNEL && PROC_FS && FRAME_RTG && HISI_DEBUG_FS
+	default n
+	help
+	  If you say Y here, the /proc/sched_frame_debug file will be provided
+	  that can help debug the frame scheduler.
+	  The runtime overhead of this option is minimal.
+
+config TRACE_FRAME_SYSTRACE
+	bool "Frame systrace trace_clock_set_rate"
+	depends on ARM64 && FRAME_RTG
+	default n
+	help
+	  Frame Systrace used clock_set_rate for chrome systrace.
+	  If you say Y here, the FRAME_SYATRACE will be enabled,
+	  you can see all the load tracking from chrome systrace.
+
+endmenu #"IProvision Scheduling v1.0"

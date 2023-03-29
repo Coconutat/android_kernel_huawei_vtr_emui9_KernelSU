@@ -1,0 +1,28 @@
+menu "Hisi L3 Cache"
+config HISI_L3CACHE_SHARE
+	bool "l3cache share"
+	default n
+	help
+	 support l3cache share
+
+config HISI_L3CACHE_SHARE_PERF
+	bool "l3cache share perf"
+	depends on HISI_L3CACHE_SHARE && ARM64_DSU_PCTRL_DEVFREQ
+	default n
+	help
+	 support l3cache share perf
+
+config HISI_L3CACHE_SHARE_DEBUG
+	bool "l3cache share debug"
+	depends on HISI_L3CACHE_SHARE
+	default n
+	help
+	 support l3cache share debug
+
+config HISI_L3CACHE_LP_DEBUG
+	bool "l3cache lowpower debug"
+	default n
+	help
+	 support l3cache low power debug
+
+endmenu

@@ -1,0 +1,55 @@
+# Hisilicon IOMMU support
+
+config HISI_IODOMAIN_API
+	bool
+
+config HISI_IOMMU
+	bool "Hisilicon IOMMU Support"
+	select IOMMU_API
+	select HISI_IODOMAIN_API
+	help
+	  Hisilicon IOMMU Support.
+
+config HISI_IOMMU_LPAE
+	bool "Hisilicon IOMMU LPAE Support"
+	select IOMMU_API
+	depends on HISI_IOMMU
+	help
+	  Hisilicon IOMMU Support.
+
+config HISI_IOMMU_LEGACY
+	bool "Hisilicon IOMMU SECOND LEVEL PAGE TABLE Support"
+	select IOMMU_API
+	depends on HISI_IOMMU && !HISI_IOMMU_LPAE
+	help
+	  Hisilicon IOMMU Support.
+
+config HISI_IOMMU_COMPACT
+	bool "Hisilicon IOMMU compact linux4.1"
+	help
+	  On linux4.1, IOMMU framework has some change point,
+	  you need compact it.If you build on linux4.1 and need
+	  hisilicon iommu,you should select this 'y'.
+	  Then, you should select this 'n'.
+
+config HISI_IOMMU_TEST
+	bool "Hisilicon IOMMU TEST Support"
+	depends on HISI_IOMMU_LPAE
+	select IOMMU_API
+	help
+	  Hisilicon IOMMU Support.
+
+config HISI_IOMMU_IOVA_DEBUG
+        bool "Hisilicon IOMMU IOVA DEBUG Support"
+	depends on HISI_IOMMU
+	default n
+	help
+	  Hisilicon IOMMU IOVA DEBUG Support
+
+config HISI_SVM
+	tristate "HISI SVM driver"
+	select MMU_NOTIFIER
+	---help---
+	  This option enables support for the hisi svm features base on the ARM
+	  smmu v3 hardware. Select this option if you want to use devices by ssid
+	  and asid interface.

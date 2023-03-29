@@ -1,0 +1,50 @@
+ / {
+    fastboot_coul:fastboot_core {
+        compatible = "fastboot,coul";
+        coul_type = <1>; /*hi6421v500*/
+        status = "ok";
+    };
+    coul_core:coul_core{
+        compatible = "hisi,coul_core";
+	    r_pcb = <26000>;	
+	    r_coul_mohm = <10>;
+	    current_offset_a = <1000000>;
+	    low_temp_opt_enable = <0>;
+	    ntc_compensation_is = <0>;
+	    fastboot_ntc_temp_compensation_value = <0>;
+	    ntc_temp_compensation_para =
+		"0", "0";
+		last_soc_enable = <0>;
+		startup_delta_soc = <10>;
+		soc_at_term = <100>;
+		batt_temp_too_hot = "60";
+		batt_temp_too_cold = "-20";
+		basp_policy = <
+			3 50000 60  200 192 60  0 920001032
+			2 40000 80  40  48  80  0 920001031
+			1 30000 90  20  16  90  0 920001029
+			0 0     0   0   0   100 0 0
+		>;
+	current_full_enable = <0>;
+	multi_ocv_open = <1>;
+	fcc_update_limit = <1>;
+	normal_cutoff_vol_mv = <3150>;
+	sleep_cutoff_vol_mv = <3350>;
+	low_vol_filter_cnt = <6>;
+	status = "disabled";
+   };
+   pmic: pmic@FFF34000 {  
+        hi6421v500_coul: hi6421v500_coul@1 {
+              compatible = "hisilicon,hi6421v500_coul";
+	          interrupt-parent = <&pmic>;
+              interrupts = <9 0>;
+              interrupt-names = "coulirq";						
+	          status = "disabled";
+        };
+   };
+   hisi_coul_drv_test:hisi_coul_test {
+   	    compatible = "hisi_coul_drv_test";
+	    status = "disabled";
+   };
+	
+};

@@ -1,0 +1,5 @@
+menuconfig HUAWEI_DEVICEBOX_AUDIO
+	tristate "deviceboxID driver"
+	default n
+	help
+		Say Y to enable deviceboxID driver support

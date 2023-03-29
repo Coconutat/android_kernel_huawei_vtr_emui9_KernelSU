@@ -1,0 +1,5 @@
+config HISI_KERNEL_BL31_LOG
+	bool "HISI kernel dump bl31 log support"
+	default n
+	help
+	  Say yes here to support dump bl31 log in kernel

@@ -1,0 +1,16 @@
+menu "Hisilicon Performace Control"
+
+config HISI_PERF_CTRL
+        tristate "Hisilicon Performance Control Drivers"
+	default n
+        help
+                Hisilicon Performance Control Drivers
+
+config HISI_DDR_PERF_CTRL
+        tristate "Hisilicon DDR Performance Control Function"
+        depends on HISI_PERF_CTRL
+        default n
+        help
+                Hisilicon DDR Performance Control Function
+
+endmenu

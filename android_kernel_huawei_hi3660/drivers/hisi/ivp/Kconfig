@@ -1,0 +1,58 @@
+menu "Hisilicon IVP"
+
+config HISI_IVP
+     bool "hisilicon ivp support"
+     default n
+     help
+          ivp driver for ivpv100.
+
+config IVP_SMMU
+	bool "Hisilicon IVP SMMU Support"
+	depends on IOMMU_API
+	depends on HISI_IODOMAIN_API
+	help
+	  Hisilicon IVP IOMMU Support.
+
+config IVP_SMMU_TEST
+	bool "Hisilicon IVP SMMU TEST Support"
+	depends on IVP_SMMU
+	help
+	  Hisilicon IVP IOMMU TEST Support.
+
+choice
+	prompt "IVP Platform"
+	default IVP_IVPV100
+	depends on HISI_IVP
+	help
+	  select ivp platform private setting
+
+config IVP_IVPV160
+	bool "ivpv160"
+	depends on HISI_IVP
+
+config IVP_IVPV200
+	bool "ivpv200"
+	depends on HISI_IVP
+
+config IVP_IVPV150
+	bool "ivpv150"
+	depends on HISI_IVP
+
+config IVP_IVPV100
+	bool "ivpv100"
+	depends on HISI_IVP
+	
+config IVP_IVPV120
+	bool "ivpv120"
+	depends on HISI_IVP
+
+config IVP_IVPV210
+        bool "ivpv210"
+        depends on HISI_IVP
+
+config IVP_IVPV250
+	bool "ivpv250"
+	depends on HISI_IVP
+endchoice
+endmenu
+

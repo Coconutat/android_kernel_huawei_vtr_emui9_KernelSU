@@ -1,0 +1,5 @@
+config HW_QTAGUID_PID
+	tristate "pid stats support for qtaguid"
+    default n
+    help
+	  pid stats support for qtaguid

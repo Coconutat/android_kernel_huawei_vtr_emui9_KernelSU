@@ -1,0 +1,6 @@
+menuconfig BCMGPS4774LHD
+	tristate "Bcm4774 gps lhd support"
+	default n
+	help
+	  Say Y here to enable bcm4774 gps support. This allows
+	  ap to control this module.

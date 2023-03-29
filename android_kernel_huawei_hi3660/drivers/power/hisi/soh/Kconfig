@@ -1,0 +1,12 @@
+
+config HISI_SOH
+        bool "hisi soh"
+        default n
+
+config HISI_SOH_PMIC
+        bool "hisi soh pmic driver"
+        default n
+
+config HISI_SOH_HI6531
+        bool "hisi soh hi6531 driver"
+        default n

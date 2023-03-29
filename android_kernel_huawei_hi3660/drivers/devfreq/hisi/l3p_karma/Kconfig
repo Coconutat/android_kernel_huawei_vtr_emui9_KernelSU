@@ -1,0 +1,13 @@
+config HISI_L3P_KARMA
+		tristate "L3 PREFETCH KARMA DEVFREQ Driver"
+		depends on ARCH_HISI && PM_DEVFREQ
+		select PM_OPP
+	    help
+			This enables the hisi l3p karma devfreq driver.
+
+config HISI_L3P_KARMA_DEBUG
+		tristate "L3P KARMA SYSFS DEBUG"
+		depends on HISI_L3P_KARMA
+		default n
+	    help
+		  l3p karma devfreq driver sysfs debug

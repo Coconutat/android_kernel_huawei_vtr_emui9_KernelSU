@@ -1,0 +1,11 @@
+menuconfig HW_ANTENNA_BOARD_MATCH
+	bool "antenna_board_match support"
+	default n
+	help
+	Say yes here to support antenna boardid detection
+
+if HW_ANTENNA_BOARD_MATCH
+
+source "drivers/huawei_platform/antenna_board_match/antenna_board_adc_match/Kconfig"
+
+endif

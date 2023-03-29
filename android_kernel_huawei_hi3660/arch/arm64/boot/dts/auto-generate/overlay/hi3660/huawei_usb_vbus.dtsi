@@ -1,0 +1,8 @@
+/ {
+	huawei_usbvbus {
+		compatible = "huawei,usbvbus";
+		support_pd = <0>;
+		support_dp = <1>;
+		status = "disabled";
+	};
+};

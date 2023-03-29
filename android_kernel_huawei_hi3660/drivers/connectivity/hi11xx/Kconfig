@@ -1,0 +1,6 @@
+#
+# Generic huawei hisi misc drivers configuration
+#
+source "drivers/connectivity/hi11xx/hi1103/Kconfig"
+source "drivers/connectivity/hi11xx/hi1103/platform/Kconfig"
+source "drivers/connectivity/hi11xx/hi1103/wifi/Kconfig"

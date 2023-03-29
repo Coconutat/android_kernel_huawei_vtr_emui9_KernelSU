@@ -1,0 +1,38 @@
+menuconfig INPUTHUB
+	bool "InputHub feature support"
+	default n
+	help
+	Say yes here to support inputhub feature.
+
+menuconfig INPUTHUB_20
+	bool "InputHub feature2.0 support"
+	default n
+	help
+	Say yes here to support inputhub2.0 feature.
+
+menuconfig CYPRESS_PSOC4000
+	bool "cypress capsense support"
+	default n
+	help
+	Say yes here if you want to configure cypress capsense
+
+config CONTEXTHUB_IDLE_32K
+	bool "CONTEXTHUB_IDLE_32K"
+	depends on INPUTHUB || INPUTHUB_20
+	default n
+	help
+	Say yes here if you want to configure CONTEXTHUB_IDLE_32K
+
+config IOM3_RECOVERY
+	bool "iom3 recovery feature support"
+	depends on INPUTHUB
+	default n
+	help
+	Say yes here to support the cmdline parse
+
+config INPUTHUB_VIBRATOR_CHANNEL
+	bool "inputhub vibrator channel support"
+	depends on INPUTHUB || INPUTHUB_20
+	default n
+	help
+	Say yes here to support the cmdline parse

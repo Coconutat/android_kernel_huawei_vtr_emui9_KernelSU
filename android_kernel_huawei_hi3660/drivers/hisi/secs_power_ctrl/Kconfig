@@ -1,0 +1,5 @@
+config HISI_SECS_CTRL
+	bool "HISI SECS_CTRL support"
+	default n
+	help
+	  Say yes here to support the HISI SECS CTRL

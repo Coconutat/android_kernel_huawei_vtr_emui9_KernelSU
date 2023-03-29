@@ -1,0 +1,13 @@
+config HW_WIFIPRO
+	bool "Huawei wifipro tcp monitor support"
+	default n
+
+config HW_WIFIPRO_PROC
+	bool "Huawei wifipro proc support"
+	depends on HW_WIFIPRO
+	default n
+
+config WIFI_DELAY_STATISTIC
+	bool "wifi delay statistic"
+	default n
+
