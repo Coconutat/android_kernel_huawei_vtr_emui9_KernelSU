@@ -36,10 +36,10 @@
  2. 开始编译，命令：`bash Build_KSU.sh`
 ***
 # 缺点/求助，如果能有大佬对这些问题有能力修正，请不吝赐教，感激不尽。
-1. 不幸的是，这个内核不能切换SELinux的工作状态。如果切换就会导致KernelSU失效。所以我修改了/security/selinux/selinuxfs.c，在171行到174行添加了一些代码。
+1. 不幸的是，这个内核不能切换SELinux的工作状态。如果切换就会导致KernelSU失效。所以我修改了/security/selinux/selinuxfs.c，在165行到167行添加了一些代码。
 ***
 # 更改记录：
- 1. /security/selinux/selinuxfs.c 171行到174行。  
+ 1. /security/selinux/selinuxfs.c 165行到167行。  
  2. /driver/kernel/selinux/sepolicy.c 注释有Modify For Huawei的部分。  
  3. 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。  
 ***
