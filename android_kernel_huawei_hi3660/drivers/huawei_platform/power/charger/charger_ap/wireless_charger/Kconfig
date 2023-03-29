@@ -1,3 +1,0 @@
-config WIRELESS_IDTP9221
-	bool "wireless idt9221"
-	default n

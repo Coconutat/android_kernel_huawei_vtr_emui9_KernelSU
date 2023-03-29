@@ -1,3 +1,0 @@
-config HUAWEI_NWEVAL
-	bool "Huawei nweval feature support"
-	default n

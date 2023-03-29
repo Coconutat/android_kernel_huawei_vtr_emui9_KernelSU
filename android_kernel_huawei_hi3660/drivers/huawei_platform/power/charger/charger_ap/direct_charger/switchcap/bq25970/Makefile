@@ -1,1 +1,0 @@
-obj-$(CONFIG_BQ25970) += bq25970.o

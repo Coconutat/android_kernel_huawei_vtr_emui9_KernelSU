@@ -1,3 +1,0 @@
-config HUAWEI_WATER_CHECK
-	bool "huawei water check"
-	default n

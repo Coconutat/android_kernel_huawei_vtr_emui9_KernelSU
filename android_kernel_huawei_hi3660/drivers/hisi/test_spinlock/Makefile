@@ -1,1 +1,0 @@
-obj-$(CONFIG_HISI_GETSPINLOCK_TEST) += hisi_test_get_spinlock.o

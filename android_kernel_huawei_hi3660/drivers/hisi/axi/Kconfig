@@ -1,6 +1,0 @@
-config HISI_AXI
-	bool "Hisilicon axierr irq"
-	default n
-	help
-	Hi3635 axierr irq support
-

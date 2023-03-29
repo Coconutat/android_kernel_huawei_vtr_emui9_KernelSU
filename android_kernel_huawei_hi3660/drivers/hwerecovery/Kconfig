@@ -1,6 +1,0 @@
-config HW_ERECOVERY
-    depends on HW_LOGGER
-    bool "Huawei erecovery driver"
-    default n
-    ---help---
-    This feature support to catch erecovery info

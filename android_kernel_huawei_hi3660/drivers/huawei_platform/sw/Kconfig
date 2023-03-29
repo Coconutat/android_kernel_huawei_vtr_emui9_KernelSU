@@ -1,6 +1,0 @@
-config HW_SW_DEVICES
-    bool "HUAWEI SW_DEVICES"
-    default n
-    help
-	  This module adds support for single-wire communicate Keyboard for CMR Product based on
-	  HISI 960 chipset.

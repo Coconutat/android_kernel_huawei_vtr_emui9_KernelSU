@@ -1,6 +1,0 @@
-config WIRED_CHANNEL_OVP_SWITCH
-	bool "wired channel ovp switch"
-	default n
-config WIRED_CHANNEL_NCP3902_SWITCH
-	bool "wired channel ncp3902 switch"
-	default n

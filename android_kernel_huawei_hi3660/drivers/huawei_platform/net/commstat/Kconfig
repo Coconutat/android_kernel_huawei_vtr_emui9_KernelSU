@@ -1,3 +1,0 @@
-config HW_COMMSTAT
-	bool "Data usage statistics"
-	default n

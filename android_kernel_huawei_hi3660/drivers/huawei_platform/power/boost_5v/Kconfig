@@ -1,4 +1,0 @@
-config BOOST_5V
-	bool "boost_5v"
-	depends on GPIOLIB
-	default n

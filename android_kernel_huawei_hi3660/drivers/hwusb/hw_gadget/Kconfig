@@ -1,7 +1,0 @@
-menuconfig HW_GADGET
-	tristate "huawei gadget class support"
-	default n
-	help
-	  Say Y here to enable hw gadget feature. 
-
-

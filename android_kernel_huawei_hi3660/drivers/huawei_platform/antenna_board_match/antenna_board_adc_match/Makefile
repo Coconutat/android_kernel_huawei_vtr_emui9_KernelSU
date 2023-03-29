@@ -1,1 +1,0 @@
-obj-$(CONFIG_HW_ANTENNA_BOARD_ADC_MATCH) += antenna_board_adc_match.o

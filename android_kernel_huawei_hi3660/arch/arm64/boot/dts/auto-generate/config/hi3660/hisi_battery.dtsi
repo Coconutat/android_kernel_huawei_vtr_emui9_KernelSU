@@ -1,8 +1,0 @@
-/ {
-	hisi_battery:hisi_battery {
-		compatible = "hisi_battery";
-		batt_name = <&default_3000_68k_4352>;
-		status = "disabled";
-	};
-};
-

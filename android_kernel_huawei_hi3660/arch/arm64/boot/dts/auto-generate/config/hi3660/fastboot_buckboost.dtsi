@@ -1,6 +1,0 @@
-/ {
-	fastboot_buckboost: fastboot_buckboost{
-		compatible = "fastboot,buckboost";
-		status = "disabled";
-	};
-};

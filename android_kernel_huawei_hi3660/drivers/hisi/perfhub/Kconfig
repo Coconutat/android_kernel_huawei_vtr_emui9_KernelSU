@@ -1,3 +1,0 @@
-config HISI_PERFHUB
-       bool "hisi perfhub"
-       default n

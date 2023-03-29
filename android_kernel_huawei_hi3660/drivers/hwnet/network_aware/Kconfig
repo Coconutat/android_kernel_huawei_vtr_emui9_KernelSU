@@ -1,6 +1,0 @@
-config HW_NETWORK_AWARE
-    bool "network aware"
-    default n
-    help
-      if set, the network connections of background apps will be limited
-      when foreground apps connecting to network

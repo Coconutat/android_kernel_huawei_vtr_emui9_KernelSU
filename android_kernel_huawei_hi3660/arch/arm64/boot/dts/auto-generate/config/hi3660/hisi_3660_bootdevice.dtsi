@@ -1,6 +1,0 @@
-/{
-	bootdevice: bootdevice {
-		compatible = "hisilicon,bootdevice";
-		status = "ok";
-	};
-};

@@ -1,6 +1,0 @@
-/ {
-	huawei_smpl: huawei_smpl{
-		compatible = "huawei,smpl";
-		status = "disable";
-	};
-};

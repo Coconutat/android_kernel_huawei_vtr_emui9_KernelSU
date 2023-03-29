@@ -1,1 +1,0 @@
-[Click here](https://github.com/maimaiguanfan/android_kernel_huawei_hi3660/blob/master/README.md)

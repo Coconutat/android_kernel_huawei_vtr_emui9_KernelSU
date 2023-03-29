@@ -1,5 +1,0 @@
-config HISI_BL31_MNTN
-    bool "bl31 mntn module support"
-    default n
-    help
-      Say yes here to support the bl31 mntn module.

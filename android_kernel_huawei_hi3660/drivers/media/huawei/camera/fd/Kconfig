@@ -1,8 +1,0 @@
-comment "FNFaceDetection"
-
-config USE_FNFD
-    tristate "Support FNFaceDetection driver"
-    depends on HUAWEI_CAMERA
-    default n
-    ---help---
-        Hisilicon FNFaceDetection.

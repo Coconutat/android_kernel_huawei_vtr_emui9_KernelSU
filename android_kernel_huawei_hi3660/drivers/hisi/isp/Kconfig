@@ -1,6 +1,0 @@
-config HISI_ISP_DEBUG
-	bool "hisi isp debug"
-	default n
-	help
-		Say yes here to support hisi isp debug.
-

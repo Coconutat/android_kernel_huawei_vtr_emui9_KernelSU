@@ -1,5 +1,0 @@
-config HUAWEI_SMARTPAKIT_AUDIO
-	tristate "smartpakit driver"
-	default n
-	help
-		Say Y to enable smartpakit driver support

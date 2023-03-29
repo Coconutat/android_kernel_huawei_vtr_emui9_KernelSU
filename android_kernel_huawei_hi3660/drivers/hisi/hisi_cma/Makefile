@@ -1,1 +1,0 @@
-obj-$(CONFIG_HISI_CMA)	+= hisi_cma.o

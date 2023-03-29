@@ -1,6 +1,0 @@
-config HISI_CMA
-	bool "HISI CMA Multi-pool"
-	default n
-	depends on OF && CMA
-	help
-		This Options Enable the Multiple cma pool for different device Allocator

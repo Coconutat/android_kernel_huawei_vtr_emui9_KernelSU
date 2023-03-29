@@ -1,1 +1,0 @@
-obj-y += dsm_earlyboot_client.o

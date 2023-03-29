@@ -1,6 +1,0 @@
-config HI3XXX_EFUSE
-	bool "Support Hisilicon Hi3XXX efuse"
-	default n
-	help
-	Hi3XXX efuse driver support
-

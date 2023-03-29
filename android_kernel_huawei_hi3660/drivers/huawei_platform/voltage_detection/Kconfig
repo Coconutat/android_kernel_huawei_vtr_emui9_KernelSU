@@ -1,5 +1,0 @@
-menuconfig HW_VOLTAGE_DETECTION
-	bool "huawei voltage detection"
-	default n
-	help
-		Say yes here to support the voltage detection function

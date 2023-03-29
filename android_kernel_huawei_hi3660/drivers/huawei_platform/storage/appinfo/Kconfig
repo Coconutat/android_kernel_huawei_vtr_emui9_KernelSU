@@ -1,6 +1,0 @@
-config PROC_APP_INFO
-	bool "/proc/app_info support"
-	default n
-	help
-	support charge when machine power off & recovery.
-

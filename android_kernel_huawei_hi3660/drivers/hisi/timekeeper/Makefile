@@ -1,1 +1,0 @@
-obj-$(CONFIG_HISI_TIMEKEEPER) += hisi_timekeeper.o

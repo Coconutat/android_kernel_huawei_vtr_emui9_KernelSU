@@ -1,6 +1,0 @@
-config HISI_DIEID
-	bool "Support Hisilicon DIEID driver"
-	default n
-	help
-	Say yes here if you want to use hisi dieid
-

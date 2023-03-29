@@ -1,3 +1,0 @@
-config	HUAWEI_POWER_DEBUG
-	bool "huawei power debug module"
-	default n
