@@ -40,7 +40,7 @@
 ***
 # 更改记录：
  1. /security/selinux/selinuxfs.c 171行到174行。  
- 2. KernelSU/kernel/selinux/sepolicy.c 注释有Modify For Huawei的部分。  
+ 2. /driver/kernel/selinux/sepolicy.c 注释有Modify For Huawei的部分。  
  3. 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。  
 ***
 # 创建者/贡献者： 
