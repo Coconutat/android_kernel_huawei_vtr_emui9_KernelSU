@@ -52,4 +52,4 @@
 
 
 #### 滑稽  
-![alt 术哥评价适配华为内核行为](https://imgse.com/i/ppgmvo4 "暴论")
+![alt 术哥评价适配华为内核行为](https://s1.ax1x.com/2023/03/29/ppgmvo4.png)
