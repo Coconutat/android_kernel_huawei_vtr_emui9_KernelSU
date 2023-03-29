@@ -27,7 +27,7 @@
  > 注：Ubuntu 20.04 需要Python2，并软连接成Python。  
  1. 8GB RAM[最低] / 16GB RAM[推荐]
  2. 64GB 或更多 硬盘空间
- 3. 克隆本仓库，Proto文件夹是内核，交叉编译器下载地址：[gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf](https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-elf/gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf.tar.xz)，克隆命令：
+ 3. 克隆本仓库，android_kernel_huawei_hi3660 文件夹是内核，交叉编译器下载地址：[gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf](https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-elf/gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf.tar.xz)，克隆命令：
  > `git clone https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU.git`  
  1. 安装依赖：
  > `sudo apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev libwxgtk3.0-dev adb fastboot`  
