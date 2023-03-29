@@ -32,7 +32,7 @@
  1. 安装依赖：
  > `sudo apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev libwxgtk3.0-dev adb fastboot`  
  > 注：Ubuntu 20.04 不需要libwxgtk3.0-dev。
- 1. 在`Build_KSU.sh`脚本里填写好交叉编译器的路径。(内有注释, 交叉编译器在本仓库里提供。)
+ 1. 在`Build_KSU.sh`脚本里填写好交叉编译器的路径。(内有注释。)
  2. 开始编译，命令：`bash Build_KSU.sh`
 ***
 # 缺点/求助，如果能有大佬对这些问题有能力修正，请不吝赐教，感激不尽。
