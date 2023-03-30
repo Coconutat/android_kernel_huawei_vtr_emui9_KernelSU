@@ -27,13 +27,16 @@
  > 注：Ubuntu 20.04 需要Python2，并软连接成Python。  
  1. 8GB RAM[最低] / 16GB RAM[推荐]
  2. 64GB 或更多 硬盘空间
- 3. 克隆本仓库，android_kernel_huawei_hi3660 文件夹是内核，交叉编译器下载地址：[gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf](https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-elf/gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf.tar.xz)，克隆命令：
+ 3. 克隆本仓库，android_kernel_huawei_hi3660 文件夹是内核，kernelsu_mod是是适配过此内核的KernelSU的部分源码。交叉编译器下载地址：[gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf](https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-elf/gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf.tar.xz)，克隆命令：
  > `git clone https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU.git`  
  1. 安装依赖：
  > `sudo apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev libwxgtk3.0-dev adb fastboot`  
  > 注：Ubuntu 20.04 不需要libwxgtk3.0-dev。
  1. 在`Build_KSU.sh`脚本里填写好交叉编译器的路径。(内有注释。)
- 2. 开始编译，命令：`bash Build_KSU.sh`
+ 2. 进入android_kernel_huawei_hi3660，运行命令：  
+ > `curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -`  
+之后回到kernelsu_mod文件夹，把里面的selinux复制替换KernelSU里的selinux即可。
+ 3. 开始编译，命令：`bash Build_KSU.sh`
 ***
 # 缺点/求助，如果能有大佬对这些问题有能力修正，请不吝赐教，感激不尽。
 1. 不幸的是，这个内核不能切换SELinux的工作状态。如果切换就会导致KernelSU失效。所以我修改了/security/selinux/selinuxfs.c，在165行到167行添加了一些代码。
@@ -43,7 +46,7 @@
  1. /security/selinux/selinuxfs.c 165行到167行。  
  2. /driver/kernel/selinux/sepolicy.c 注释有Modify For Huawei的部分。  
  > 根据对比代码发现，华为4.9内核里的SELinux代码是移植自5.x版本的内核。所以修改了KernelSU关于版本检查的部分。
- 3. 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。所以按照之后的添加代码方式移植。  
+ 1. 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。所以按照之后的添加代码方式移植。  
 ***
 # 创建者/贡献者： 
 [麦麦观饭](https://github.com/maimaiguanfan) / [麒麟盘古内核](https://github.com/maimaiguanfan/android_kernel_huawei_hi3660/)：提供了内核参考以及基础的内核。  
