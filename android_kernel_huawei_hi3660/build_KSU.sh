@@ -14,8 +14,10 @@ fi
 echo " "
 echo "***Setting environment...***"
 rm -rf out/arch/arm64/boot/Image.gz
-export PATH=$PATH:/home/coconutat/Downloads/kernel/Tools/gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf/bin
+# 交叉编译器路径
+export PATH=$PATH:
 export CROSS_COMPILE=aarch64-elf-
+
 export GCC_COLORS=auto
 export ARCH=arm64
 if [ ! -d "out" ];
