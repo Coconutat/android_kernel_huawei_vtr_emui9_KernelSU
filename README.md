@@ -40,7 +40,8 @@
 ***
 # 缺点/求助，如果能有大佬对这些问题有能力修正，请不吝赐教，感激不尽。
 1. 不幸的是，这个内核不能切换SELinux的工作状态。如果切换就会导致KernelSU失效。所以我修改了/security/selinux/selinuxfs.c，在165行到167行添加了一些代码。
-2. 不支持模块，目前模块功能刷入无效。  
+2. ~~不支持模块，目前模块功能刷入无效。~~   
+> Alpha_1.1_KSU_0.4.1+_2023.03.30版本已经修复。  
 ***
 # 更改记录：
  1. /security/selinux/selinuxfs.c 165行到167行。  
@@ -49,11 +50,12 @@
  1. 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。所以按照之后的添加代码方式移植。  
 ***
 # 创建者/贡献者： 
-[麦麦观饭](https://github.com/maimaiguanfan) / [麒麟盘古内核](https://github.com/maimaiguanfan/android_kernel_huawei_hi3660/)：提供了内核参考以及基础的内核。  
-[aaron74xda](https://github.com/aaron74xda) / [android_kernel_huawei_hi3660
++ [麦麦观饭](https://github.com/maimaiguanfan) / [麒麟盘古内核](https://github.com/maimaiguanfan/android_kernel_huawei_hi3660/)：提供了内核参考以及基础的内核。  
++ [aaron74xda](https://github.com/aaron74xda) / [android_kernel_huawei_hi3660
 ](https://github.com/aaron74xda/android_kernel_huawei_hi3660):启发了我对于华为内核的强制SElinux宽容的具体思路。
-[OnlyTomInSecond](https://github.com/OnlyTomInSecond) / [android_kernel_xiaomi_sdm845](https://github.com/OnlyTomInSecond/android_kernel_xiaomi_sdm845):提供了KernelSU的移植思路。  
-[术哥](https://github.com/tiann) / [KernelSU](https://github.com/tiann)：开发了牛逼闪闪的各种炫酷东东的大佬。没有他就没有KernelSU。感谢他在我折腾华为内核期间给予的帮助。  
++ [OnlyTomInSecond](https://github.com/OnlyTomInSecond) / [android_kernel_xiaomi_sdm845](https://github.com/OnlyTomInSecond/android_kernel_xiaomi_sdm845):提供了KernelSU的移植思路。  
++ [Aquarius223](https://github.com/Aquarius223) / [android_kernel_xiaomi_msm8998-ksu](https://github.com/sticpaper/android_kernel_xiaomi_msm8998-ksu)：修改SElinux的hook.c实现模块功能(可能吧)。  
++ [术哥](https://github.com/tiann) / [KernelSU](https://github.com/tiann)：开发了牛逼闪闪的各种炫酷东东的大佬。没有他就没有KernelSU。感谢他在我折腾华为内核期间给予的帮助。  
 
 
 #### 滑稽  
