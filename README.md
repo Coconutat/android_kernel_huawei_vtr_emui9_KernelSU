@@ -37,10 +37,12 @@
 ***
 # 缺点/求助，如果能有大佬对这些问题有能力修正，请不吝赐教，感激不尽。
 1. 不幸的是，这个内核不能切换SELinux的工作状态。如果切换就会导致KernelSU失效。所以我修改了/security/selinux/selinuxfs.c，在165行到167行添加了一些代码。
+2. 不支持模块，目前模块功能刷入无效。  
 ***
 # 更改记录：
  1. /security/selinux/selinuxfs.c 165行到167行。  
  2. /driver/kernel/selinux/sepolicy.c 注释有Modify For Huawei的部分。  
+ > 根据对比代码发现，华为4.9内核里的SELinux代码是移植自5.x版本的内核。所以修改了KernelSU关于版本检查的部分。
  3. 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。所以按照之后的添加代码方式移植。  
 ***
 # 创建者/贡献者： 
@@ -49,3 +51,7 @@
 ](https://github.com/aaron74xda/android_kernel_huawei_hi3660):启发了我对于华为内核的强制SElinux宽容的具体思路。
 [OnlyTomInSecond](https://github.com/OnlyTomInSecond) / [android_kernel_xiaomi_sdm845](https://github.com/OnlyTomInSecond/android_kernel_xiaomi_sdm845):提供了KernelSU的移植思路。  
 [术哥](https://github.com/tiann) / [KernelSU](https://github.com/tiann)：开发了牛逼闪闪的各种炫酷东东的大佬。没有他就没有KernelSU。感谢他在我折腾华为内核期间给予的帮助。  
+
+
+#### 滑稽  
+![alt 术哥评价适配华为内核行为](https://s1.ax1x.com/2023/03/29/ppgmvo4.png)
