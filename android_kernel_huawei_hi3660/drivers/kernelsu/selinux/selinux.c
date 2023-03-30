@@ -46,7 +46,7 @@ void setup_selinux()
 		return;
 	}
 
-	/* we didn't need this now, we have change selinux rules when boot!
+	/* we didn't need this now, we have change selinux rules when boot! 
 if (!is_domain_permissive) {
   if (set_domain_permissive() == 0) {
       is_domain_permissive = true;
