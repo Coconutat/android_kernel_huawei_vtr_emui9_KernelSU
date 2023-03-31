@@ -14,48 +14,49 @@
 包含TWRP，自定义内核和原始内核。  
 ***  
 # 刷写：  
- 1. 刷入TWRP：`fastboot flash recovery_ramdisk huawei-vtr-al00-em9_0-twrp3.2.3-7to-recovery-9.4.2.img` 
- 2. 进入TWRP，进入 **高级** ，选择 **移除DATA强制加密** ，刷入后，进入 **重启** ，**Recovery** ，之后重启进入TWRP后选择 **清除** ，**格式化DATA分区** ，格式化以后选择 **滑动恢复默认出厂**。  
- 3. 重启进入fastboot模式
- 4. 刷入内核：`fastboot flash kernel PK_VXXXX_9.0_P10_PM.img`  
+ + 刷入TWRP：`fastboot flash recovery_ramdisk huawei-vtr-al00-em9_0-twrp3.2.3-7to-recovery-9.4.2.img` 
+ + 刷入TWRP：`fastboot flash recovery_ramdisk huawei-vtr-al00-em9_0-twrp3.2.3-7to-recovery-9.4.2.img` 
+ 进入TWRP，进入 **高级** ，选择 **移除DATA强制加密** ，刷入后，进入 **重启** ，**Recovery** ，之后重启进入TWRP后选择 **清除** ，**格式化DATA分区** ，格式化以后选择 **滑动恢复默认出厂**。  
+ + 重启进入fastboot模式
+ + 刷入内核：`fastboot flash kernel PK_VXXXX_9.0_P10_PM.img`  
  > XXXX是版本号。
- 5. 重启手机即可。
+ + 重启手机即可。
 ***   
 # 自行构建：  
 需求：  
- 1. Ubuntu 16.04 x86_64 / Ubuntu 20.04 x86_64  
+ + Ubuntu 16.04 x86_64 / Ubuntu 20.04 x86_64  
  > 注：Ubuntu 20.04 需要Python2，并软连接成Python。  
- 1. 8GB RAM[最低] / 16GB RAM[推荐]
- 2. 64GB 或更多 硬盘空间
- 3. 克隆本仓库，android_kernel_huawei_hi3660 文件夹是内核，kernelsu_mod是是适配过此内核的KernelSU的部分源码。交叉编译器下载地址：[gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf](https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-elf/gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf.tar.xz)，克隆命令：
+ + 8GB RAM[最低] / 16GB RAM[推荐]
+ + 64GB 或更多 硬盘空间
+ + 克隆本仓库，android_kernel_huawei_hi3660 文件夹是内核，kernelsu_mod是是适配过此内核的KernelSU的部分源码。交叉编译器下载地址：[gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf](https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-elf/gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf.tar.xz)，克隆命令：
  > `git clone https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU.git`  
- 1. 安装依赖：
+ + 安装依赖：
  > `sudo apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev libwxgtk3.0-dev adb fastboot`  
  > 注：Ubuntu 20.04 不需要libwxgtk3.0-dev。
- 2. 在`Build_KSU.sh`脚本里填写好交叉编译器的路径。(内有注释。)
- 3. 进入android_kernel_huawei_hi3660，运行命令：  
+ + 在`Build_KSU.sh`脚本里填写好交叉编译器的路径。(内有注释。)
+ + 进入android_kernel_huawei_hi3660，运行命令：  
  > `curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -`  
 之后回到kernelsu_mod文件夹，把里面的selinux复制替换KernelSU里的selinux即可。
- 4. 开始编译，命令：`bash Build_KSU.sh`
+ + 开始编译，命令：`bash Build_KSU.sh`
 ***
 # 缺点/求助，如果能有大佬对这些问题有能力修正，请不吝赐教，感激不尽。
-1. 不幸的是，这个内核不能切换SELinux的工作状态。如果切换就会导致KernelSU失效。所以我修改了/security/selinux/selinuxfs.c，在165行到167行添加了一些代码。
-2. ~~不支持模块，目前模块功能刷入无效。~~   
+ + 不幸的是，这个内核不能切换SELinux的工作状态。如果切换就会导致KernelSU失效。所以我修改了/security/selinux/selinuxfs.c，在165行到167行添加了一些代码。
+ + ~~不支持模块，目前模块功能刷入无效。~~   
 > Alpha_1.1_KSU_0.4.1+_2023.03.30版本已经修复。  
 ***
 # 更改记录：
- 1. /security/selinux/selinuxfs.c 165行到167行。  
- 2. /driver/kernel/selinux/sepolicy.c 注释有Modify For Huawei的部分。  
+ + /security/selinux/selinuxfs.c 165行到167行。  
+ + /driver/kernel/selinux/sepolicy.c 注释有Modify For Huawei的部分。  
  > 根据对比代码发现，华为4.9内核里的SELinux代码是移植自5.x版本的内核。所以修改了KernelSU关于版本检查的部分。
- 3. 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。所以按照之后的添加代码方式移植。  
+ + 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。所以按照之后的添加代码方式移植。  
 ***
 # 创建者/贡献者： 
-+ [麦麦观饭](https://github.com/maimaiguanfan) / [麒麟盘古内核](https://github.com/maimaiguanfan/android_kernel_huawei_hi3660/)：提供了内核参考以及基础的内核。  
-+ [aaron74xda](https://github.com/aaron74xda) / [android_kernel_huawei_hi3660
+ + [麦麦观饭](https://github.com/maimaiguanfan) / [麒麟盘古内核](https://github.com/maimaiguanfan/android_kernel_huawei_hi3660/)：提供了内核参考以及基础的内核。  
+ + [aaron74xda](https://github.com/aaron74xda) / [android_kernel_huawei_hi3660
 ](https://github.com/aaron74xda/android_kernel_huawei_hi3660):启发了我对于华为内核的强制SElinux宽容的具体思路。
-+ [OnlyTomInSecond](https://github.com/OnlyTomInSecond) / [android_kernel_xiaomi_sdm845](https://github.com/OnlyTomInSecond/android_kernel_xiaomi_sdm845):提供了KernelSU的移植思路。  
-+ [Aquarius223](https://github.com/Aquarius223) / [android_kernel_xiaomi_msm8998-ksu](https://github.com/sticpaper/android_kernel_xiaomi_msm8998-ksu)：修改SElinux的hook.c实现模块功能(可能吧)。  
-+ [术哥](https://github.com/tiann) / [KernelSU](https://github.com/tiann)：开发了牛逼闪闪的各种炫酷东东的大佬。没有他就没有KernelSU。感谢他在我折腾华为内核期间给予的帮助。  
+ + [OnlyTomInSecond](https://github.com/OnlyTomInSecond) / [android_kernel_xiaomi_sdm845](https://github.com/OnlyTomInSecond/android_kernel_xiaomi_sdm845):提供了KernelSU的移植思路。  
+ + [Aquarius223](https://github.com/Aquarius223) / [android_kernel_xiaomi_msm8998-ksu](https://github.com/sticpaper/android_kernel_xiaomi_msm8998-ksu)：修改SElinux的hook.c实现模块功能(可能吧)。  
+ + [术哥](https://github.com/tiann) / [KernelSU](https://github.com/tiann)：开发了牛逼闪闪的各种炫酷东东的大佬。没有他就没有KernelSU。感谢他在我折腾华为内核期间给予的帮助。  
 
 
 #### 滑稽  
