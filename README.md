@@ -1,6 +1,7 @@
 # 华为P10支持KernelSU自定义内核EMUI 9版本  
+## 目前增加了荣耀V9(目前不开放下载)
 ***
-## EMUI 8 版本：  
+## EMUI 8 版本(仅支持华为P10)：  
 [android_kernel_huawei_vtr_KernelSU](https://github.com/Coconutat/android_kernel_huawei_vtr_KernelSU)  
 ***
 特性：

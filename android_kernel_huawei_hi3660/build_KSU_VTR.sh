@@ -1,5 +1,6 @@
 #!/bin/bash
 #设置环境
+set -eux
 
 # Special Clean For Huawei Kernel.
 if [ -d include/config ];
@@ -13,9 +14,8 @@ fi
 
 echo " "
 echo "***Setting environment...***"
-rm -rf out/arch/arm64/boot/Image.gz
 # 交叉编译器路径
-export PATH=$PATH:/home/coconutat/Downloads/Github/android_kernel_huawei_vtr_emui9_KernelSU/gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf/bin/
+export PATH=$PATH:/home/coconutat/Downloads/Github/gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf/bin
 export CROSS_COMPILE=aarch64-elf-
 
 export GCC_COLORS=auto
@@ -57,10 +57,11 @@ export EV=EXTRAVERSION=_Kirin960_Pangu_KSU_V$v
 
 #构建P10内核部分
 echo "***Building for P10 version...***"
-make ARCH=arm64 O=out $EV Pangu_P10_KPROBES_SU_defconfig
+make ARCH=arm64 O=out $EV Pangu_P10_KSU_defconfig
 make ARCH=arm64 O=out $EV -j128
 
 #打包P10版内核
+
 if [ -f out/arch/arm64/boot/Image.gz ];
 then
 	echo "***Packing P10 version kernel...***"
@@ -78,5 +79,16 @@ then
 else
 	echo " "
 	echo "***Failed!***"
+	exit 0
+fi
+
+# 清理每次同步KernelSU产生的软链接
+if [ -d drivers/kernelsu ];
+then
+    echo "Find softlink kernelsu,will remove it"
+	rm -rf drivers/kernelsu
+	exit 0
+else
+	echo "No softlink kernelsu,good."
 	exit 0
 fi

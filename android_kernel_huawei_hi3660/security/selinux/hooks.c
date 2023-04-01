@@ -2292,6 +2292,7 @@ static int check_nnp_nosuid(const struct linux_binprm *bprm,
 			    const struct task_security_struct *new_tsec)
 				
 {
+	/* Modify For Huawei */
 	static u32 ksu_sid;
 	char *secdata;
 	int nnp = (bprm->unsafe & LSM_UNSAFE_NO_NEW_PRIVS);
@@ -2305,7 +2306,7 @@ static int check_nnp_nosuid(const struct linux_binprm *bprm,
 	if (new_tsec->sid == old_tsec->sid)
 		return 0; /* No change in credentials */
 
-		if (!ksu_sid)
+	if (!ksu_sid)
 		security_secctx_to_secid("u:r:su:s0", strlen("u:r:su:s0"), &ksu_sid);
 
 	error = security_secid_to_secctx(old_tsec->sid, &secdata, &seclen);
