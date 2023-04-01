@@ -21,7 +21,6 @@
 ***  
 # 刷写：  
  + 刷入TWRP：`fastboot flash recovery_ramdisk huawei-vtr-al00-em9_0-twrp3.2.3-7to-recovery-9.4.2.img` 
- + 刷入TWRP：`fastboot flash recovery_ramdisk huawei-vtr-al00-em9_0-twrp3.2.3-7to-recovery-9.4.2.img` 
  进入TWRP，进入 **高级** ，选择 **移除DATA强制加密** ，刷入后，进入 **重启** ，**Recovery** ，之后重启进入TWRP后选择 **清除** ，**格式化DATA分区** ，格式化以后选择 **滑动恢复默认出厂**。  
  + 重启进入fastboot模式
  + 刷入内核：`fastboot flash kernel PK_VXXXX_9.0_P10_PM.img`  
