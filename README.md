@@ -1,5 +1,10 @@
 # 华为P10支持KernelSU自定义内核EMUI 9版本  
-## 目前增加了荣耀V9(目前不开放下载)
+> 也可能支持：华为P10 Plus、Mate9、Mate9 Pro
+## 目前增加了盘古内核支持的另一系列机型
+> 可能支持：荣耀荣耀9、v9（8Pro）、华为Nova2S、平板M5 8.4英寸、华为平板M5 10.8英寸（麒麟960s）
+下载地址：[蓝奏云](https://wwcy.lanzoum.com/iht1X0rqwyuf)  
+此版本不会长期更新。  
+机型支持来自盘古内核的说明：[说明](https://gitee.com/maimaiguanfan/Pangu9.1EROFS)
 ***
 ## EMUI 8 版本(仅支持华为P10)：  
 [android_kernel_huawei_vtr_KernelSU](https://github.com/Coconutat/android_kernel_huawei_vtr_KernelSU)  
@@ -15,7 +20,6 @@
 包含TWRP，自定义内核和原始内核。  
 ***  
 # 刷写：  
- + 刷入TWRP：`fastboot flash recovery_ramdisk huawei-vtr-al00-em9_0-twrp3.2.3-7to-recovery-9.4.2.img` 
  + 刷入TWRP：`fastboot flash recovery_ramdisk huawei-vtr-al00-em9_0-twrp3.2.3-7to-recovery-9.4.2.img` 
  进入TWRP，进入 **高级** ，选择 **移除DATA强制加密** ，刷入后，进入 **重启** ，**Recovery** ，之后重启进入TWRP后选择 **清除** ，**格式化DATA分区** ，格式化以后选择 **滑动恢复默认出厂**。  
  + 重启进入fastboot模式
