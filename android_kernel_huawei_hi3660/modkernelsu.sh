@@ -1,6 +1,6 @@
 #!/bin/bash
-set -eux
 
+# 修改KenrelSU的代码以适配内核
 KERNELSU_DIR=$(pwd)/KernelSU
 echo "[+] KERNELSU_DIR: $KERNELSU_DIR"
 

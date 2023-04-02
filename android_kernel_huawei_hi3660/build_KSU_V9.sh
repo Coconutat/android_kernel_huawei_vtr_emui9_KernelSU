@@ -1,6 +1,5 @@
 #!/bin/bash
 #设置环境
-set -eux
 
 # Special Clean For Huawei Kernel.
 if [ -d include/config ];
@@ -76,19 +75,9 @@ then
 	echo " "
 	echo "***Sucessfully built V9 version kernel...***"
 	echo " "
+	exit 0
 else
 	echo " "
 	echo "***Failed!***"
-	exit 0
-fi
-
-# 清理每次同步KernelSU产生的软链接
-if [ -d drivers/kernelsu ];
-then
-    echo "Find softlink kernelsu,will remove it"
-	rm -rf drivers/kernelsu
-	exit 0
-else
-	echo "No softlink kernelsu,good."
 	exit 0
 fi
