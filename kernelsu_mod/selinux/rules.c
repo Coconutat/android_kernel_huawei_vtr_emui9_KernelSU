@@ -21,10 +21,12 @@
 static struct policydb *get_policydb(void)
 {
 	struct policydb *db;
+	
 // selinux_state does not exists before 4.19
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 9, 337)
+
 /* Modify For Huawei */
 /*
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 9, 337)
 #ifdef SELINUX_POLICY_INSTEAD_SELINUX_SS
 	struct selinux_policy *policy = rcu_dereference(selinux_state.policy);
 	db = &policy->policydb;
@@ -33,9 +35,11 @@ static struct policydb *get_policydb(void)
 	db = &ss->policydb;
 #endif
 #else
-*/
+
     db = &policydb;
 #endif
+*/
+    db = &policydb;
 	return db;
 }
 
