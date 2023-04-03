@@ -45,7 +45,7 @@ static struct policydb *get_policydb(void)
 
 void apply_kernelsu_rules()
 {
-	/* Modify for HUawei */
+	/* Modify for Huawei */
 	/*
 	if (!getenforce()) {
 		pr_info("SELinux permissive or disabled, don't apply rules.");
