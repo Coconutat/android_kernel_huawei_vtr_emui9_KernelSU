@@ -56,7 +56,8 @@
  + 按照[KernelSU为非GKI集成教程](https://kernelsu.org/zh_CN/guide/how-to-integrate-for-non-gki.html)的部分。KPROBES能编译但是工作不正常。所以按照之后的添加代码方式移植。  
 ***
 # 创建者/贡献者： 
- + [麦麦观饭](https://github.com/maimaiguanfan) / [麒麟盘古内核](https://github.com/maimaiguanfan/android_kernel_huawei_hi3660/)：提供了内核参考以及基础的内核。  
+ + [麦麦观饭](https://github.com/maimaiguanfan) / [麒麟盘古内核](https://github.com/maimaiguanfan/android_kernel_huawei_hi3660/)：提供了内核参考以及基础的内核。 
+ + [kindle4jerry](https://github.com/kindle4jerry) : 感谢大佬的建议和无私帮助。  
  + [aaron74xda](https://github.com/aaron74xda) / [android_kernel_huawei_hi3660
 ](https://github.com/aaron74xda/android_kernel_huawei_hi3660):启发了我对于华为内核的强制SElinux宽容的具体思路。
  + [OnlyTomInSecond](https://github.com/OnlyTomInSecond) / [android_kernel_xiaomi_sdm845](https://github.com/OnlyTomInSecond/android_kernel_xiaomi_sdm845):提供了KernelSU的移植思路。  
