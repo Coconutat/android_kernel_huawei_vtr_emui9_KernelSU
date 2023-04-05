@@ -2,7 +2,8 @@
 > 也可能支持：华为P10 Plus、Mate9、Mate9 Pro
 ## 目前增加了盘古内核支持的另一系列机型
 > 可能支持：荣耀荣耀9、v9（8Pro）、华为Nova2S、平板M5 8.4英寸、华为平板M5 10.8英寸（麒麟960s）
-下载地址：[蓝奏云](https://wwcy.lanzoum.com/iht1X0rqwyuf)  
+下载地址：[蓝奏云](https://wwcy.lanzoum.com/b057ndkuj)
+访问密码：9awf
 此版本不会长期更新。  
 机型支持来自盘古内核的说明：[说明](https://gitee.com/maimaiguanfan/Pangu9.1EROFS)
 ***
