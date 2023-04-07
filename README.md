@@ -1,7 +1,7 @@
 # 华为P10支持KernelSU自定义内核EMUI 9版本  
-> 也可能支持：华为P10 Plus、Mate9、Mate9 Pro
+> 也可能支持：华为P10 Plus、Mate9、Mate9 Pro(VTR系列)  
 ## 目前增加了盘古内核支持的另一系列机型  
-> 可能支持：荣耀荣耀9、v9（8Pro）、华为Nova2S、平板M5 8.4英寸、华为平板M5 10.8英寸（麒麟960s）  
+> 可能支持：荣耀荣耀9、v9（8Pro）、华为Nova2S、平板M5 8.4英寸、华为平板M5 10.8英寸（麒麟960s）(V9系列)  
 > 下载地址：[蓝奏云](https://wwcy.lanzoum.com/b057ndkuj)  
 > 访问密码：9awf  
 > 此版本不会长期更新。  
@@ -39,10 +39,11 @@
  + 安装依赖：
  > `sudo apt install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev libwxgtk3.0-dev adb fastboot`  
  > 注：Ubuntu 20.04 不需要libwxgtk3.0-dev。
- + 在`Build_KSU.sh`脚本里填写好交叉编译器的路径。(内有注释。)
  + 进入android_kernel_huawei_hi3660，运行命令：  
- > `curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -`  
-之后回到kernelsu_mod文件夹，把里面的selinux复制替换KernelSU里的selinux即可。
+ > `bash synckernelsu.sh` （同步KernelSU最新代码）
+ + 运行命令 `bash modkernelsu.sh` （复制修改的KernelSU代码，为了适配此内核。）
+ > 具体修改后支持的版本参考：[KernelSU Modify README](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/blob/main/kernelsu_mod/README.md)
+ + 在`Build_KSU_VTR.sh`脚本或者`Build_KSU_V9.sh`里填写好交叉编译器的路径。(内有注释。脚本使用取决于你编译什么机型系列。机型系列请看开头。)
  + 开始编译，命令：`bash Build_KSU.sh`
 ***
 # 缺点/求助，如果能有大佬对这些问题有能力修正，请不吝赐教，感激不尽。

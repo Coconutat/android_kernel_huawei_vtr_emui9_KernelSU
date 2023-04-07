@@ -57,7 +57,8 @@ export EV=EXTRAVERSION=_Kirin960_Pangu_KSU_V$v
 #构建P10内核部分
 echo "***Building for P10 version...***"
 make ARCH=arm64 O=out $EV Pangu_P10_KSU_defconfig
-make ARCH=arm64 O=out $EV -j128
+# 定义编译线程数
+make ARCH=arm64 O=out $EV -j256
 
 #打包P10版内核
 
