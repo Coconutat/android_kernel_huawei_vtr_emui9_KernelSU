@@ -1,4 +1,6 @@
 
 android_kernel_huawei_hi3660/KernelSU
+android_kernel_huawei_hi3660/out
 android_kernel_huawei_hi3660/drivers/kernelsu
 .vscode
+logs.txt

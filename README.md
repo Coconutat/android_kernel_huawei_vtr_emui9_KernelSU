@@ -50,6 +50,7 @@
  + 不幸的是，这个内核不能切换SELinux的工作状态。如果切换就会导致KernelSU失效。所以我修改了/security/selinux/selinuxfs.c，在165行到167行添加了一些代码。
  + ~~不支持模块，目前模块功能刷入无效。~~   
 > Alpha_1.1_KSU_0.4.1+_2023.03.30版本已经修复。  
+> Alpha_1.4.2 修复了ZygiksOnKernelSU无法挂载
 ***
 # 更改记录：
  + /security/selinux/selinuxfs.c 165行到167行。  
