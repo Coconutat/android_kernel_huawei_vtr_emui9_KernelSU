@@ -41,8 +41,8 @@
  > 注：Ubuntu 20.04 不需要libwxgtk3.0-dev。
  + 进入android_kernel_huawei_hi3660，运行命令：  
  > `bash synckernelsu.sh` （同步KernelSU最新代码）
- + 运行命令 `bash modkernelsu.sh` （复制修改的KernelSU代码，为了适配此内核。）
- > 具体修改后支持的版本参考：[KernelSU Modify README](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/blob/main/kernelsu_mod/README.md)
+ + ~~ 运行命令 `bash modkernelsu.sh` （复制修改的KernelSU代码，为了适配此内核。）~~
+ > 已经是过去式了，此PR已经改善了这一点[#374](https://github.com/tiann/KernelSU/commit/7be61b9657bfa257da926b8b86dfe84c435cacd0)
  + 在`Build_KSU_VTR.sh`脚本或者`Build_KSU_V9.sh`里填写好交叉编译器的路径。(内有注释。脚本使用取决于你编译什么机型系列。机型系列请看开头。)
  + 开始编译，命令：`bash Build_KSU.sh`
 ***
