@@ -8,7 +8,7 @@
 > 机型支持来自盘古内核的说明：[说明](https://gitee.com/maimaiguanfan/Pangu9.1EROFS)  
 ***
 ## EMUI 8 版本(仅支持华为P10)：  
-[android_kernel_huawei_vtr_KernelSU](https://github.com/Coconutat/android_kernel_huawei_vtr_KernelSU)  
+[android_kernel_huawei_vtr_emui8_KernelSU](https://github.com/Coconutat/android_kernel_huawei_vtr_emui8_KernelSU)  
 ***
 特性：
  1. 基于原本的Pangu Kernel(盘古内核)的所有特性。
