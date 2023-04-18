@@ -10,6 +10,10 @@
 ## EMUI 8 版本(仅支持华为P10)：  
 [android_kernel_huawei_vtr_KernelSU](https://github.com/Coconutat/android_kernel_huawei_vtr_KernelSU)  
 ***
+  
+#### 关于刷机的一些教程
+[Wiki](https://github.com/Coconutat/HuaweiP10-GSI-And-Modify-Tutorial/wiki)
+
 特性：
  1. 基于原本的Pangu Kernel(盘古内核)的所有特性。
  2. 支持KernelSU
