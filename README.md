@@ -13,8 +13,12 @@
   
 #### 关于刷机的一些教程
 [Wiki](https://github.com/Coconutat/HuaweiP10-GSI-And-Modify-Tutorial/wiki)
-
-特性：
+***
+#### 关于SELinux状态：
+1. EMUI 9 : 内核默认是开机宽容，但是因为华为设计的SELinux规则，可能会强制回到Enforcing导致KernelSU失效。  
+2. GSI : 只要能开机进系统，那就是宽容模式，而且开机后可以手动切换回Enforcing，不影响KernelSU。  
+***
+# 特性：
  1. 基于原本的Pangu Kernel(盘古内核)的所有特性。
  2. 支持KernelSU
  3. 不能切换SELinux为强制模式。(强制为宽容模式。)
