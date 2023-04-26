@@ -17,6 +17,8 @@
 #### 关于SELinux状态：
 1. EMUI 9 : 内核默认是开机宽容，但是因为华为设计的SELinux规则，可能会强制回到Enforcing导致KernelSU失效。  
 2. GSI : 只要能开机进系统，那就是宽容模式，而且开机后可以手动切换回Enforcing，不影响KernelSU。  
+3. GSI : 这里提供第二个思路，使用[huawei-creator](https://github.com/Iceows/huawei-creator)转换你的GSI，这样可以直接使用SElinux强制模式的内核。同时你的GSI会得到性能修复和其他的bug修复。强烈推荐。  
+   > 个人自用版huawei-creator:[huawei-creator-exp](https://github.com/Coconutat/huawei-creator-exp)   
 ***
 # 特性：
  1. 基于原本的Pangu Kernel(盘古内核)的所有特性。
