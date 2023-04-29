@@ -1,4 +1,4 @@
 [submodule "KernelSU"]
-	path = KernelSU
+	path = KernelSU/
 	url = https://github.com/tiann/KernelSU/
-        branch =  upstream_dev
+    branch =  upstream_dev

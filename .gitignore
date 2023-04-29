@@ -5,3 +5,6 @@ logs.txt
 1_LOGS/
 build_KSU_V9.sh
 build_KSU_VTR.sh
+*.img
+*.gz
+*.zip
