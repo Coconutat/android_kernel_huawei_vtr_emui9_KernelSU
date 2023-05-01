@@ -16,6 +16,8 @@
 此分支下内核强制锁定为宽容。  
 这是因为KernelSU的ksud.c文件无法对低于安卓10的系统正确处理init以及应用KernelSU修改的SELinux规则导致的。  
 
+***  
+
 #### 关于刷机的一些教程
 [Wiki](https://github.com/Coconutat/HuaweiP10-GSI-And-Modify-Tutorial/wiki)
 ***
