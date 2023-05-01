@@ -11,12 +11,15 @@
 [android_kernel_huawei_vtr_emui8_KernelSU](https://github.com/Coconutat/android_kernel_huawei_vtr_emui8_KernelSU)  
 ***
   
+## 关于此分支(GSI_upstream_dev)  
+此分支是给那些希望在GSI系统上使用KernelSU的用户/开发者/编译者使用的。  
+此分支下内核可以正常使用，SELinux状态可以自由切换。   
+如果想修复一定的GSI系统的bug和性能问题，建议使用[huawei-creator](https://github.com/Iceows/huawei-creator)转换你的GSI，强烈推荐。  
+   > 个人自用版huawei-creator:[huawei-creator-exp](https://github.com/Coconutat/huawei-creator-exp)   
+***  
+  
 #### 关于刷机的一些教程
 [Wiki](https://github.com/Coconutat/HuaweiP10-GSI-And-Modify-Tutorial/wiki)
-***
-#### 关于SELinux状态：
-1. EMUI 9 : 内核默认是开机宽容，但是因为华为设计的SELinux规则，可能会强制回到Enforcing导致KernelSU失效。  
-2. GSI : 只要能开机进系统，那就是宽容模式，而且开机后可以手动切换回Enforcing，不影响KernelSU。  
 ***
 # 特性：
  1. 基于原本的Pangu Kernel(盘古内核)的所有特性。
