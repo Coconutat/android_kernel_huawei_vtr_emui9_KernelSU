@@ -1,0 +1,132 @@
+manifest_format=1.3
+
+# Note that for ABE, these parameters are not used
+# Component data for gmp
+gmp_url=http://snapshots.linaro.org/components/toolchain/infrastructure/
+gmp_filespec=gmp-6.0.0a.tar.xz
+gmp_md5sum=5a874d7aea7b007d942ab60af08df3ad
+gmp_configure="--enable-cxx --enable-fft"
+gmp_staticlink="yes"
+
+# Component data for mpfr
+mpfr_url=http://snapshots.linaro.org/components/toolchain/infrastructure/
+mpfr_filespec=mpfr-3.1.3.tar.xz
+mpfr_md5sum=6969398cd2fbc56a6af570b5273c56a9
+mpfr_configure="--with-gmp=${local_builds}/destdir/${host}"
+mpfr_staticlink="yes"
+
+# Component data for mpc
+mpc_url=http://snapshots.linaro.org/components/toolchain/infrastructure/
+mpc_filespec=mpc-1.0.3.tar.gz
+mpc_md5sum=d6a1d5f8ddea3abd2cc3e98f58352d26
+mpc_configure="--with-gmp=${local_builds}/destdir/${host} --with-mpfr=${local_builds}/destdir/${host}"
+mpc_staticlink="yes"
+
+# Component data for dejagnu
+dejagnu_url=http://git.linaro.org/git/toolchain
+dejagnu_branch=linaro-local/stable
+dejagnu_revision=9c19d3d7473ef731b74f3a48fcce5a168bf701ec
+dejagnu_filespec=dejagnu.git
+dejagnu_staticlink="yes"
+
+# Component data for binutils
+binutils_url=http://git.linaro.org/git/toolchain
+binutils_branch=linaro_binutils-2_24-branch
+binutils_revision=13e81dd207f47c0a6ac5a837d7e7d5910b265e86
+binutils_filespec=binutils-gdb.git
+binutils_configure="--enable-lto --enable-plugins --disable-werror CPPFLAGS=-UFORTIFY_SOURCE --with-pkgversion=Linaro_Binutils-2017.01 --disable-gdb --disable-sim --disable-libdecnumber --disable-readline --with-sysroot=${sysroots}"
+binutils_staticlink="yes"
+
+# Component data for gcc
+gcc_url=http://dev-01.tcwglab/~tcwg-buildslave/releases/sources/4.9-2017.01
+gcc_filespec=gcc-linaro-4.9-2017.01.tar.xz
+gcc_makeflags="MAKEINFOFLAGS=--force"
+gcc_md5sum=d6857360eb7522d30a831308b15d255e
+gcc_configure=
+gcc_staticlink="no"
+gcc_stage1_flags="--with-mpc=${local_builds}/destdir/${host} --with-mpfr=${local_builds}/destdir/${host} --with-gmp=${local_builds}/destdir/${host} --with-gnu-as --with-gnu-ld --disable-libmudflap --enable-lto --enable-objc-gc --enable-shared --without-included-gettext --enable-nls --disable-sjlj-exceptions --enable-gnu-unique-object --enable-linker-build-id --disable-libstdcxx-pch --enable-c99 --enable-clocale=gnu --enable-libstdcxx-debug --enable-long-long --with-cloog=no --with-ppl=no --with-isl=no --enable-multilib --enable-fix-cortex-a53-835769 --enable-fix-cortex-a53-843419 --with-arch=armv8-a --enable-threads=no --disable-multiarch --with-newlib --disable-libssp --disable-libquadmath --disable-threads --without-headers --with-newlib --disable-libmudflap --disable-bootstrap --disable-decimal-float --disable-libgomp --disable-libatomic --disable-libsanitizer --disable-plugins --disable-libitm --enable-languages=c --with-sysroot=${local_builds}/sysroot-aarch64-elf --disable-shared --with-glibc-version=2.18"
+gcc_stage2_flags="--with-mpc=${local_builds}/destdir/${host} --with-mpfr=${local_builds}/destdir/${host} --with-gmp=${local_builds}/destdir/${host} --with-gnu-as --with-gnu-ld --disable-libmudflap --enable-lto --enable-objc-gc --enable-shared --without-included-gettext --enable-nls --disable-sjlj-exceptions --enable-gnu-unique-object --enable-linker-build-id --disable-libstdcxx-pch --enable-c99 --enable-clocale=gnu --enable-libstdcxx-debug --enable-long-long --with-cloog=no --with-ppl=no --with-isl=no --enable-multilib --enable-fix-cortex-a53-835769 --enable-fix-cortex-a53-843419 --with-arch=armv8-a --enable-threads=no --disable-multiarch --with-newlib --with-build-sysroot=${sysroots} --with-sysroot=${local_builds}/destdir/${host}/aarch64-elf/libc --enable-checking=release --disable-bootstrap --enable-languages=c,c++,lto"
+
+# Component data for newlib
+newlib_url=http://git.linaro.org/git/toolchain
+newlib_branch=linaro_newlib-branch
+newlib_revision=136b66e404df41435bdec4630c0787b0bc7e7580
+newlib_filespec=newlib.git
+newlib_configure="--with-newlib --enable-newlib-multithread --enable-newlib-io-pos-args --enable-newlib-io-c99-formats --enable-newlib-io-long-long --enable-newlib-io-long-double --enable-newlib-mb"
+newlib_staticlink="yes"
+
+# Component data for gdb
+gdb_url=http://git.linaro.org/git/toolchain
+gdb_branch=gdb-7.10-branch
+gdb_revision=718b36fead887693158396b948d7f409b987c053
+gdb_filespec=binutils-gdb.git
+gdb_configure="--with-gnu-ld --enable-plugins --enable-tui --with-pkgversion=Linaro_GDB-2017.01 --disable-gas --disable-binutils --disable-ld --disable-gold --disable-gprof --with-python=yes --enable-sim"
+gdb_staticlink="yes"
+
+
+clibrary=newlib
+target=aarch64-elf
+manifestid=e8a2f4da296e9e16e5595ef8392b31b102e35680
+
+ ##############################################################################
+ # Everything below this line is only for informational purposes for developers
+ ##############################################################################
+
+# Build machine data
+build: linux
+host: x86_64-unknown-linux-gnu
+kernel: 4.4.0-45-generic
+hostname: docker-trusty-amd64-tcwg
+distribution: trusty
+host_gcc: gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.3) 
+
+# These aren't used in the repeat build. just a sanity check for developers
+build directory: /home/tcwg-buildslave/workspace/tcwg-make-release/label/docker-trusty-amd64-tcwg-build/target/aarch64-elf/_build/builds
+sysroot directory: /home/tcwg-buildslave/workspace/tcwg-make-release/label/docker-trusty-amd64-tcwg-build/target/aarch64-elf/_build/sysroots/aarch64-elf
+snapshots directory: /home/tcwg-buildslave/workspace/tcwg-make-release/label/docker-trusty-amd64-tcwg-build/target/aarch64-elf/snapshots
+git reference directory: /home/tcwg-buildslave/snapshots-ref
+
+abe_url=https://git-us.linaro.org/toolchain
+abe_branch=branch=
+abe_revision=ac106abb85424def5e6cb382d0375d2d1fdd1f6b
+abe_filespec=abe.git
+abe_configure="--with-local-snapshots=${local_snapshots} --with-git-reference-dir=/home/tcwg-buildslave/snapshots-ref"
+
+--------------------- binutils ----------------------
+commit 13e81dd207f47c0a6ac5a837d7e7d5910b265e86
+Author: Jiong Wang <jiong.wang@arm.com>
+Date:   Tue Jan 13 11:36:54 2015 +0000
+
+    [AArch64] Fix function pointer variable with -Bsymbolic-functions
+    
+    bfd/ChangeLog
+    
+    ld/testsuite/ChangeLog
+    
+    2015-01-13 Thomas Preud'homme <thomas.preudhomme@arm.com>
+    
+        * ld-aarch64/aarch64-elf.exp: Added relocs-257-symbolic-func test.
+    
+    Conflicts:
+    	bfd/ChangeLog
+    	ld/testsuite/ChangeLog
+
+--------------------- newlib ----------------------
+commit 136b66e404df41435bdec4630c0787b0bc7e7580
+Author: Will Newton <will.newton@linaro.org>
+Date:   Thu Aug 28 16:06:55 2014 +0100
+
+    configure across the tree: Update version for 2.1.0-2014.09
+
+--------------------- abe ----------------------
+commit ac106abb85424def5e6cb382d0375d2d1fdd1f6b
+Author: Maxim Kuvyrkov <maxim.kuvyrkov@linaro.org>
+Date:   Wed Jan 18 14:59:20 2017 +0000
+
+    Convert --parallel option into --enable/--disable parallel
+    
+    With the --parallel option it is impossible to disable parallel
+    builds, which are the default.
+    
+    Change-Id: I53de51dc0d26daf023e6ea1bdf493f3975ec1a64
+
