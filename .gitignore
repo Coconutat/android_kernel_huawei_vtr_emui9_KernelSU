@@ -3,8 +3,7 @@ drivers/kernelsu
 .vscode
 logs.txt
 1_LOGS/
-build_KSU_V9.sh
-build_KSU_VTR.sh
+build_KSU_*.sh
 *.img
 *.gz
 *.zip
