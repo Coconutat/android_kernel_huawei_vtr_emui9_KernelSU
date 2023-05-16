@@ -5858,10 +5858,6 @@ CONFIG_DEFAULT_SECURITY_SELINUX=y
 CONFIG_DEFAULT_SECURITY="selinux"
 # CONFIG_HISI_RO_LSM_HOOKS is not set
 
-#
-# Enforce SElinux To Permissive Mode
-# CONFIG_SELINUX_EPM is not set
-
 
 #
 # Huawei KERNEL STP
