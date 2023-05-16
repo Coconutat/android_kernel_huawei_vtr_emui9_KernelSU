@@ -158,8 +158,11 @@ static ssize_t sel_write_enforce(struct file *file, const char __user *buf,
   if (sscanf(page, "%d", &new_value) != 1)
     goto out;
 
+#ifdef CONFIG_SELINUX_EPM (ture)
   /*Modify for Huawei.This value for enforce the permissive mode.*/
-  /*new_value = 0;*/
+  new_value = 0;
+#else
+#endif
 
   if (new_value != selinux_enforcing)
   {
