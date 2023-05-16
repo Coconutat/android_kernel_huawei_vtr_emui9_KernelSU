@@ -1,7 +1,7 @@
 out
 drivers/kernelsu
 .vscode
-logs.txt
+log*.txt
 1_LOGS/
 build_KSU_*.sh
 *.img
