@@ -5860,7 +5860,7 @@ CONFIG_DEFAULT_SECURITY="selinux"
 
 #
 # Enforce SElinux To Permissive Mode
-# CONFIG_SELINUX_EPM is not set
+CONFIG_SELINUX_EPM=y
 
 
 #
