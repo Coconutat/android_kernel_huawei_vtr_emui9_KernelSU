@@ -15,8 +15,9 @@
 ***  
 
 # 下载：  
-**[Github Action](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions)**
+**[Github Action](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions)**  
 
+***  
 # 创建者/贡献者： 
  + [麦麦观饭](https://github.com/maimaiguanfan) / [麒麟盘古内核](https://github.com/maimaiguanfan/android_kernel_huawei_hi3660/)：提供了内核参考以及基础的内核。 
  + [kindle4jerry](https://github.com/kindle4jerry) : 感谢大佬的建议和无私帮助。  
