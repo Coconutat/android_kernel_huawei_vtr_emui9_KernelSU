@@ -66,7 +66,7 @@ jobs:
     - name: Upload P10-KSU-Kernel
       uses: actions/upload-artifact@v3
       with:
-        name: Pangu_P10_KSU-kernel-${{ steps.get_time.outputs.TIME }}
+        name: Pangu_P10_KSU-GSI-kernel-${{ steps.get_time.outputs.TIME }}
         path: "Pangu_P10_KSU-*.img"
 
     - name: Build V9-KSU-Kernel
@@ -95,5 +95,5 @@ jobs:
     - name: Upload V9-KSU-Kernel
       uses: actions/upload-artifact@v3
       with:
-        name: Pangu_V9_KSU-kernel-${{ steps.get_time.outputs.TIME }}
+        name: Pangu_V9_KSU-GSI-kernel-${{ steps.get_time.outputs.TIME }}
         path: "Pangu_V9_KSU-*.img"
