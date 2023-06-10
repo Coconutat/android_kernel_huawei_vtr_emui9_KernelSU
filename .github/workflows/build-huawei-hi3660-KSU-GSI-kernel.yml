@@ -43,6 +43,7 @@ jobs:
 
     - name: Build Kernel
       run: |
+       sudo ln -sf /usr/bin/python2.7 /usr/bin/python
        if [ -d include/config ];
         then
          echo "Find config,will remove it"
