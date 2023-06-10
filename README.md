@@ -9,8 +9,11 @@
 **详细的说明(强烈建议先区阅读此文件！！)：[旧版README](README_OLD.md)**  
 
 ***
-现在编译内核依托于Github Action进行全自动编译。
-版本说明：
+# Github Action说明：
+现在编译内核依托于Github Action进行全自动编译。编译均为KernelSU的开发版。  
+Releases内会发布基于KernelSU稳定版本构建的内核。  
+喜欢尝鲜的朋友可以在Action内下载。  
+**版本说明：**
 + Build Huawei-hi3660-KSU-GSI-Kernel:给GSI系统使用的KernelSU内核。  
  > 内部包含两个系列，一个是P10系列(Pangu_P10_KSU_XXXX)，一个是V9系列(Pangu_V9_KSU_XXXX)。解压后带enforcing的版本刷入后开机SELinux为强制模式。带permissive的版本刷入后开机SELinux为宽容模式。  
   
@@ -22,7 +25,8 @@
 ***  
 
 # 下载：  
-**[Github Action](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions)**  
+**稳定版：[Github Release](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/releases)**
+**开发版：[Github Action](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions)**  
 
 ***  
 # 创建者/贡献者： 
