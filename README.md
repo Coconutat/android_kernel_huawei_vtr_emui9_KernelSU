@@ -1,4 +1,11 @@
 # 华为P10支持KernelSU自定义内核EMUI 9版本  
+[![Build Huawei-hi3660-KSU-EMUI9-EPM-Kernel](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-EMUI9-EPM-kernel.yml/badge.svg?branch=Github_Action_Mode)](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-EMUI9-EPM-kernel.yml)  
+ 
+[![Build Huawei-hi3660-KSU-GSI-Kernel](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-GSI-kernel.yml/badge.svg?branch=Github_Action_Mode)](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-GSI-kernel.yml)  
+
+![Downloads](https://img.shields.io/github/downloads/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/total)  
+   
+***
 **详细的说明(强烈建议先区阅读此文件！！)：[旧版README](README_OLD.md)**  
 
 ***
