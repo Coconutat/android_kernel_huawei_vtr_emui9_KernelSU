@@ -5,7 +5,7 @@
 [下载统计](https://gra.caldis.me/?url=https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU)
    
 ***
-**详细的说明(强烈建议先区阅读此文件！！)：[旧版README](README_OLD.md)**  
+**详细的说明(强烈建议先去阅读此文件！！)：[旧版README](README_OLD.md)**  
 
 ***
 # Github Action说明：
