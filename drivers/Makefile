@@ -215,4 +215,5 @@ obj-$(CONFIG_HW_MEMORY_MONITOR) += allocpages_delayacct/
 obj-y += cfi/
 obj-$(CONFIG_HUAWEI_DUBAI) += dubai/
 
-obj-y += kernelsu/
+
+obj-$(CONFIG_KSU) += kernelsu/
