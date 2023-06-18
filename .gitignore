@@ -7,3 +7,4 @@ build_KSU_*.sh
 *.img
 *.gz
 *.zip
+kernel_log*.txt
