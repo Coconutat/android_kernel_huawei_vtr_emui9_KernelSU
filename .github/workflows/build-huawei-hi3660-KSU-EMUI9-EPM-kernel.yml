@@ -55,7 +55,7 @@ jobs:
 
        rm -rf KernelSU
        rm -rf drivers/kernelsu
-       curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.6.0
+       curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s main
        export PATH=$(pwd)/ToolChains/bin/:$PATH
        export ARCH=arm64
        export SUBARCH=arm64
