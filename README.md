@@ -6,7 +6,7 @@
    
 ***
 **详细的说明(强烈建议先去阅读此文件！！)：[旧版README](README_OLD.md)**  
-
+**此版本仅支持EMUI 9，支持EMUI 9.1.0的在此:[android_kernel_huawei_hi3660_emui9.1.0_KernelSU](https://github.com/Coconutat/android_kernel_huawei_hi3660_emui9.1.0_KernelSU)**  
 ***
 # Github Action说明：
 现在编译内核依托于Github Action进行全自动编译。编译均为KernelSU的开发版。  
