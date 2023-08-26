@@ -47,7 +47,7 @@ printf "Please enter Pangu Kernel version number: "
 read v
 echo " "
 echo "Setting EXTRAVERSION"
-export EV=EXTRAVERSION=_Kirin960_Pangu_KSU_V$v
+export EV=EXTRAVERSION=-KSU_V$v
 
 start_time=$(date +%Y.%m.%d-%I_%M)
 
