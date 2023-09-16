@@ -8,3 +8,4 @@ build_KSU_*.sh
 *.gz
 *.zip
 kernel_log*.txt
+arch/arm64/configs/*_test_defconfig
