@@ -5,6 +5,10 @@
 [下载统计](https://gra.caldis.me/?url=https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU)
    
 ***
+## 重大改进：  
+现已修复KernelSU对低于安卓10设备的兼容性。不再强制要求SElinux为宽容。   
+感谢@longhuan1999   
+***
 **详细的说明(强烈建议先去阅读此文件！！)：[旧版README](README_OLD.md)**  
 **此版本仅支持EMUI 9，支持EMUI 9.1.0的在此:[android_kernel_huawei_hi3660_emui9.1.0_KernelSU](https://github.com/Coconutat/android_kernel_huawei_hi3660_emui9.1.0_KernelSU)**  
 ***
