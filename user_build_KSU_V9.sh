@@ -55,7 +55,7 @@ start_time_sum=$(date +%s)
 
 #构建V9内核部分
 echo "***Building for V9 version...***"
-make ARCH=arm64 O=out $EV Pangu_KSU_defconfig
+make ARCH=arm64 O=out $EV Pangu_KSU_V9_defconfig
 # 定义编译线程数
 make ARCH=arm64 O=out $EV -j256 2>&1 | tee kernel_log-${start_time}.txt
 
