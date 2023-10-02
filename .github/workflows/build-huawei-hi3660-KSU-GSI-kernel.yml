@@ -1,4 +1,4 @@
-name: Build Huawei-hi3660-KSU-GSI-Kernel
+name: Build Huawei-hi3660-KSU-Kernel
 on:
   workflow_dispatch:
   schedule:
