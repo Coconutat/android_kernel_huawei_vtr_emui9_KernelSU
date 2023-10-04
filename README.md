@@ -1,7 +1,5 @@
 # 华为P10支持KernelSU自定义内核EMUI 9版本  
-[![Build Huawei-hi3660-KSU-EMUI9-EPM-Kernel](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-EMUI9-EPM-kernel.yml/badge.svg?branch=Github_Action_Mode)](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-EMUI9-EPM-kernel.yml) 
-[![Build Huawei-hi3660-KSU-GSI-Kernel](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-GSI-kernel.yml/badge.svg?branch=Github_Action_Mode)](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-GSI-kernel.yml) ![Downloads](https://img.shields.io/github/downloads/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/total)  
-
+[![Build Huawei-hi3660-KSU-Kernel](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-kernel.yml/badge.svg)](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-kernel.yml)
 [下载统计](https://gra.caldis.me/?url=https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU)
    
 ***
@@ -17,11 +15,8 @@
 Releases内会发布基于KernelSU稳定版本构建的内核。  
 喜欢尝鲜的朋友可以在Action内下载。  
 **版本说明：**
-+ Build Huawei-hi3660-KSU-GSI-Kernel:给GSI系统使用的KernelSU内核。  
++ Build Huawei-hi3660-KSU-Kernel:给EMUI 9 和 GSI系统使用的KernelSU内核。  
  > 内部包含两个系列，一个是P10系列(Pangu_P10_KSU_XXXX)，一个是V9系列(Pangu_V9_KSU_XXXX)。解压后带enforcing的版本刷入后开机SELinux为强制模式。带permissive的版本刷入后开机SELinux为宽容模式。  
-  
-+ Build Huawei-hi3660-KSU-EMUI9-EPM-Kernel:给华为EMUI9.0.x系列系统使用的KernelSU内核。  
- > 内部包含两个系列，一个是P10系列(Pangu_P10_KSU_XXXX)，一个是V9系列(Pangu_V9_KSU_XXXX)。解压后无论是enforcing还是permissive都会强制SELinux为宽容模式。(不然KernelSU会失效。)  
 
  + P10系列支持的机型：P10，P10 Plus，Mate9，Mate9 Pro  
  + V9系列支持的机型：荣耀荣耀9、v9（8Pro）、华为Nova2S、平板M5 8.4英寸、华为平板M5 10.8英寸（麒麟960s）
