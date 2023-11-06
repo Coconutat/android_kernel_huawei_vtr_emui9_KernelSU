@@ -1,3 +1,9 @@
+# The End of Road
+I declare with sadness that due to a job change, I will not have time to address the vast majority of related issues related to this project. I don't have time to study or improve either. Based on this, I have to archive this warehouse. Unfortunately, there are still many bugs in this project. But I am powerless. This has to be said to be a regret.  
+# 路的尽头
+我怀着悲痛的心情宣告以下内容，因为工作变动，我将没有时间处理绝大多数此项目的相关问题。我也没有时间研究或者改进。基于此，我不得不存档此仓库。很遗憾，这个项目仍有许多bug。但我已经无能为力。这不得不说，是一种遗憾。  
+***  
+  
 # 华为P10支持KernelSU自定义内核EMUI 9版本  
 [![Build Huawei-hi3660-KSU-Kernel](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-kernel.yml/badge.svg)](https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU/actions/workflows/build-huawei-hi3660-KSU-kernel.yml)
 [下载统计](https://gra.caldis.me/?url=https://github.com/Coconutat/android_kernel_huawei_vtr_emui9_KernelSU)
