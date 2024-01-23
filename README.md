@@ -1,3 +1,10 @@
+
+# No longer archived, but only for synchronizing KernelSU code.The purpose is only to allow friends in need to download the kernel and experience it.  
+> Please download within Github Action.  
+  
+# 不再归档，但是仅仅只是为了同步KernelSU代码。目的只是让有需要的朋友可以下载内核体验。
+> 请于Github Action内下载。  
+***
 # The End of Road
 I declare with sadness that due to a job change, I will not have time to address the vast majority of related issues related to this project. I don't have time to study or improve either. Based on this, I have to archive this warehouse. Unfortunately, there are still many bugs in this project. But I am powerless. This has to be said to be a regret.  
 # 路的尽头
