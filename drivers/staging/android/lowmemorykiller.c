@@ -58,21 +58,25 @@
 
 static u32 lowmem_debug_level = 1;
 static short lowmem_adj[6] = {
-	0,
-	1,
-	6,
-	12,
+	100,
+	200,
+	300,
+	700,
+	850,
+	900,
 };
 
-static int lowmem_adj_size = 4;
+static int lowmem_adj_size = 6;
 static int lowmem_minfree[6] = {
-	3 * 512,	/* 6MB */
-	2 * 1024,	/* 8MB */
-	4 * 1024,	/* 16MB */
-	16 * 1024,	/* 64MB */
+	8192,		/* 32MB */
+	12288,		/* 48MB */
+	24576,		/* 96MB */
+	32768,		/* 128MB */
+	49152,		/* 192MB */
+	65536,		/* 256MB */
 };
 
-static int lowmem_minfree_size = 4;
+static int lowmem_minfree_size = 6;
 #if defined CONFIG_LOG_JANK
 static ulong lowmem_kill_count;
 static ulong lowmem_free_mem;
