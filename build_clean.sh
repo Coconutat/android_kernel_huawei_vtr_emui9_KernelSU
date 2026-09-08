@@ -5,8 +5,13 @@ echo "开始清理编译残留..."
 start_time_sum=$(date +%s)
 
 rm -rf out
-make clean
-make mrproper
+
+export PATH=$PATH:$(pwd)/../Compiler/aarch64-linux-android-4.9-pie/bin
+export CROSS_COMPILE=aarch64-linux-android-
+
+make ARCH=arm64 distclean
+# rm -rf KernelSU
+# git reset --hard
 
 end_time_sum=$(date +%s)
 
