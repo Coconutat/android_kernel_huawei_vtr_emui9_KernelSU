@@ -38,9 +38,10 @@ int udp_sock_create4(struct net *net, struct udp_port_cfg *cfg,
 	struct socket *sock = NULL;
 	struct sockaddr_in udp_addr;
 
-	err = __sock_create(net, AF_INET, SOCK_DGRAM, 0, &sock, 1);
+	err = sock_create_kern(AF_INET, SOCK_DGRAM, 0, &sock);
 	if (err < 0)
 		goto error;
+	sk_change_net(sock->sk, net);
 
 	udp_addr.sin_family = AF_INET;
 	udp_addr.sin_addr = cfg->local_ip;
@@ -72,7 +73,7 @@ int udp_sock_create4(struct net *net, struct udp_port_cfg *cfg,
 error:
 	if (sock) {
 		kernel_sock_shutdown(sock, SHUT_RDWR);
-		sock_release(sock);
+		sk_release_kernel(sock->sk);
 	}
 	*sockp = NULL;
 	return err;
@@ -135,7 +136,7 @@ static void __compat_fake_destructor(struct sk_buff *skb)
 {
 }
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 12, 0)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 11, 0)
 static void __compat_iptunnel_xmit(struct rtable *rt, struct sk_buff *skb,
 		  __be32 src, __be32 dst, __u8 proto,
 		  __u8 tos, __u8 ttl, __be16 df, bool xnet)
@@ -183,7 +184,7 @@ void udp_tunnel_xmit_skb(struct rtable *rt, struct sock *sk, struct sk_buff *skb
 			 bool xnet, bool nocheck)
 {
 	struct udphdr *uh;
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 12, 0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 11, 0)
 	struct net_device *dev = skb->dev;
 	int ret;
 #endif
@@ -204,15 +205,22 @@ void udp_tunnel_xmit_skb(struct rtable *rt, struct sock *sk, struct sk_buff *skb
 		skb->sk = sk;
 	if (!skb->destructor)
 		skb->destructor = __compat_fake_destructor;
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 12, 0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 11, 0)
 	ret =
 #endif
 	     iptunnel_xmit(
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 15, 0)
 			   sk,
 #endif
-			   rt, skb, src, dst, IPPROTO_UDP, tos, ttl, df, xnet);
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 12, 0)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(3, 12, 0) && LINUX_VERSION_CODE >= KERNEL_VERSION(3, 11, 0)
+			   dev_net(dev),
+#endif
+			   rt, skb, src, dst, IPPROTO_UDP, tos, ttl, df
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 12, 0) || LINUX_VERSION_CODE < KERNEL_VERSION(3, 11, 0)
+			   , xnet
+#endif
+	     );
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3, 11, 0)
 	if (ret)
 		iptunnel_xmit_stats(ret - 8, &dev->stats, dev->tstats);
 #endif
@@ -222,7 +230,7 @@ void udp_tunnel_sock_release(struct socket *sock)
 {
 	rcu_assign_sk_user_data(sock->sk, NULL);
 	kernel_sock_shutdown(sock, SHUT_RDWR);
-	sock_release(sock);
+	sk_release_kernel(sock->sk);
 }
 
 #if IS_ENABLED(CONFIG_IPV6)
@@ -247,9 +255,10 @@ int udp_sock_create6(struct net *net, struct udp_port_cfg *cfg,
 	int err;
 	struct socket *sock = NULL;
 
-	err = __sock_create(net, AF_INET6, SOCK_DGRAM, 0, &sock, 1);
+	err = sock_create_kern(AF_INET6, SOCK_DGRAM, 0, &sock);
 	if (err < 0)
 		goto error;
+	sk_change_net(sock->sk, net);
 
 	if (cfg->ipv6_v6only) {
 		int val = 1;
@@ -294,7 +303,7 @@ int udp_sock_create6(struct net *net, struct udp_port_cfg *cfg,
 error:
 	if (sock) {
 		kernel_sock_shutdown(sock, SHUT_RDWR);
-		sock_release(sock);
+		sk_release_kernel(sock->sk);
 	}
 	*sockp = NULL;
 	return err;
