@@ -120,7 +120,6 @@ EXPORT_SYMBOL(vfs_fstat);
 extern struct static_key_true ksu_su_compat_enabled;
 extern bool __ksu_is_allow_uid_for_current(uid_t uid);
 extern int ksu_handle_stat(int *dfd, struct filename **filename, int *flags);
-			   struct path *path, struct path *root);
 #endif
 
 int vfs_fstatat(int dfd, const char __user *filename, struct kstat *stat,
@@ -129,6 +128,10 @@ int vfs_fstatat(int dfd, const char __user *filename, struct kstat *stat,
 	struct path path;
 	int error = -EINVAL;
 	unsigned int lookup_flags = 0;
+#ifdef CONFIG_KSU_SUSFS
+	struct filename *fname = NULL;
+	int flags = flag;
+#endif
 
 	if ((flag & ~(AT_SYMLINK_NOFOLLOW | AT_NO_AUTOMOUNT |
 		      AT_EMPTY_PATH)) != 0)
