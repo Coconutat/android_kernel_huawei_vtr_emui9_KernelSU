@@ -65,6 +65,18 @@ config SECURITY_SELINUX_DEVELOP
 	  can interactively toggle the kernel between enforcing mode and
 	  permissive mode (if permitted by the policy) via /selinux/enforce.
 
+config SECURITY_SELINUX_EPM
+	bool "NSA SELinux runtime enforce to permissive mode"
+	depends on SECURITY_SELINUX
+	default n
+	help
+	  For Huawei Debug.
+	  Enforce SELinux to permissive mode.If say Y,you can't switch
+	  SELinux mode in system.System will be enforce set SELinux mode to
+	  permissive mode.
+
+	  If you are unsure how to answer this question, answer N.
+
 config SECURITY_SELINUX_AVC_STATS
 	bool "NSA SELinux AVC Statistics"
 	depends on SECURITY_SELINUX
