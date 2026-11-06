@@ -24,10 +24,18 @@
 #include <linux/ctype.h>
 #include <linux/slab.h>
 #include <linux/compiler.h>
-#include <linux/susfs_def.h>
+
+#include <asm/sections.h>
+
+#ifdef CONFIG_HUAWEI_HIDESYMS
+#include <chipset_common/kernel_harden/litehide_symbols.h>
+#endif
 
 #ifdef CONFIG_KALLSYMS_ALL
 #define all_var 1
+#else
+#define all_var 0
+#endif
 
 /*
  * These will be re-linked against their real values
@@ -610,7 +618,6 @@ static int s_show(struct seq_file *m, void *p)
 		seq_printf(m, "%pK %c %s\t[%s]\n", (void *)iter->value,
 			   type, iter->name, iter->module_name);
 	} else
-
 		seq_printf(m, "%pK %c %s\n", (void *)iter->value,
 			   iter->type, iter->name);
 	return 0;

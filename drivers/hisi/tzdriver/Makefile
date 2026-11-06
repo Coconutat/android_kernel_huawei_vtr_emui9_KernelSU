@@ -28,7 +28,7 @@ obj-$(CONFIG_TEE_LIBHWSECUREC) += libhwsecurec/
 obj-$(CONFIG_TEE_CFC) += cfc_data.o cfc_coresight.o
 $(obj)/cfc_data.o: $(obj)/cfc_data.c
 $(obj)/cfc_data.c: $(src)/cfc_graphgen.py $(src)/cfc_graph.py $(src)/cfc_codegen.py $(src)/cfc_rule_parser.py $(src)/template $(obj)/rule.out
-	+python $(srctree)/$(src)/cfc_codegen.py $(obj)/rule.out > $@
+	+python3 $(srctree)/$(src)/cfc_codegen.py $(obj)/rule.out > $@
 $(obj)/rule.out: $(src)/rule.in
 	$(CROSS_COMPILE)cpp $(srctree)/$(src)/rule.in > $@
 

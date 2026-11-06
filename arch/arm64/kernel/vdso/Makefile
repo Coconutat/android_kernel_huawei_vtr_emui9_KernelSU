@@ -12,6 +12,11 @@ targets := $(obj-vdso) vdso.so vdso.so.dbg
 obj-vdso := $(addprefix $(obj)/, $(obj-vdso))
 
 ccflags-y := -shared -fno-common -fno-builtin
+ifeq ($(cc-name),clang)
+# KBUILD_CFLAGS carries -fno-pic (arch/arm64/Makefile); combined with -shared
+# clang then emits text relocations into the vDSO. Force PIC back on.
+ccflags-y += -fPIC
+endif
 ccflags-y += -nostdlib -Wl,-soname=linux-vdso.so.1 \
 		$(call cc-ldoption, -Wl$(comma)--hash-style=sysv)
 ccflags-y += $(DISABLE_LTO)

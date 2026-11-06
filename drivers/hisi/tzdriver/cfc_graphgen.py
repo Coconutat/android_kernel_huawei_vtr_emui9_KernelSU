@@ -89,7 +89,7 @@ def parseCommandPatternUnit(context, graph, start, end, commandPattern):
 		return
 
 	# check if the var is known
-	if commandPattern != '.' and not context.markers.has_key(commandPattern):
+	if commandPattern != '.' and not commandPattern in context.markers:
 		raise Exception('unrecorgnized var: {}'.format(commandPattern))
 
 	# only ATTRIBUTE_SEND_DATA_START event can reach FLAG_WAIT_DATA state
@@ -161,7 +161,7 @@ def genNFAGraph(context):
 
 	start = graph.addNFAState()
 	for commandID, commandPattern in context.commandPatterns:
-		if not finalStates.has_key(commandID):
+		if not commandID in finalStates:
 			finalStates[commandID] = graph.addNFAState().setSucceed().setStop().setCMD(int(commandID))
 		parseCommandPattern(context, graph, start, finalStates[commandID], commandPattern)
 

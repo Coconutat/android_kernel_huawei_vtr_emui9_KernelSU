@@ -28,8 +28,8 @@ echo "Please select the KernelSU version to install:"
 echo " A) Tags version (rsuntk)"
 echo " B) SukiSU Builtin (SukiSU-Ultra)"
 echo " C) Main version (rsuntk)"
-echo " D) Master version (backslashxx)"
-echo " E) ReSukiSU Builtin (ReSukiSU)"
+echo " D) KernelSU-Next (ksu-next)"
+echo " E) BaKaSU (BakaSU)"
 echo "-------------------------------------------------------"
 read -p "Enter your choice (A/B/C/D/E): " version
 
@@ -60,12 +60,12 @@ case $version in
         curl $CURL_OPTS "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s main
         ;;
     [Dd]*)
-        echo "Installing backslashxx KernelSU (Master)..."
-        curl $CURL_OPTS "https://raw.githubusercontent.com/backslashxx/KernelSU/master/kernel/setup.sh" | bash -s master
+        echo "Installing KernelSU-Next (ksu-next)..."
+        curl $CURL_OPTS "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/dev/kernel/setup.sh" | bash -s dev
         ;;
     [Ee]*)
-        echo "Installing ReSukiSU (Builtin)..."
-        curl $CURL_OPTS "https://raw.githubusercontent.com/ReSukiSU/ReSukiSU/main/kernel/setup.sh" | bash -s builtin
+        echo "Installing BaKaSU (BakaSU)..."
+        curl $CURL_OPTS "https://raw.githubusercontent.com/Baka-SU/BakaSU/main/kernel/setup.sh" | bash -s main
         ;;
     *)
         echo "Invalid option: $version. Exiting."

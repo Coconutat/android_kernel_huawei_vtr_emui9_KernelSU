@@ -638,10 +638,7 @@ static int tee_calc_task_hash(unsigned char *digest, bool cfc_rehash, struct tas
 	int locked = 1;
 #endif
 	int rc;
-	struct {
-		struct shash_desc shash;
-		char ctx[crypto_shash_descsize(g_tee_shash_tfm)];
-	} desc;
+	SHASH_DESC_ON_STACK(desc, g_tee_shash_tfm);
 
 	if (NULL == digest) {
 		tloge("tee hash: input param is error!\n");
@@ -667,10 +664,10 @@ static int tee_calc_task_hash(unsigned char *digest, bool cfc_rehash, struct tas
 	end_code   = mm->end_code;
 	code_size = end_code - start_code;
 
-	desc.shash.tfm = g_tee_shash_tfm;
-	desc.shash.flags = 0;
+	desc->tfm = g_tee_shash_tfm;
+	desc->flags = 0;
 
-	rc = crypto_shash_init(&desc.shash);
+	rc = crypto_shash_init(desc);
 	if (rc != 0)
 		return rc;
 
@@ -699,7 +696,7 @@ static int tee_calc_task_hash(unsigned char *digest, bool cfc_rehash, struct tas
 		}
 
 		in_size = (code_size > PAGE_SIZE) ? PAGE_SIZE : code_size;
-		rc = crypto_shash_update(&desc.shash, ptr_base, in_size);
+		rc = crypto_shash_update(desc, ptr_base, in_size);
 		if (rc) {
 			kunmap_atomic(ptr_base);
 			put_page(ptr_page);
@@ -714,11 +711,11 @@ static int tee_calc_task_hash(unsigned char *digest, bool cfc_rehash, struct tas
         up_read(&mm->mmap_sem);
 	mmput(mm);
 	if (!rc) {
-		rc = crypto_shash_final(&desc.shash, digest);
+		rc = crypto_shash_final(desc, digest);
 
 		if (rc || !cfc_is_enabled || !cfc_rehash)
 			return rc;
-		rc = tee_cfc_rehash(&desc.shash, digest);
+		rc = tee_cfc_rehash(desc, digest);
 	}
 	return rc;
 }

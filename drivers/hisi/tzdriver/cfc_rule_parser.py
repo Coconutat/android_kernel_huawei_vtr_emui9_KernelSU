@@ -61,7 +61,7 @@ class CFCRuleTextContent(object):
 	# Var := Symbol[, Attribute]
 	def parseMarker(self, s):
 		s = s.replace(',', ' ')
-		tokens = filter(bool, s.split())
+		tokens = list(filter(bool, s.split()))
 		if len(tokens) < 3 or len(tokens) > 4:
 			raise Exception('Line {}: unexpected tokens numbers {}.'.format(self.lineNum, len(tokens)))
 		if tokens[1] != ':=':

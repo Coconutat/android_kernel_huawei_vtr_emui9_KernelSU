@@ -50,13 +50,12 @@ $(warning LSE atomics not supported by binutils)
   endif
 endif
 
-ifeq ($(cc-name),clang)
-# This is a workaround for https://bugs.llvm.org/show_bug.cgi?id=30792.
-# TODO: revert when this is fixed in LLVM.
-KBUILD_CFLAGS	+= -mno-implicit-float
-else
+# 内核不能使用 FP/SIMD 寄存器：kernel_entry 不保存 v0-v31，任何一处用到都会
+# 破坏被中断任务的浮点状态。历史上 clang 分支用的是 -mno-implicit-float
+# (LLVM PR30792 的 workaround)，但它并不阻止可变参数函数在 va_start 里保存
+# v0-v7 的 ABI 需要——printk/panic/kthread_create 这些 va_list 函数全中招。
+# -mgeneral-regs-only 才是正确做法，GCC 分支本来就在用它。
 KBUILD_CFLAGS	+= -mgeneral-regs-only
-endif
 KBUILD_CFLAGS	+= $(lseinstr)
 KBUILD_CFLAGS	+= -fno-asynchronous-unwind-tables
 KBUILD_CFLAGS	+= $(call cc-option, -mpc-relative-literal-loads)

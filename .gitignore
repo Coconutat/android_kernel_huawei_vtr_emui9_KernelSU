@@ -117,8 +117,8 @@ all.config
 *.kdev4
 
 # KernelSU & Personal
-KernelSU
-/out
+KernelSU*
+out*
 drivers/kernelsu
 kernel_log-*.log
 Image.gz*

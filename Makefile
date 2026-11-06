@@ -303,7 +303,10 @@ CONFIG_SHELL := $(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 
 HOSTCC       = gcc
 HOSTCXX      = g++
-HOSTCFLAGS   := -w -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89
+# -fcommon: 主机工具里有一批 GCC<=9 时代的 common symbol 写法（scripts/dtc 的
+# yylloc 最典型）。GCC 10+ 和 clang 11+ 默认 -fno-common，会让它们变成
+# "multiple definition" 硬错误。这里恢复旧语义，影响面只有主机工具。
+HOSTCFLAGS   := -w -Wall -Wmissing-prototypes -Wstrict-prototypes -O2 -fomit-frame-pointer -std=gnu89 -fcommon
 HOSTCXXFLAGS = -O2
 
 ifeq ($(shell $(HOSTCC) -v 2>&1 | grep -c "clang version"), 1)
@@ -886,10 +889,24 @@ KBUILD_CFLAGS += $(call cc-disable-warning, duplicate-decl-specifier)
 # Quiet clang warning: comparison of unsigned expression < 0 is always false
 KBUILD_CFLAGS += $(call cc-disable-warning, tautological-compare)
 
-ifeq ($(strip $(clang)), true)
+# clang 15+ promotes these to hard errors even under -std=gnu89. This tree is
+# 4.9-era vendor code (drivers/hisi/modem, huawei_platform/lcd, devkit) that we
+# do not want to rewrite, so demote them back to warnings.
+KBUILD_CFLAGS += -Wno-error=int-conversion
+KBUILD_CFLAGS += -Wno-error=implicit-function-declaration
+KBUILD_CFLAGS += -Wno-error=implicit-int
+KBUILD_CFLAGS += -Wno-error=incompatible-pointer-types
 KBUILD_CFLAGS += -Wno-error=return-type
 KBUILD_CFLAGS += -Wno-error=unknown-warning-option
-endif
+
+# GNU89 inline 语义：树里有 `extern inline ... {}` 的头文件（如
+# include/linux/hisi/mntn_l3cache_ecc.h），GCC 在 -std=gnu89 下按 GNU 规则
+# 不生成外部定义；clang 默认按 C99 规则生成，导致 multiple definition。
+KBUILD_CFLAGS += -fgnu89-inline
+
+# clang 会把 `strcpy()` 返回值被使用的写法优化成 `stpcpy()`，而 4.9 的
+# lib/string.c 还没有 stpcpy（4.16 才加），于是链接期 undefined reference。
+KBUILD_CFLAGS += -fno-builtin-stpcpy
 
 # CLANG uses a _MergedGlobals as optimization, but this breaks modpost, as the
 # source of a reference will be _MergedGlobals and not on of the whitelisted names.
