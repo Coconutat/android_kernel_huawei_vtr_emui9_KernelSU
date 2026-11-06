@@ -73,7 +73,7 @@ int selinux_policycap_netpeer;
 int selinux_policycap_openperm;
 int selinux_policycap_alwaysnetwork;
 
-DEFINE_RWLOCK(policy_rwlock);
+static DEFINE_RWLOCK(policy_rwlock);
 
 static struct sidtab sidtab;
 struct policydb policydb;
