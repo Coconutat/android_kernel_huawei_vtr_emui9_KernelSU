@@ -28,7 +28,7 @@ echo "Please select the KernelSU version to install:"
 echo " A) Tags version (rsuntk)"
 echo " B) SukiSU Builtin (SukiSU-Ultra)"
 echo " C) Main version (rsuntk)"
-echo " D) KernelSU-Next (ksu-next)"
+echo " D) KernelSU-Next (ksu-next legacy)"
 echo " E) BaKaSU (BakaSU)"
 echo "-------------------------------------------------------"
 read -p "Enter your choice (A/B/C/D/E): " version
@@ -60,8 +60,8 @@ case $version in
         curl $CURL_OPTS "https://raw.githubusercontent.com/rsuntk/KernelSU/main/kernel/setup.sh" | bash -s main
         ;;
     [Dd]*)
-        echo "Installing KernelSU-Next (ksu-next)..."
-        curl $CURL_OPTS "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/dev/kernel/setup.sh" | bash -s dev
+        echo "Installing KernelSU-Next (ksu-next legacy)..."
+        curl $CURL_OPTS "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/legacy/kernel/setup.sh" | bash -s legacy
         ;;
     [Ee]*)
         echo "Installing BaKaSU (BakaSU)..."
