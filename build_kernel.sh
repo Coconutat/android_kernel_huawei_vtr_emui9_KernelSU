@@ -11,6 +11,14 @@ export SUBARCH=arm64
 export CFLAGS="-fdiagnostics-color=always"
 export CXXFLAGS="-fdiagnostics-color=always"
 
+# 编译命令定义（系统装了 python env，python 默认指向 py3，无法切回 python2）
+# 内核本体用 CROSS_COMPILE 交叉编译器，这里约束的是主机侧工具链
+export CC=gcc-9
+export CXX=g++-9
+export HOSTCC=gcc-9
+export HOSTCXX=g++-9
+export PYTHON=python2
+
 # export DTC_EXT=dtc
 
 if [ ! -d "out" ]; then
@@ -21,9 +29,9 @@ start_time=$(date +%Y.%m.%d-%I_%M)
 
 start_time_sum=$(date +%s)
 
-make ARCH=arm64 O=out Pangu_P10_KSU_defconfig
+make ARCH=arm64 O=out HOSTCC="${HOSTCC}" HOSTCXX="${HOSTCXX}" PYTHON="${PYTHON}" Pangu_P10_KSU_defconfig
 # 定义编译线程数
-make ARCH=arm64 O=out -j$(nproc --all) 2>&1 | tee kernel_log-${start_time}.log
+make ARCH=arm64 O=out -j$(nproc --all) HOSTCC="${HOSTCC}" HOSTCXX="${HOSTCXX}" PYTHON="${PYTHON}" 2>&1 | tee kernel_log-${start_time}.log
 
 end_time_sum=$(date +%s)
 
